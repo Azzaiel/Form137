@@ -256,7 +256,7 @@ Private Sub cmb_level_Change()
    Call formatDataGrid
 End Sub
 Private Sub cmb_level_Click()
-  txt_subject_code.Text = ""
+'  txt_subject_code.Text = ""
     txt_subject_name.Text = ""
     Call set_datagrid(dg_subjects, rs_subject, _
                                         "SELECT " _

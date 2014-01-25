@@ -265,7 +265,7 @@ Public Sub cmb_period_Click()
                 While Not public_rs.EOF
                      sql_string = "INSERT INTO " _
                                 & "tbl_character_grade (ID, section_name,Period, Honesty,Courtesy,Helpfulness_and_Cooperation,Resourcefulness_and_Creativity,Consideration_for_Others,Sportsmanship,Obedience,Self_Reliance,Industry,Cleanliness_and_Orderliness,Promptness_and_Punctuality,Sense_of_Responsibility,Love_of_God,Patriotism_and_Love_of_Country)" _
-                            & " VALUES (" _
+                            & " VALUES ('" _
                                  & public_rs.Fields("LRN") & "','" & lbl_section.Caption & "','" _
                                  & cmb_period.Text & "','','','','','','','','','','','','','','')"
                     Call mysql_select(characterencodeform.rs_grade2, sql_string)
