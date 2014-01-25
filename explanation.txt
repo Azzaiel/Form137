@@ -1,0 +1,12 @@
+	Form 137 and Student Promotion System of Manuel S. Rojas Elementary School
+is designed to record all the grades and character grading of students for each school 
+year including the summary of student promotion status. This system features different
+processes that are connected to each other in order to meet the requirements of the
+said system. 
+	The users of the system particularly the administrators and teachers can access
+the system through log in form which requires the username and password of each user. The
+administrator will be responsible in setting the school year including the level and section
+settings. This user will be the one to add and update the student and teacher's information.
+When a grading period ends, administrator can set or check for the student promotion criteria
+while teachers can input the student's grade and character grading. Printing of Form 137 and 
+summary for student promotion can only be accessed by the administrator. 
