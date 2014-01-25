@@ -276,7 +276,7 @@ Private Sub cmd_print_Click()
         MsgBox "No record."
         Exit Sub
     End If
-      dr_advisories.Sections(2).Controls("lbl_sy").Caption = mainteacherform.lbl_sy.Caption
+      'dr_advisories.Sections(2).Controls("lbl_sy").Caption = mainteacherform.lbl_sy.Caption
       dr_advisories.Sections(2).Controls("lbl_date").Caption = Format(Now, "mmmm dd, yyyy") & "/ " & Time
         dr_advisories.Sections(2).Controls("lbl_no").Caption = rs_masterlist.RecordCount
         dr_advisories.Sections(2).Controls("lbl_section").Caption = lbl_level.Caption & " - " & lbl_section.Caption
