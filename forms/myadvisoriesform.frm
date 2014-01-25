@@ -3,7 +3,7 @@ Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Begin VB.Form myadvisoriesform 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "My Advisories"
-   ClientHeight    =   5835
+   ClientHeight    =   5640
    ClientLeft      =   45
    ClientTop       =   375
    ClientWidth     =   8985
@@ -11,28 +11,10 @@ Begin VB.Form myadvisoriesform
    MaxButton       =   0   'False
    MinButton       =   0   'False
    Picture         =   "myadvisoriesform.frx":0000
-   ScaleHeight     =   5835
+   ScaleHeight     =   5640
    ScaleWidth      =   8985
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
-   Begin VB.ComboBox cmb_category 
-      BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   360
-      ItemData        =   "myadvisoriesform.frx":1B3CE
-      Left            =   3240
-      List            =   "myadvisoriesform.frx":1B3D8
-      TabIndex        =   5
-      Top             =   720
-      Width           =   3135
-   End
    Begin VB.TextBox txt_search 
       BeginProperty Font 
          Name            =   "MS Sans Serif"
@@ -52,7 +34,7 @@ Begin VB.Form myadvisoriesform
    Begin VB.CommandButton cmd_search 
       Height          =   615
       Left            =   6960
-      Picture         =   "myadvisoriesform.frx":1B3F2
+      Picture         =   "myadvisoriesform.frx":1B3CE
       Style           =   1  'Graphical
       TabIndex        =   1
       Top             =   120
@@ -62,7 +44,7 @@ Begin VB.Form myadvisoriesform
       Height          =   3735
       Left            =   360
       TabIndex        =   3
-      Top             =   1560
+      Top             =   1200
       Width           =   8295
       _ExtentX        =   14631
       _ExtentY        =   6588
@@ -123,24 +105,6 @@ Begin VB.Form myadvisoriesform
          EndProperty
       EndProperty
    End
-   Begin VB.Label Label3 
-      BackStyle       =   0  'Transparent
-      Caption         =   "Sort by:"
-      BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   255
-      Left            =   1800
-      TabIndex        =   6
-      Top             =   840
-      Width           =   1335
-   End
    Begin VB.Label lbl_view_masterlist 
       BackStyle       =   0  'Transparent
       Caption         =   "View the masterlist."
@@ -157,7 +121,7 @@ Begin VB.Form myadvisoriesform
       Height          =   375
       Left            =   6600
       TabIndex        =   2
-      Top             =   5400
+      Top             =   5160
       Width           =   2055
    End
    Begin VB.Label Label2 
@@ -176,7 +140,7 @@ Begin VB.Form myadvisoriesform
       Height          =   255
       Left            =   480
       TabIndex        =   4
-      Top             =   1200
+      Top             =   840
       Width           =   3735
    End
 End
@@ -212,11 +176,21 @@ End Sub
 Private Sub cmd_search_Click()
        Call mysql_select(public_rs, "SELECT * FROM tbl_user WHERE Username = '" & mainform.lbl_username.Caption & "'")
          id = public_rs.Fields("ID")
-        Call set_datagrid(dg_sections, rs_advisories, _
-                                        "SELECT " _
-                                            & "lvl_name as Level, section_name as Section FROM tbl_section WHERE teacher_id='" & id & "' AND (lvl_name = '" & txt_search.Text & "' OR section_name = '" & txt_search.Text & "') AND SY = '" & mainteacherform.lbl_sy.Caption & "'ORDER BY lvl_name ASC")
+        
+        
+        Dim sqlQuery As String
+        
+        sqlQuery = "SELECT b.lvl_name as Level, b.section_name as Section  " & _
+                   "FROM tbl_section b, tbl_teacher_sections a " & _
+                   "WHERE a.teacher_id='" & id & "'" & _
+                   "      and a.section_id = b.section_id " & _
+                   "      AND (b.lvl_name = '" & txt_search.Text & "' OR b.section_name = '" & txt_search.Text & "') " & _
+                   "ORDER BY b.lvl_name ASC "
+         
+        Call set_datagrid(dg_sections, rs_advisories, sqlQuery)
                                         
                     
+            
         If rs_advisories.RecordCount = 0 Then
             MsgBox "Record not found."
         End If
@@ -225,9 +199,16 @@ End Sub
 Private Sub Form_Load()
          Call mysql_select(public_rs, "SELECT * FROM tbl_user WHERE Username = '" & mainform.lbl_username.Caption & "'")
          id = public_rs.Fields("ID")
-        Call set_datagrid(dg_sections, rs_advisories, _
-                                        "SELECT " _
-                                            & "lvl_name as Level, section_name as Section FROM tbl_section WHERE teacher_id='" & id & "' ORDER BY lvl_name ASC")
+         
+        Dim sqlQuery As String
+        
+        sqlQuery = "SELECT b.lvl_name as Level, b.section_name as Section  " & _
+                   "FROM tbl_section b, tbl_teacher_sections a " & _
+                   "WHERE a.teacher_id='" & id & "'" & _
+                   "      and a.section_id = b.section_id " & _
+                   "ORDER BY b.lvl_name ASC "
+         
+        Call set_datagrid(dg_sections, rs_advisories, sqlQuery)
                                         
                     
                   
@@ -254,9 +235,16 @@ End Sub
 Private Sub txt_search_KeyUp(KeyCode As Integer, Shift As Integer)
        Call mysql_select(public_rs, "SELECT * FROM tbl_user WHERE Username = '" & mainform.lbl_username.Caption & "'")
          id = public_rs.Fields("ID")
-        Call set_datagrid(dg_sections, rs_advisories, _
-                                        "SELECT " _
-                                            & "lvl_name as Level, section_name as Section FROM tbl_section WHERE teacher_id='" & id & "' AND (lvl_name LIKE '%" & txt_search.Text & "%' OR section_name LIKE '%" & txt_search.Text & "%') ORDER BY lvl_name ASC")
+         
+         Dim sqlQuery As String
+        
+        sqlQuery = "SELECT b.lvl_name as Level, b.section_name as Section  " & _
+                   "FROM tbl_section b, tbl_teacher_sections a " & _
+                   "WHERE a.teacher_id='" & id & "'" & _
+                   "      and a.section_id = b.section_id " & _
+                   "      and (b.lvl_name LIKE '%" & txt_search.Text & "%' OR b.section_name LIKE '%" & txt_search.Text & "%') " & _
+                   "ORDER BY b.lvl_name ASC "
+        Call set_datagrid(dg_sections, rs_advisories, sqlQuery)
                                         
                     
                

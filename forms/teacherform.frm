@@ -155,22 +155,31 @@ If rs_teacher.RecordCount = 0 Then
     MsgBox "No selected teacher."
     Exit Sub
 Else
+
     teacherinformationform.txt_id.Text = rs_teacher.Fields("Teacher_ID")
     teacherinformationform.txt_firstname.Text = rs_teacher.Fields("First_Name")
     teacherinformationform.txt_lastname.Text = rs_teacher.Fields("Last_Name")
     teacherinformationform.txt_middlename.Text = rs_teacher.Fields("Middle_Name")
     teacherinformationform.cmb_gender.Text = rs_teacher.Fields("Gender")
     teacherinformationform.dateBday.Value = rs_teacher.Fields("Date_Of_Birth")
-    teacherinformationform.txt_contact.Text = rs_teacher.Fields("Contact_Number")
-    teacherinformationform.txt_address.Text = rs_teacher.Fields("Address")
-    teacherinformationform.txt_course.Text = rs_teacher.Fields("Course")
-    teacherinformationform.txt_school.Text = rs_teacher.Fields("School_Attended")
-    teacherinformationform.txt_from.Text = rs_teacher.Fields("From_Year")
-    teacherinformationform.txt_to.Text = rs_teacher.Fields("To_Year")
+    'teacherinformationform.txt_contact.Text = rs_teacher.Fields("Contact_Number")
+    'teacherinformationform.txt_address.Text = rs_teacher.Fields("Address")
+    'teacherinformationform.txt_course.Text = rs_teacher.Fields("Course")
+    'teacherinformationform.txt_school.Text = rs_teacher.Fields("School_Attended")
+    'teacherinformationform.txt_from.Text = rs_teacher.Fields("From_Year")
+    'teacherinformationform.txt_to.Text = rs_teacher.Fields("To_Year")
     teacherinformationform.cmb_status.Text = rs_teacher.Fields("Status")
     teacherinformationform.txt_op.Text = "edit"
     teacherinformationform.txt_oldid.Text = rs_teacher.Fields("Teacher_ID")
+    
+    Call mysql_select(teacherinformationform.rs_teacher_sections, "SELECT lvl_name as Level, section_name as Section FROM tbl_teacher_sections a, tbl_section b where  a.section_id = b.section_id and a.teacher_id = '" & teacherinformationform.txt_id.Text & "'")
+    Set teacherinformationform.dg_sections.DataSource = teacherinformationform.rs_teacher_sections
+    Call teacherinformationform.reloadSectionDataGrid
+    
+    
     Call load_form(teacherinformationform, True)
+    
+   
 End If
 End Sub
 
@@ -191,17 +200,20 @@ Private Sub cmd_new_Click()
         no = 1
          teacherinformationform.txt_id.Text = "M-" & Format(no, "0000")
     End If
+    
+    Call mysql_select(public_rs, "Delete FROM db_form137.tbl_teacher_sections where teacher_id = '" & teacherinformationform.txt_id & "'")
+    
     teacherinformationform.txt_firstname.Text = ""
     teacherinformationform.txt_lastname.Text = ""
     teacherinformationform.txt_middlename.Text = ""
     teacherinformationform.cmb_gender.Text = ""
     teacherinformationform.dateBday.Value = Now
-    teacherinformationform.txt_contact.Text = ""
-    teacherinformationform.txt_address.Text = ""
-    teacherinformationform.txt_course.Text = ""
-    teacherinformationform.txt_school.Text = ""
-    teacherinformationform.txt_from.Text = ""
-    teacherinformationform.txt_to.Text = ""
+    'teacherinformationform.txt_contact.Text = ""
+    'teacherinformationform.txt_address.Text = ""
+    'teacherinformationform.txt_course.Text = ""
+    'teacherinformationform.txt_school.Text = ""
+    'teacherinformationform.txt_from.Text = ""
+    'teacherinformationform.txt_to.Text = ""
     teacherinformationform.cmb_status.Text = "On-Duty"
     teacherinformationform.txt_op.Text = "add"
     Call load_form(teacherinformationform, True)
@@ -214,6 +226,10 @@ Private Sub cmd_search_Click()
     If rs_teacher.RecordCount = 0 Then
         MsgBox "No record found."
     End If
+End Sub
+
+Private Sub dg_teachers_DblClick()
+  Call cmd_edit_Click
 End Sub
 
 Public Sub Form_Load()
