@@ -148,54 +148,64 @@ Begin VB.Form mainteacherform
       TabIndex        =   5
       Top             =   0
       Width           =   13215
+      Begin VB.CommandButton toolbar_promotion 
+         Height          =   975
+         Left            =   1680
+         Picture         =   "mainteacherform.frx":0000
+         Style           =   1  'Graphical
+         TabIndex        =   14
+         ToolTipText     =   "View promotion summary"
+         Top             =   240
+         Width           =   1335
+      End
       Begin VB.CommandButton toolbar_help 
          Height          =   975
-         Left            =   4440
-         Picture         =   "mainteacherform.frx":0000
+         Left            =   4560
+         Picture         =   "mainteacherform.frx":12C2
          Style           =   1  'Graphical
          TabIndex        =   3
          ToolTipText     =   "User Guide"
-         Top             =   120
+         Top             =   240
          Width           =   1335
       End
       Begin VB.CommandButton toolbar_advisories 
          Height          =   975
-         Left            =   1560
-         Picture         =   "mainteacherform.frx":0EEF
+         Left            =   240
+         Picture         =   "mainteacherform.frx":21B1
          Style           =   1  'Graphical
          TabIndex        =   1
          ToolTipText     =   "My Advisories"
-         Top             =   120
+         Top             =   240
          Width           =   1335
       End
       Begin VB.CommandButton toolbar_account 
          Height          =   975
-         Left            =   3000
-         Picture         =   "mainteacherform.frx":2328
+         Left            =   3120
+         Picture         =   "mainteacherform.frx":35EA
          Style           =   1  'Graphical
          TabIndex        =   2
          ToolTipText     =   "My Account"
-         Top             =   120
+         Top             =   240
          Width           =   1335
       End
       Begin VB.CommandButton toolbar_section 
          Height          =   975
          Left            =   120
-         Picture         =   "mainteacherform.frx":357B
+         Picture         =   "mainteacherform.frx":483D
          Style           =   1  'Graphical
          TabIndex        =   0
          ToolTipText     =   "My Sections"
-         Top             =   120
+         Top             =   1320
          Width           =   1335
       End
       Begin VB.CommandButton toolbar_logout 
          Height          =   975
-         Left            =   5880
-         Picture         =   "mainteacherform.frx":49CC
+         Left            =   6000
+         Picture         =   "mainteacherform.frx":5C8E
          Style           =   1  'Graphical
          TabIndex        =   4
          ToolTipText     =   "Log out from this application"
-         Top             =   120
+         Top             =   240
          Width           =   1335
       End
       Begin VB.Label Label4 
@@ -221,7 +231,7 @@ Begin VB.Form mainteacherform
    Begin VB.Image Image1 
       Height          =   7335
       Left            =   0
-      Picture         =   "mainteacherform.frx":5CAC
+      Picture         =   "mainteacherform.frx":6F6E
       Stretch         =   -1  'True
       Top             =   1200
       Width           =   13215

@@ -3,7 +3,7 @@ Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Begin VB.Form levelform 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Level Settings"
-   ClientHeight    =   4500
+   ClientHeight    =   4260
    ClientLeft      =   45
    ClientTop       =   375
    ClientWidth     =   5850
@@ -11,7 +11,7 @@ Begin VB.Form levelform
    MaxButton       =   0   'False
    MinButton       =   0   'False
    Picture         =   "levelform.frx":0000
-   ScaleHeight     =   4500
+   ScaleHeight     =   4260
    ScaleWidth      =   5850
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
@@ -31,19 +31,10 @@ Begin VB.Form levelform
       Visible         =   0   'False
       Width           =   975
    End
-   Begin VB.CommandButton cmd_settings 
-      Height          =   495
-      Left            =   3840
-      Picture         =   "levelform.frx":12121
-      Style           =   1  'Graphical
-      TabIndex        =   4
-      Top             =   3960
-      Width           =   1815
-   End
    Begin VB.CommandButton cmb_clear 
       Height          =   615
       Left            =   3120
-      Picture         =   "levelform.frx":132E4
+      Picture         =   "levelform.frx":12121
       Style           =   1  'Graphical
       TabIndex        =   2
       Top             =   600
@@ -52,7 +43,7 @@ Begin VB.Form levelform
    Begin VB.CommandButton cmd_save 
       Height          =   615
       Left            =   1680
-      Picture         =   "levelform.frx":1405F
+      Picture         =   "levelform.frx":12E9C
       Style           =   1  'Graphical
       TabIndex        =   1
       Top             =   600
@@ -79,7 +70,7 @@ Begin VB.Form levelform
       Height          =   2175
       Left            =   240
       TabIndex        =   3
-      Top             =   1680
+      Top             =   1800
       Width           =   5415
       _ExtentX        =   9551
       _ExtentY        =   3836
@@ -139,6 +130,15 @@ Begin VB.Form levelform
          BeginProperty Column01 
          EndProperty
       EndProperty
+   End
+   Begin VB.CommandButton cmd_settings 
+      Height          =   495
+      Left            =   3600
+      Picture         =   "levelform.frx":13E3F
+      Style           =   1  'Graphical
+      TabIndex        =   4
+      Top             =   3000
+      Width           =   1815
    End
    Begin VB.Label Label2 
       BackStyle       =   0  'Transparent
@@ -250,6 +250,9 @@ Private Sub dg_level_DblClick()
     txt_level.Text = rs_level.Fields("Name")
     txt_op.Text = "edit"
     txt_oldname.Text = rs_level.Fields("Name")
+      level = rs_level.Fields("Name")
+     Call load_form(subjectform, True)
+     Unload Me
 End Sub
 
 Private Sub Form_Load()

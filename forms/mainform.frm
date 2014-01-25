@@ -23,63 +23,53 @@ Begin VB.Form mainform
       BackColor       =   &H00808080&
       Height          =   1215
       Left            =   0
-      TabIndex        =   12
+      TabIndex        =   11
       Top             =   0
       Width           =   15135
       Begin VB.CommandButton toolbar_help 
          Height          =   975
-         Left            =   12400
+         Left            =   11205
          Picture         =   "mainform.frx":0000
          Style           =   1  'Graphical
-         TabIndex        =   9
+         TabIndex        =   8
          ToolTipText     =   "User Guide"
          Top             =   120
          Width           =   1335
       End
       Begin VB.CommandButton toolbar_logout 
          Height          =   975
-         Left            =   13780
+         Left            =   12585
          Picture         =   "mainform.frx":0EEF
          Style           =   1  'Graphical
-         TabIndex        =   10
+         TabIndex        =   9
          ToolTipText     =   "Log out from this application"
          Top             =   120
          Width           =   1335
       End
       Begin VB.CommandButton toolbar_database 
          Height          =   975
-         Left            =   11040
+         Left            =   9840
          Picture         =   "mainform.frx":21CF
          Style           =   1  'Graphical
-         TabIndex        =   8
+         TabIndex        =   7
          ToolTipText     =   "Back-up or restore database"
          Top             =   120
          Width           =   1335
       End
       Begin VB.CommandButton toolbar_report 
          Height          =   975
-         Left            =   9660
+         Left            =   8400
          Picture         =   "mainform.frx":36D8
          Style           =   1  'Graphical
-         TabIndex        =   7
-         ToolTipText     =   "Generate reports"
-         Top             =   120
-         Width           =   1335
-      End
-      Begin VB.CommandButton toolbar_promotion 
-         Height          =   975
-         Left            =   8280
-         Picture         =   "mainform.frx":4A45
-         Style           =   1  'Graphical
          TabIndex        =   6
-         ToolTipText     =   "View promotion summary"
+         ToolTipText     =   "Generate reports"
          Top             =   120
          Width           =   1335
       End
       Begin VB.CommandButton toolbar_form137 
          Height          =   975
-         Left            =   6900
-         Picture         =   "mainform.frx":5D07
+         Left            =   7020
+         Picture         =   "mainform.frx":4A45
          Style           =   1  'Graphical
          TabIndex        =   5
          ToolTipText     =   "View Form-137 of student"
@@ -88,8 +78,8 @@ Begin VB.Form mainform
       End
       Begin VB.CommandButton toolbar_user 
          Height          =   975
-         Left            =   5520
-         Picture         =   "mainform.frx":6C9D
+         Left            =   5640
+         Picture         =   "mainform.frx":59DB
          Style           =   1  'Graphical
          TabIndex        =   4
          ToolTipText     =   "Add and update user account"
@@ -98,8 +88,8 @@ Begin VB.Form mainform
       End
       Begin VB.CommandButton toolbar_student 
          Height          =   975
-         Left            =   4140
-         Picture         =   "mainform.frx":816C
+         Left            =   4260
+         Picture         =   "mainform.frx":6EAA
          Style           =   1  'Graphical
          TabIndex        =   3
          ToolTipText     =   "Add and update student's information"
@@ -108,8 +98,8 @@ Begin VB.Form mainform
       End
       Begin VB.CommandButton toolbar_teacher 
          Height          =   975
-         Left            =   2760
-         Picture         =   "mainform.frx":95BF
+         Left            =   2880
+         Picture         =   "mainform.frx":82FD
          Style           =   1  'Graphical
          TabIndex        =   2
          ToolTipText     =   "Add and update teacher's information"
@@ -118,8 +108,8 @@ Begin VB.Form mainform
       End
       Begin VB.CommandButton toolbar_level 
          Height          =   975
-         Left            =   1380
-         Picture         =   "mainform.frx":AB61
+         Left            =   1440
+         Picture         =   "mainform.frx":989F
          Style           =   1  'Graphical
          TabIndex        =   1
          ToolTipText     =   "Add and update level"
@@ -129,11 +119,11 @@ Begin VB.Form mainform
       Begin VB.CommandButton toolbar_sy 
          Height          =   975
          Left            =   0
-         Picture         =   "mainform.frx":BF9C
+         Picture         =   "mainform.frx":ACDA
          Style           =   1  'Graphical
          TabIndex        =   0
          ToolTipText     =   "Set School Year"
-         Top             =   120
+         Top             =   1200
          Width           =   1335
       End
    End
@@ -141,7 +131,7 @@ Begin VB.Form mainform
       BackColor       =   &H00808080&
       Height          =   615
       Left            =   0
-      TabIndex        =   11
+      TabIndex        =   10
       Top             =   8280
       Width           =   15135
       Begin VB.Label Label3 
@@ -159,7 +149,7 @@ Begin VB.Form mainform
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Left            =   9360
-         TabIndex        =   18
+         TabIndex        =   17
          Top             =   240
          Width           =   1695
       End
@@ -178,7 +168,7 @@ Begin VB.Form mainform
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Left            =   4320
-         TabIndex        =   17
+         TabIndex        =   16
          Top             =   240
          Visible         =   0   'False
          Width           =   1455
@@ -198,7 +188,7 @@ Begin VB.Form mainform
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Left            =   120
-         TabIndex        =   16
+         TabIndex        =   15
          Top             =   240
          Width           =   1335
       End
@@ -217,7 +207,7 @@ Begin VB.Form mainform
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Left            =   5760
-         TabIndex        =   15
+         TabIndex        =   14
          Top             =   240
          Visible         =   0   'False
          Width           =   2655
@@ -236,7 +226,7 @@ Begin VB.Form mainform
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Left            =   11160
-         TabIndex        =   14
+         TabIndex        =   13
          Top             =   240
          Width           =   2535
       End
@@ -255,15 +245,15 @@ Begin VB.Form mainform
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Left            =   1440
-         TabIndex        =   13
+         TabIndex        =   12
          Top             =   240
          Width           =   2775
       End
    End
    Begin VB.Image Image1 
       Height          =   7095
-      Left            =   600
-      Picture         =   "mainform.frx":D5D5
+      Left            =   840
+      Picture         =   "mainform.frx":C313
       Stretch         =   -1  'True
       Top             =   1200
       Width           =   13575
