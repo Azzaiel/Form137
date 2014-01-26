@@ -234,6 +234,7 @@ Private Sub cmd_search_Click()
       If rs_student.RecordCount = 0 Then
         MsgBox "Record not found."
       End If
+      Call formatDataGrid
 End Sub
 
 Public Sub Form_Load()
@@ -242,15 +243,19 @@ Public Sub Form_Load()
                                             & "student_id as LRN, last_name as Last_Name, first_name as First_Name, middle_name as Middle_Name, Gender as Gender, Bday as Date_Of_Birth, birthplace as Birth_Place, contact_no as Contact_Number,address as Address, guardian as Guardian_Name, guardian_no as Guardian_Contact, occupation as Occupation FROM tbl_student")
                                         
                     
-                                       
+    Call formatDataGrid
 End Sub
-
 Public Sub txt_search_KeyUp(KeyCode As Integer, Shift As Integer)
     Call set_datagrid(dg_students, rs_student, _
                                         "SELECT " _
                                             & "student_id as LRN, last_name as Last_Name, first_name as First_Name, middle_name as Middle_Name, Gender as Gender, Bday as Date_Of_Birth, birthplace as Birth_Place, contact_no as Contact_Number,address as Address, guardian as Guardian_Name, guardian_no as Guardian_Contact, occupation as Occupation FROM tbl_student WHERE student_id LIKE '%" & txt_search.Text & "%' OR last_name LIKE '%" & txt_search.Text & "%' OR first_name LIKE '%" & txt_search.Text & "%'")
                                         
-                    
+   Call formatDataGrid
+End Sub
+Private Sub formatDataGrid()
+  With dg_students
+   
+  End With
 End Sub
 Private Sub set_level()
     

@@ -123,7 +123,7 @@ Begin VB.Form teacherinformationform
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Format          =   110034945
+      Format          =   52559873
       CurrentDate     =   41540
    End
    Begin VB.ComboBox cmb_gender 
@@ -709,11 +709,23 @@ Private Sub Command1_Click()
      MsgBox "Please select level and section", vbCritical
      Exit Sub
    End If
+   
+   Dim sectionID As Long
+   
+   sectionID = section_list(cmb_section.ListIndex)
+   
+   Call mysql_select(public_rs, "SELECT * FROM db_form137.tbl_teacher_sections where section_id = " & sectionID)
+   
+   If (public_rs.RecordCount > 0) Then
+     MsgBox "Section is already assigned to a teacher", vbInformation
+     Exit Sub
+   End If
+   
 
    Call mysql_select(public_rs, "SELECT * FROM db_form137.tbl_teacher_sections where 1 = 2")
    public_rs.AddNew
    public_rs!TEACHER_ID = txt_id
-   public_rs!SECTION_ID = section_list(cmb_section.ListIndex)
+   public_rs!SECTION_ID = sectionID
    public_rs.Update
    MsgBox "Section added to teacher "
   

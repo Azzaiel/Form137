@@ -226,24 +226,34 @@ Private Sub cmd_search_Click()
     If rs_teacher.RecordCount = 0 Then
         MsgBox "No record found."
     End If
+    Call formatDataGrid
 End Sub
 
 Private Sub dg_teachers_DblClick()
   Call cmd_edit_Click
 End Sub
-
 Public Sub Form_Load()
       Call set_datagrid(dg_teachers, rs_teacher, _
                                         "SELECT " _
                                             & "teacher_id as Teacher_ID, last_name as Last_Name, first_name as First_Name, middle_name as Middle_Name, Gender as Gender, Bday as Date_Of_Birth, contact_no as Contact_Number,address as Address, course as Course, school as School_Attended, a_from as From_Year, a_to as To_Year, status as Status FROM tbl_teacher")
                                         
                     
-                                       
+     Call formatDataGrid
 End Sub
-
+Private Sub formatDataGrid()
+  With dg_teachers
+    .Columns(6).Visible = False
+    .Columns(7).Visible = False
+    .Columns(8).Visible = False
+    .Columns(9).Visible = False
+    .Columns(10).Visible = False
+    .Columns(11).Visible = False
+  End With
+End Sub
 Private Sub txt_search_KeyUp(KeyCode As Integer, Shift As Integer)
      Call set_datagrid(dg_teachers, rs_teacher, _
                                         "SELECT " _
                                             & "teacher_id as Teacher_ID, last_name as Last_Name, first_name as First_Name, middle_name as Middle_Name, Gender as Gender, Bday as Date_Of_Birth, contact_no as Contact_Number,address as Address, course as Course, school as School_Attended, a_from as From_Year, a_to as To_Year, status as Status FROM tbl_teacher WHERE teacher_id LIKE'%" & txt_search & "%' OR last_name LIKE '%" & txt_search.Text & "%' OR first_name LIKE '%" & txt_search.Text & "%'")
                     
+    Call formatDataGrid
 End Sub
