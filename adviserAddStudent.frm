@@ -244,7 +244,7 @@ Begin VB.Form adviserAddStudent
       TabIndex        =   0
       Top             =   720
       Width           =   5895
-      Begin MSDataGridLib.DataGrid dg_grades 
+      Begin MSDataGridLib.DataGrid dg_available_stud 
          Height          =   5055
          Left            =   120
          TabIndex        =   11
@@ -320,17 +320,33 @@ Option Explicit
 Private rs_current_stud As New ADODB.Recordset
 Private rs_available_stud As New ADODB.Recordset
 Private sql_query As String
-
 Private Sub populateCurrentStudent()
   sql_query = "Select a.STUDENT_ID as LRN, CONCAT(a.LAST_NAME, ', ' , a.FIRST_NAME) as Name, a.GENDER " & _
               "From tbl_student a, tbl_student_level b " & _
               "Where b.ID = a.STUDENT_ID " & _
               "      And LVL_NAME = '" & lbl_level & "' " & _
-              "      And SECTION_NAME = '" & lbl_section & "' "
+              "      And SECTION_NAME = '" & lbl_section & "' " & _
+              "Order By a.Gender "
   Call set_datagrid(dg_current_stud, rs_current_stud, sql_query)
   With dg_current_stud
+    .Columns(0).Width = 1550
+    .Columns(2).Width = 1000
   End With
 End Sub
 Public Sub Form_Load()
-   Call populateCurrentStudent
+   If (lbl_level <> vbNullString) Then
+     Call populateCurrentStudent
+     Call populateAvailableStundet
+   End If
+End Sub
+Private Sub populateAvailableStundet()
+  sql_query = "Select a.STUDENT_ID as LRN, CONCAT(a.LAST_NAME, ', ' , a.FIRST_NAME) as Name, a.GENDER " & _
+              "From tbl_student a " & _
+              "Where a.STUDENT_ID not in (Select ID from tbl_student_level) " & _
+              "Order By a.Gender"
+  Call set_datagrid(dg_available_stud, rs_available_stud, sql_query)
+  With dg_available_stud
+    .Columns(0).Width = 1550
+    .Columns(2).Width = 1000
+  End With
 End Sub
