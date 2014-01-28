@@ -1,9 +1,10 @@
 VERSION 5.00
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Begin VB.Form masterlistadvisoriesform 
+   BackColor       =   &H8000000E&
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Masterlist"
-   ClientHeight    =   6015
+   ClientHeight    =   6615
    ClientLeft      =   45
    ClientTop       =   375
    ClientWidth     =   9000
@@ -11,11 +12,11 @@ Begin VB.Form masterlistadvisoriesform
    MaxButton       =   0   'False
    MinButton       =   0   'False
    Picture         =   "masterlistadvisoriesform.frx":0000
-   ScaleHeight     =   6015
+   ScaleHeight     =   6615
    ScaleWidth      =   9000
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
-   Begin VB.ComboBox cmb_category 
+   Begin VB.ComboBox cmb_action 
       BeginProperty Font 
          Name            =   "MS Sans Serif"
          Size            =   9.75
@@ -27,8 +28,27 @@ Begin VB.Form masterlistadvisoriesform
       EndProperty
       Height          =   360
       ItemData        =   "masterlistadvisoriesform.frx":AFCC2
+      Left            =   2040
+      List            =   "masterlistadvisoriesform.frx":AFCCC
+      Style           =   2  'Dropdown List
+      TabIndex        =   12
+      Top             =   1200
+      Width           =   2655
+   End
+   Begin VB.ComboBox cmb_category 
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   360
+      ItemData        =   "masterlistadvisoriesform.frx":AFCF0
       Left            =   3360
-      List            =   "masterlistadvisoriesform.frx":AFCCF
+      List            =   "masterlistadvisoriesform.frx":AFCFD
       TabIndex        =   9
       Top             =   720
       Width           =   3135
@@ -118,20 +138,20 @@ Begin VB.Form masterlistadvisoriesform
    Begin VB.CommandButton cmd_print 
       Height          =   615
       Left            =   3600
-      Picture         =   "masterlistadvisoriesform.frx":AFCEF
+      Picture         =   "masterlistadvisoriesform.frx":AFD1D
       Style           =   1  'Graphical
       TabIndex        =   0
-      Top             =   5400
+      Top             =   5760
       Width           =   1575
    End
    Begin MSDataGridLib.DataGrid dg_masterlist 
-      Height          =   4095
+      Height          =   3975
       Left            =   240
       TabIndex        =   7
-      Top             =   1200
+      Top             =   1680
       Width           =   8535
       _ExtentX        =   15055
-      _ExtentY        =   7223
+      _ExtentY        =   7011
       _Version        =   393216
       AllowUpdate     =   0   'False
       HeadLines       =   1
@@ -189,6 +209,24 @@ Begin VB.Form masterlistadvisoriesform
          EndProperty
       EndProperty
    End
+   Begin VB.Label Label5 
+      BackStyle       =   0  'Transparent
+      Caption         =   "Double Click to"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   255
+      Left            =   360
+      TabIndex        =   11
+      Top             =   1320
+      Width           =   1695
+   End
    Begin VB.Label Label4 
       BackStyle       =   0  'Transparent
       Caption         =   "Add/Remove Student"
@@ -205,7 +243,7 @@ Begin VB.Form masterlistadvisoriesform
       Height          =   375
       Left            =   360
       TabIndex        =   10
-      Top             =   5520
+      Top             =   5880
       Width           =   2295
    End
    Begin VB.Label Label3 
@@ -242,7 +280,7 @@ Begin VB.Form masterlistadvisoriesform
       Height          =   375
       Left            =   6120
       TabIndex        =   1
-      Top             =   5520
+      Top             =   5880
       Visible         =   0   'False
       Width           =   2655
    End
@@ -311,9 +349,15 @@ Private Sub encodeStudentCharacterGrade()
 End Sub
 
 Private Sub dg_masterlist_DblClick()
-   sel_lrn = rs_masterlist!LRN
-   sel_student_name = rs_masterlist!LAST_NAME & ", " & rs_masterlist!FIRST_NAME
-   Call load_form(CharEncodePeriodSelect, True)
+   
+   If (cmb_action.ListIndex = 0) Then
+     sel_lrn = rs_masterlist!LRN
+     sel_student_name = rs_masterlist!LAST_NAME & ", " & rs_masterlist!FIRST_NAME
+     Call load_form(CharEncodePeriodSelect, True)
+   Else
+     MsgBox "Sorry not implemented yet", vbInformation
+   End If
+   
 End Sub
 
 Public Sub Form_Load()
@@ -321,6 +365,7 @@ Public Sub Form_Load()
                                         "SELECT @index := @index + 1 as No," _
                                             & "a.student_id as LRN, a.last_name as Last_Name, a.First_Name,a.Middle_Name FROM tbl_student a LEFT JOIN tbl_student_level b ON a.student_id = b.ID and b.sy = '" & mainteacherform.cmb_sy.Text & "' JOIN(SELECT @index :=0) c WHERE  b.section_name = '" & myadvisoriesform.rs_advisories.Fields("Section") & "'")
      dg_masterlist.Columns(0).Width = 400
+     cmb_action.ListIndex = 0
 End Sub
 Private Sub Label4_Click()
   adviserAddStudent.lbl_level = lbl_level
