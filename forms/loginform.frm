@@ -189,7 +189,18 @@ Private Sub login()
                 Call mysql_select(useraccountform.rs_user, sql_string)
                 
             Else
+                Dim tmp_sy As Integer
+                tmp_sy = val(Format(Date, "yyyy"))
+                mainteacherform.cmb_sy.Clear
+                mainteacherform.cmb_sy.AddItem ((tmp_sy - 1) & "-" & tmp_sy)
+                mainteacherform.cmb_sy.AddItem (tmp_sy & "-" & (tmp_sy + 1))
+                If Month(Now) <= 4 Then
+                  mainteacherform.cmb_sy.ListIndex = 0
+                Else
+                  mainteacherform.cmb_sy.ListIndex = 1
+                End If
                Call load_form(mainteacherform, True)
+               
                 mainteacherform.lbl_username.Caption = user_name
                 'mainteacherform.lbl_sy.Caption = school_year
                 sql_string = "INSERT INTO " _

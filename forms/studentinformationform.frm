@@ -29,7 +29,7 @@ Begin VB.Form studentinformationform
       Height          =   375
       Left            =   1920
       MaxLength       =   12
-      TabIndex        =   36
+      TabIndex        =   32
       Top             =   4920
       Width           =   3495
    End
@@ -46,7 +46,7 @@ Begin VB.Form studentinformationform
       Height          =   375
       Left            =   1920
       MaxLength       =   12
-      TabIndex        =   34
+      TabIndex        =   30
       Top             =   3480
       Width           =   3495
    End
@@ -71,7 +71,7 @@ Begin VB.Form studentinformationform
    Begin VB.TextBox txt_oldid 
       Height          =   375
       Left            =   1440
-      TabIndex        =   31
+      TabIndex        =   27
       Top             =   6000
       Visible         =   0   'False
       Width           =   1095
@@ -90,14 +90,14 @@ Begin VB.Form studentinformationform
       ItemData        =   "studentinformationform.frx":1B3CE
       Left            =   5640
       List            =   "studentinformationform.frx":1B3D8
-      TabIndex        =   12
+      TabIndex        =   10
       Top             =   4440
       Width           =   3015
    End
    Begin VB.TextBox txt_op 
       Height          =   375
       Left            =   120
-      TabIndex        =   29
+      TabIndex        =   25
       Top             =   6000
       Visible         =   0   'False
       Width           =   1215
@@ -116,41 +116,9 @@ Begin VB.Form studentinformationform
       EndProperty
       Height          =   375
       Left            =   4440
-      TabIndex        =   28
+      TabIndex        =   24
       Top             =   3000
       Width           =   975
-   End
-   Begin VB.ComboBox cmb_section 
-      BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   360
-      Left            =   5640
-      TabIndex        =   11
-      Top             =   3720
-      Width           =   3015
-   End
-   Begin VB.ComboBox cmb_level 
-      BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   360
-      Left            =   5640
-      TabIndex        =   10
-      Top             =   3000
-      Width           =   3015
    End
    Begin VB.TextBox txt_id 
       BeginProperty Font 
@@ -165,7 +133,7 @@ Begin VB.Form studentinformationform
       Height          =   375
       Left            =   1920
       MaxLength       =   12
-      TabIndex        =   32
+      TabIndex        =   28
       Top             =   600
       Width           =   1695
    End
@@ -248,9 +216,9 @@ Begin VB.Form studentinformationform
          Strikethrough   =   0   'False
       EndProperty
       Height          =   975
-      Left            =   5760
+      Left            =   5640
       TabIndex        =   9
-      Top             =   1200
+      Top             =   2520
       Width           =   3015
    End
    Begin VB.TextBox txt_father 
@@ -289,10 +257,10 @@ Begin VB.Form studentinformationform
    End
    Begin VB.CommandButton cmd_save 
       Height          =   615
-      Left            =   7440
+      Left            =   6480
       Picture         =   "studentinformationform.frx":1B3F4
       Style           =   1  'Graphical
-      TabIndex        =   13
+      TabIndex        =   11
       Top             =   5160
       Width           =   1095
    End
@@ -332,7 +300,7 @@ Begin VB.Form studentinformationform
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Format          =   88801281
+      Format          =   52559873
       CurrentDate     =   41608
    End
    Begin VB.Label Label14 
@@ -350,7 +318,7 @@ Begin VB.Form studentinformationform
       ForeColor       =   &H00000000&
       Height          =   255
       Left            =   120
-      TabIndex        =   37
+      TabIndex        =   33
       Top             =   5040
       Width           =   1815
    End
@@ -369,7 +337,7 @@ Begin VB.Form studentinformationform
       ForeColor       =   &H00000000&
       Height          =   255
       Left            =   120
-      TabIndex        =   35
+      TabIndex        =   31
       Top             =   3600
       Width           =   1815
    End
@@ -388,7 +356,7 @@ Begin VB.Form studentinformationform
       ForeColor       =   &H00000000&
       Height          =   255
       Left            =   240
-      TabIndex        =   33
+      TabIndex        =   29
       Top             =   120
       Width           =   7335
    End
@@ -407,7 +375,7 @@ Begin VB.Form studentinformationform
       ForeColor       =   &H000000FF&
       Height          =   495
       Left            =   6120
-      TabIndex        =   14
+      TabIndex        =   12
       Top             =   240
       Width           =   2655
    End
@@ -426,7 +394,7 @@ Begin VB.Form studentinformationform
       ForeColor       =   &H00000000&
       Height          =   255
       Left            =   5640
-      TabIndex        =   30
+      TabIndex        =   26
       Top             =   4200
       Width           =   1455
    End
@@ -445,47 +413,9 @@ Begin VB.Form studentinformationform
       ForeColor       =   &H00000000&
       Height          =   255
       Left            =   3720
-      TabIndex        =   27
+      TabIndex        =   23
       Top             =   3120
       Width           =   735
-   End
-   Begin VB.Label Label13 
-      BackStyle       =   0  'Transparent
-      Caption         =   "*Section:"
-      BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      ForeColor       =   &H00000000&
-      Height          =   255
-      Left            =   5640
-      TabIndex        =   26
-      Top             =   3480
-      Width           =   1455
-   End
-   Begin VB.Label Label12 
-      BackStyle       =   0  'Transparent
-      Caption         =   "*Level:"
-      BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      ForeColor       =   &H00000000&
-      Height          =   255
-      Left            =   5640
-      TabIndex        =   25
-      Top             =   2760
-      Width           =   1455
    End
    Begin VB.Label Label1 
       BackStyle       =   0  'Transparent
@@ -502,7 +432,7 @@ Begin VB.Form studentinformationform
       ForeColor       =   &H00000000&
       Height          =   255
       Left            =   120
-      TabIndex        =   24
+      TabIndex        =   22
       Top             =   720
       Width           =   1455
    End
@@ -521,7 +451,7 @@ Begin VB.Form studentinformationform
       ForeColor       =   &H00000000&
       Height          =   255
       Left            =   120
-      TabIndex        =   23
+      TabIndex        =   21
       Top             =   1200
       Width           =   1455
    End
@@ -540,7 +470,7 @@ Begin VB.Form studentinformationform
       ForeColor       =   &H00000000&
       Height          =   255
       Left            =   120
-      TabIndex        =   22
+      TabIndex        =   20
       Top             =   1680
       Width           =   1455
    End
@@ -559,7 +489,7 @@ Begin VB.Form studentinformationform
       ForeColor       =   &H00000000&
       Height          =   255
       Left            =   120
-      TabIndex        =   21
+      TabIndex        =   19
       Top             =   2160
       Width           =   1455
    End
@@ -578,7 +508,7 @@ Begin VB.Form studentinformationform
       ForeColor       =   &H00000000&
       Height          =   255
       Left            =   120
-      TabIndex        =   20
+      TabIndex        =   18
       Top             =   2640
       Width           =   1455
    End
@@ -597,7 +527,7 @@ Begin VB.Form studentinformationform
       ForeColor       =   &H00000000&
       Height          =   255
       Left            =   120
-      TabIndex        =   19
+      TabIndex        =   17
       Top             =   3120
       Width           =   1455
    End
@@ -616,7 +546,7 @@ Begin VB.Form studentinformationform
       ForeColor       =   &H00000000&
       Height          =   255
       Left            =   120
-      TabIndex        =   18
+      TabIndex        =   16
       Top             =   4080
       Width           =   1815
    End
@@ -634,9 +564,9 @@ Begin VB.Form studentinformationform
       EndProperty
       ForeColor       =   &H00000000&
       Height          =   255
-      Left            =   5760
-      TabIndex        =   17
-      Top             =   840
+      Left            =   5640
+      TabIndex        =   15
+      Top             =   2160
       Width           =   1455
    End
    Begin VB.Label Label9 
@@ -654,7 +584,7 @@ Begin VB.Form studentinformationform
       ForeColor       =   &H00000000&
       Height          =   255
       Left            =   120
-      TabIndex        =   16
+      TabIndex        =   14
       Top             =   4560
       Width           =   1815
    End
@@ -673,7 +603,7 @@ Begin VB.Form studentinformationform
       ForeColor       =   &H00000000&
       Height          =   255
       Left            =   120
-      TabIndex        =   15
+      TabIndex        =   13
       Top             =   5520
       Width           =   2175
    End
@@ -701,7 +631,7 @@ Private Sub cmb_level_Change()
 End Sub
 
 Private Sub cmb_level_Click()
-    Call mysql_select(public_rs, "SELECT * FROM tbl_section WHERE SY='" & mainform.lbl_sy.Caption & "' AND lvl_name = '" & cmb_level.Text & "'")
+    Call mysql_select(public_rs, "SELECT * FROM tbl_section WHERE lvl_name = '" & cmb_level.Text & "'")
     cmb_section.Clear
     While Not public_rs.EOF
         cmb_section.AddItem (public_rs.Fields("section_name"))
@@ -733,7 +663,7 @@ Private Sub cmd_save_Click()
     Dim ans As String
     Dim id As String
     If txt_op.Text = "add" Then
-        If txt_id.Text = "" Or txt_lastname.Text = "" Or txt_firstname.Text = "" Or cmb_level.Text = "" Or cmb_section.Text = "" Or cmb_status.Text = "" Then
+        If txt_id.Text = "" Or txt_lastname.Text = "" Or txt_firstname.Text = "" Or cmb_status.Text = "" Then
         MsgBox "Please complete important fields."
         Exit Sub
     Else
@@ -765,12 +695,6 @@ Private Sub cmd_save_Click()
                         & txt_no.Text & "','" _
                         & txt_address.Text & "', '" & txt_father.Text & "','" & txt_father_no.Text & "','" & txt_occupation.Text & "')"
         Call mysql_select(rs_student, sql_string)
-         sql_string = "INSERT INTO " _
-                        & "tbl_student_level (ID,SY,lvl_name,section_name,Status)" _
-                    & " VALUES (" _
-                        & "'" & id & "','" & mainform.lbl_sy.Caption & "','" _
-                        & cmb_level.Text & "','" & cmb_section.Text & "','ENROLLED')"
-        Call mysql_select(rs_student, sql_string)
         MsgBox "Student's information successfully added."
         Call studentform.Form_Load
         End If
@@ -797,12 +721,12 @@ Private Sub cmd_save_Click()
                             & "WHERE " _
                                 & " student_id = '" & txt_oldid.Text & "'"
                 Call mysql_select(rs_student, sql_string)
-                Call mysql_select(public_rs, "SELECT * FROM tbl_student_level WHERE ID='" & txt_oldid.Text & "'AND SY = '" & mainform.lbl_sy.Caption & "'")
+                Call mysql_select(public_rs, "SELECT * FROM tbl_student_level WHERE ID='" & txt_oldid.Text & "'")
                 If public_rs.RecordCount <> 0 Then
                 sql_string = "UPDATE " _
                                 & "tbl_student_level " _
                             & "SET " _
-                                & " SY='" & mainform.lbl_sy.Caption & "', lvl_name = '" & cmb_level.Text & "', section_name = '" & cmb_section.Text & "', Status= '" & cmb_status.Text & "'" _
+                                & " lvl_name = '" & cmb_level.Text & "', section_name = '" & cmb_section.Text & "', Status= '" & cmb_status.Text & "'" _
                             & "WHERE " _
                                 & " ID = '" & txt_oldid.Text & "'"
                 Call mysql_select(rs_student, sql_string)
@@ -812,7 +736,7 @@ Private Sub cmd_save_Click()
                     sql_string = "INSERT INTO " _
                         & "tbl_student_level (ID,SY,lvl_name,section_name,Status)" _
                     & " VALUES (" _
-                        & "'" & txt_id.Text & "','" & mainform.lbl_sy.Caption & "','" _
+                        & "'" _
                         & cmb_level.Text & "','" & cmb_section.Text & "','ENROLLED')"
                         Call mysql_select(rs_student, sql_string)
                     Else
@@ -849,12 +773,12 @@ Private Sub cmd_save_Click()
                             & "WHERE " _
                                 & " student_id = '" & txt_oldid.Text & "'"
                 Call mysql_select(rs_student, sql_string)
-                Call mysql_select(public_rs, "SELECT * FROM tbl_student_level WHERE ID='" & txt_oldid.Text & "'AND SY = '" & mainform.lbl_sy.Caption & "'")
+                Call mysql_select(public_rs, "SELECT * FROM tbl_student_level WHERE ID='" & txt_oldid.Text & "' ")
                 If public_rs.RecordCount <> 0 Then
                 sql_string = "UPDATE " _
                                 & "tbl_student_level " _
                             & "SET " _
-                                & " ID='" & txt_id.Text & "', SY='" & mainform.lbl_sy.Caption & "', lvl_name = '" & cmb_level.Text & "', section_name = '" & cmb_section.Text & "', Status= '" & cmb_status.Text & "'" _
+                                & " ID='" & txt_id.Text & "', lvl_name = '" & cmb_level.Text & "', section_name = '" & cmb_section.Text & "', Status= '" & cmb_status.Text & "'" _
                             & "WHERE " _
                                 & " ID = '" & txt_oldid.Text & "'"
                 Call mysql_select(rs_student, sql_string)
@@ -862,9 +786,9 @@ Private Sub cmd_save_Click()
                     Call mysql_select(public_rs, "SELECT * FROM tbl_student_level WHERE ID='" & txt_oldid.Text & "'AND lvl_name = '" & cmb_level.Text & "'")
                     If public_rs.RecordCount = 0 Then
                     sql_string = "INSERT INTO " _
-                        & "tbl_student_level (ID,SY,lvl_name,section_name,Status)" _
+                        & "tbl_student_level (ID,lvl_name,section_name,Status)" _
                     & " VALUES (" _
-                        & "'" & txt_id.Text & "','" & mainform.lbl_sy.Caption & "','" _
+                        & "'" & txt_id.Text & "','" _
                         & cmb_level.Text & "','" & cmb_section.Text & "','ENROLLED')"
                         Call mysql_select(rs_student, sql_string)
                     Else
@@ -890,14 +814,14 @@ End Sub
 
 
 Private Sub Form_Load()
-        Call mysql_select(public_rs, "SELECT * FROM tbl_student_level WHERE SY = '" & mainform.lbl_sy.Caption & "' AND ID='" & txt_id.Text & "'")
+        Call mysql_select(public_rs, "SELECT * FROM tbl_student_level WHERE ID='" & txt_id.Text & "'")
         
         If public_rs.RecordCount <> 0 Then
             section = public_rs.Fields("section_name")
             
-            Call mysql_select(public_rs, "SELECT * FROM tbl_section WHERE SY = '" & mainform.lbl_sy.Caption & "' AND section_name='" & section & "'")
+            Call mysql_select(public_rs, "SELECT * FROM tbl_section WHERE section_name='" & section & "'")
                 level = public_rs.Fields("lvl_name")
-            Call mysql_select(public_rs, "SELECT * FROM tbl_level WHERE SY = '" & mainform.lbl_sy.Caption & "'")
+            Call mysql_select(public_rs, "SELECT * FROM tbl_level")
             cmb_level.Clear
             While Not public_rs.EOF
                 cmb_level.AddItem (public_rs.Fields("lvl_name"))
@@ -907,7 +831,7 @@ Private Sub Form_Load()
                 cmb_level.Text = level
                 Call cmb_level_Change
             End If
-            Call mysql_select(public_rs, "SELECT * FROM tbl_section WHERE SY='" & mainform.lbl_sy.Caption & "' AND lvl_name = '" & cmb_level.Text & "'")
+            Call mysql_select(public_rs, "SELECT * FROM tbl_section WHERE lvl_name = '" & cmb_level.Text & "'")
             cmb_section.Clear
             While Not public_rs.EOF
                 cmb_section.AddItem (public_rs.Fields("section_name"))
@@ -918,27 +842,27 @@ Private Sub Form_Load()
             End If
         Else
             
-             Call mysql_select(public_rs, "SELECT * FROM tbl_level WHERE SY = '" & mainform.lbl_sy.Caption & "'")
-            cmb_level.Clear
-            While Not public_rs.EOF
-                cmb_level.AddItem (public_rs.Fields("lvl_name"))
-                public_rs.MoveNext
-            Wend
-            If Not level = "" Then
-                cmb_level.Text = level
-               
-                Call cmb_level_Change
-            End If
-            Call mysql_select(public_rs, "SELECT * FROM tbl_section WHERE SY='" & mainform.lbl_sy.Caption & "' AND lvl_name = '" & cmb_level.Text & "'")
-            cmb_section.Clear
-            While Not public_rs.EOF
-                cmb_section.AddItem (public_rs.Fields("section_name"))
-                public_rs.MoveNext
-            Wend
-            If Not section = "" Then
-                cmb_section.Text = section
+            'Call mysql_select(public_rs, "SELECT * FROM tbl_level ")
+            'cmb_level.Clear
+            'While Not public_rs.EOF
+            '    cmb_level.AddItem (public_rs.Fields("lvl_name"))
+            '    public_rs.MoveNext
+            'Wend
+            'If Not level = "" Then
+            '    cmb_level.Text = level
+            '
+             '   Call cmb_level_Change
+            'End If
+            'Call mysql_select(public_rs, "SELECT * FROM tbl_section WHERE lvl_name = '" & cmb_level.Text & "'")
+            'cmb_section.Clear
+            'While Not public_rs.EOF
+            '    cmb_section.AddItem (public_rs.Fields("section_name"))
+            '    public_rs.MoveNext
+            'Wend
+            'If Not section = "" Then
+            '    cmb_section.Text = section
                 
-            End If
+           ' End If
         End If
   
     

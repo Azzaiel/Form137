@@ -196,6 +196,10 @@ Private Sub cmd_search_Click()
         End If
 End Sub
 
+Private Sub dg_sections_DblClick()
+   Call lbl_view_masterlist_Click
+End Sub
+
 Private Sub Form_Load()
          Call mysql_select(public_rs, "SELECT * FROM tbl_user WHERE Username = '" & mainform.lbl_username.Caption & "'")
          id = public_rs.Fields("ID")

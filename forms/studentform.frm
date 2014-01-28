@@ -175,21 +175,21 @@ Else
     studentinformationform.txt_oldid.Text = rs_student.Fields("LRN")
     Call mysql_select(public_rs, "SELECT TRUNCATE(FLOOR(((12 * (YEAR(NOW())- YEAR(bday))+ (MONTH(NOW())- MONTH( bday))) / 12) * 4) / 4 , 2) AS Age From tbl_student WHERE student_id ='" & rs_student.Fields("LRN") & "'")
     studentinformationform.txt_age.Text = public_rs.Fields("Age")
-     Call mysql_select(public_rs, "SELECT * FROM tbl_student_level WHERE SY = '" & mainform.lbl_sy.Caption & "' AND ID='" & rs_student.Fields("LRN") & "'")
+     Call mysql_select(public_rs, "SELECT * FROM tbl_student_level WHERE ID='" & rs_student.Fields("LRN") & "'")
     If public_rs.RecordCount = 0 Then
        level = ""
      section = ""
       status = ""
-     studentinformationform.cmb_level.Text = level
-     studentinformationform.cmb_section.Text = section
+     'studentinformationform.cmb_level.Text = level
+     'studentinformationform.cmb_section.Text = section
      studentinformationform.cmb_status.Text = status
      Call set_level2
     Else
      level = public_rs.Fields("lvl_name")
      section = public_rs.Fields("section_name")
       status = public_rs.Fields("Status")
-     studentinformationform.cmb_level.Text = level
-     studentinformationform.cmb_section.Text = section
+     'studentinformationform.cmb_level.Text = level
+     'studentinformationform.cmb_section.Text = section
     
      studentinformationform.cmb_status.Text = status
       Call set_level
@@ -259,14 +259,14 @@ Private Sub formatDataGrid()
 End Sub
 Private Sub set_level()
     
-    Call mysql_select(public_rs, "SELECT * FROM tbl_student_level WHERE SY = '" & mainform.lbl_sy.Caption & "' AND ID='" & rs_student.Fields("LRN") & "'")
+    Call mysql_select(public_rs, "SELECT * FROM tbl_student_level WHERE ID='" & rs_student.Fields("LRN") & "'")
         
         If public_rs.RecordCount <> 0 Then
             section = public_rs.Fields("section_name")
            
-            Call mysql_select(public_rs, "SELECT * FROM tbl_section WHERE SY = '" & mainform.lbl_sy.Caption & "' AND section_name='" & section & "'")
+            Call mysql_select(public_rs, "SELECT * FROM tbl_section WHERE  section_name='" & section & "'")
                 level = public_rs.Fields("lvl_name")
-            Call mysql_select(public_rs, "SELECT * FROM tbl_level WHERE SY = '" & mainform.lbl_sy.Caption & "'")
+            Call mysql_select(public_rs, "SELECT * FROM tbl_level ")
             studentinformationform.cmb_level.Clear
             While Not public_rs.EOF
                 studentinformationform.cmb_level.AddItem (public_rs.Fields("lvl_name"))
@@ -318,17 +318,17 @@ Private Sub set_level2()
     
     
             
-             Call mysql_select(public_rs, "SELECT * FROM tbl_level WHERE SY = '" & mainform.lbl_sy.Caption & "'")
-            studentinformationform.cmb_level.Clear
-            While Not public_rs.EOF
-                studentinformationform.cmb_level.AddItem (public_rs.Fields("lvl_name"))
-                public_rs.MoveNext
-            Wend
-            If Not level = "" Then
+            'Call mysql_select(public_rs, "SELECT * FROM tbl_level ")
+            'studentinformationform.cmb_level.Clear
+            'While Not public_rs.EOF
+            '    studentinformationform.cmb_level.AddItem (public_rs.Fields("lvl_name"))
+            '    public_rs.MoveNext
+            'Wend
+            'If Not level = "" Then
                 
-                level = ""
+            '    level = ""
                 
-            End If
+            'End If
             
        
   

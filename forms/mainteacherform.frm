@@ -19,12 +19,31 @@ Begin VB.Form mainteacherform
       Top             =   5040
    End
    Begin VB.Frame Frame1 
-      BackColor       =   &H00808080&
+      BackColor       =   &H00404040&
       Height          =   615
       Left            =   0
       TabIndex        =   6
       Top             =   8520
       Width           =   13215
+      Begin VB.ComboBox cmb_sy 
+         BackColor       =   &H80000006&
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H80000005&
+         Height          =   315
+         Left            =   5880
+         Style           =   2  'Dropdown List
+         TabIndex        =   14
+         Top             =   240
+         Width           =   1695
+      End
       Begin VB.Label lbl_username 
          BackStyle       =   0  'Transparent
          Caption         =   "Logged as: Admin"
@@ -40,7 +59,7 @@ Begin VB.Form mainteacherform
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Left            =   1200
-         TabIndex        =   12
+         TabIndex        =   11
          Top             =   240
          Width           =   1935
       End
@@ -58,29 +77,9 @@ Begin VB.Form mainteacherform
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Left            =   10680
-         TabIndex        =   11
-         Top             =   240
-         Width           =   2415
-      End
-      Begin VB.Label lbl_sy_tmp 
-         BackStyle       =   0  'Transparent
-         Caption         =   "School Year: 2013 - 2014"
-         BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   8.25
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H00FFFFFF&
-         Height          =   255
-         Left            =   5880
          TabIndex        =   10
          Top             =   240
-         Visible         =   0   'False
-         Width           =   2655
+         Width           =   2415
       End
       Begin VB.Label Label1 
          BackStyle       =   0  'Transparent
@@ -118,7 +117,6 @@ Begin VB.Form mainteacherform
          Left            =   4680
          TabIndex        =   8
          Top             =   240
-         Visible         =   0   'False
          Width           =   1215
       End
       Begin VB.Label Label3 
@@ -143,7 +141,7 @@ Begin VB.Form mainteacherform
    End
    Begin VB.Frame Frame2 
       BackColor       =   &H00808080&
-      Height          =   1215
+      Height          =   1335
       Left            =   0
       TabIndex        =   5
       Top             =   0
@@ -153,7 +151,7 @@ Begin VB.Form mainteacherform
          Left            =   1680
          Picture         =   "mainteacherform.frx":0000
          Style           =   1  'Graphical
-         TabIndex        =   14
+         TabIndex        =   13
          ToolTipText     =   "View promotion summary"
          Top             =   240
          Width           =   1335
@@ -223,7 +221,7 @@ Begin VB.Form mainteacherform
          ForeColor       =   &H00FFFFFF&
          Height          =   495
          Left            =   7800
-         TabIndex        =   13
+         TabIndex        =   12
          Top             =   360
          Width           =   4935
       End
@@ -233,7 +231,7 @@ Begin VB.Form mainteacherform
       Left            =   0
       Picture         =   "mainteacherform.frx":6F6E
       Stretch         =   -1  'True
-      Top             =   1200
+      Top             =   1320
       Width           =   13215
    End
 End

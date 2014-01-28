@@ -260,7 +260,7 @@ Private Sub cmb_category_Click()
                                                 & "ON " _
                                                     & "a.student_id = b.ID " _
                                                 & "WHERE " _
-                                                    & "   b.SY='" & mainteacherform.lbl_sy.Caption & "' AND b.section_name = '" & myadvisoriesform.rs_advisories.Fields("Section") & "' ORDER BY " & col_order & " ASC) masterlist" _
+                                                    & " b.section_name = '" & myadvisoriesform.rs_advisories.Fields("Section") & "' ORDER BY " & col_order & " ASC) masterlist" _
                                             & " JOIN " _
                                                 & "(SELECT @index :=0) c ")
     dg_masterlist.Columns(0).Width = 400
