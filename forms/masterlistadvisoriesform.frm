@@ -318,7 +318,7 @@ End Sub
 Public Sub Form_Load()
      Call set_datagrid(dg_masterlist, rs_masterlist, _
                                         "SELECT @index := @index + 1 as No," _
-                                            & "a.student_id as LRN, a.last_name as Last_Name, a.First_Name,a.Middle_Name FROM tbl_student a LEFT JOIN tbl_student_level b ON a.student_id = b.ID JOIN(SELECT @index :=0) c WHERE  b.section_name = '" & myadvisoriesform.rs_advisories.Fields("Section") & "'")
+                                            & "a.student_id as LRN, a.last_name as Last_Name, a.First_Name,a.Middle_Name FROM tbl_student a LEFT JOIN tbl_student_level b ON a.student_id = b.ID and b.sy = '" & mainteacherform.cmb_sy.Text & "' JOIN(SELECT @index :=0) c WHERE  b.section_name = '" & myadvisoriesform.rs_advisories.Fields("Section") & "'")
      dg_masterlist.Columns(0).Width = 400
 End Sub
 Private Sub Label4_Click()

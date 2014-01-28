@@ -7,12 +7,30 @@ Begin VB.Form adviserAddStudent
    ClientLeft      =   120
    ClientTop       =   450
    ClientWidth     =   13650
+   ControlBox      =   0   'False
    FillColor       =   &H00FFFFFF&
    FillStyle       =   0  'Solid
    LinkTopic       =   "Form1"
    ScaleHeight     =   7395
    ScaleWidth      =   13650
    StartUpPosition =   3  'Windows Default
+   Begin VB.CommandButton Command5 
+      Caption         =   "CLOSE"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   495
+      Left            =   6120
+      TabIndex        =   13
+      Top             =   5760
+      Width           =   1215
+   End
    Begin VB.CommandButton Command4 
       Caption         =   " Add All >>"
       BeginProperty Font 
@@ -319,13 +337,15 @@ Attribute VB_Exposed = False
 Option Explicit
 Private rs_current_stud As New ADODB.Recordset
 Private rs_available_stud As New ADODB.Recordset
+Private rs_tmp As New ADODB.Recordset
 Private sql_query As String
 Private Sub populateCurrentStudent()
   sql_query = "Select a.STUDENT_ID as LRN, CONCAT(a.LAST_NAME, ', ' , a.FIRST_NAME) as Name, a.GENDER " & _
               "From tbl_student a, tbl_student_level b " & _
               "Where b.ID = a.STUDENT_ID " & _
-              "      And LVL_NAME = '" & lbl_level & "' " & _
-              "      And SECTION_NAME = '" & lbl_section & "' " & _
+              "      And b.SY= '" & mainteacherform.cmb_sy.Text & "' " & _
+              "      And b.LVL_NAME = '" & lbl_level & "' " & _
+              "      And b.SECTION_NAME = '" & lbl_section & "' " & _
               "Order By a.Gender "
   Call set_datagrid(dg_current_stud, rs_current_stud, sql_query)
   With dg_current_stud
@@ -333,6 +353,42 @@ Private Sub populateCurrentStudent()
     .Columns(2).Width = 1000
   End With
 End Sub
+Private Sub Command1_Click()
+  If (rs_available_stud.RecordCount > 0) Then
+    sql_query = "Select * from tbl_student_level where 1 = 2"
+    Call mysql_select(rs_tmp, sql_query)
+    rs_tmp.AddNew
+    rs_tmp!id = rs_available_stud!LRN
+    rs_tmp!lvl_name = lbl_level
+    rs_tmp!section_name = lbl_section
+    rs_tmp!status = "ENROLLED"
+    rs_tmp!SY = mainteacherform.cmb_sy.Text
+    rs_tmp.Update
+    MsgBox "Student added to Section!", vbInformation
+    Call Form_Load
+  End If
+End Sub
+
+Private Sub Command2_Click()
+  If (rs_current_stud.RecordCount > 0) Then
+    sql_query = "Select * from tbl_student_level " & _
+                "Where ID = '" & rs_current_stud!LRN & "' " & _
+                "      And SY = '" & mainteacherform.cmb_sy.Text & "'"
+    Call mysql_select(rs_tmp, sql_query)
+    If (rs_tmp.RecordCount > 0) Then
+      rs_tmp.Delete
+      MsgBox "Student Removed from Section", vbInformation
+    End If
+    Call Form_Load
+  End If
+End Sub
+End Sub
+
+Private Sub Command5_Click()
+  Unload Me
+  Call masterlistadvisoriesform.Form_Load
+End Sub
+
 Public Sub Form_Load()
    If (lbl_level <> vbNullString) Then
      Call populateCurrentStudent
