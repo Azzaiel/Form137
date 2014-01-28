@@ -13,7 +13,7 @@ Public Sub connect_db()
             & "PORT=3306;" _
             & "DATABASE=db_form137;" _
             & "USER=root;" _
-            & "PASSWORD=root;" _
+            & "PASSWORD=mysqladmin;" _
             & "OPTION=3;"
    End With
    Exit Sub
