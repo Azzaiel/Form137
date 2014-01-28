@@ -8,12 +8,12 @@ Public Sub connect_db()
    With db
       .Mode = adModeReadWrite
       .CursorLocation = adUseClient
-      .Open "DRIVER={MySQL ODBC 5.1 Driver};" _
+      .Open "DRIVER={MySQL ODBC 3.51 Driver};" _
             & "SERVER=localhost;" _
             & "PORT=3306;" _
             & "DATABASE=db_form137;" _
             & "USER=root;" _
-            & "PASSWORD=mysqladmin;" _
+            & "PASSWORD=root;" _
             & "OPTION=3;"
    End With
    Exit Sub
