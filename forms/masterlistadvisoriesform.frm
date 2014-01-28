@@ -280,7 +280,7 @@ Private Sub cmb_category_Click()
                                                 & "LEFT JOIN " _
                                                     & "tbl_student_level b " _
                                                 & "ON " _
-                                                    & "a.student_id = b.ID " _
+                                                    & "a.student_id = b.ID and b.sy = '" & mainteacherform.cmb_sy.Text & "' " _
                                                 & "WHERE " _
                                                     & " b.section_name = '" & myadvisoriesform.rs_advisories.Fields("Section") & "' ORDER BY " & col_order & " ASC) masterlist" _
                                             & " JOIN " _

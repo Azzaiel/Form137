@@ -382,7 +382,6 @@ Private Sub Command2_Click()
     Call Form_Load
   End If
 End Sub
-End Sub
 
 Private Sub Command5_Click()
   Unload Me
@@ -398,7 +397,7 @@ End Sub
 Private Sub populateAvailableStundet()
   sql_query = "Select a.STUDENT_ID as LRN, CONCAT(a.LAST_NAME, ', ' , a.FIRST_NAME) as Name, a.GENDER " & _
               "From tbl_student a " & _
-              "Where a.STUDENT_ID not in (Select ID from tbl_student_level) " & _
+              "Where a.STUDENT_ID not in (Select ID from tbl_student_level where SY = '" & mainteacherform.cmb_sy.Text & "') " & _
               "Order By a.Gender"
   Call set_datagrid(dg_available_stud, rs_available_stud, sql_query)
   With dg_available_stud
