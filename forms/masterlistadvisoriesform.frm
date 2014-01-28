@@ -191,7 +191,7 @@ Begin VB.Form masterlistadvisoriesform
    End
    Begin VB.Label Label4 
       BackStyle       =   0  'Transparent
-      Caption         =   "Add Students"
+      Caption         =   "Add/Remove Student"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
          Size            =   9.75
@@ -206,7 +206,7 @@ Begin VB.Form masterlistadvisoriesform
       Left            =   360
       TabIndex        =   10
       Top             =   5520
-      Width           =   1695
+      Width           =   2295
    End
    Begin VB.Label Label3 
       BackStyle       =   0  'Transparent
@@ -243,6 +243,7 @@ Begin VB.Form masterlistadvisoriesform
       Left            =   6120
       TabIndex        =   1
       Top             =   5520
+      Visible         =   0   'False
       Width           =   2655
    End
 End

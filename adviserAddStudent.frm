@@ -65,7 +65,7 @@ Begin VB.Form adviserAddStudent
       Top             =   4200
       Width           =   1215
    End
-   Begin VB.CommandButton Command2 
+   Begin VB.CommandButton cmd_delete 
       Caption         =   "<< Remove"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
@@ -82,7 +82,7 @@ Begin VB.Form adviserAddStudent
       Top             =   1920
       Width           =   1215
    End
-   Begin VB.CommandButton Command1 
+   Begin VB.CommandButton cmd_add 
       Caption         =   "Add >>"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
@@ -354,7 +354,15 @@ Private Sub populateCurrentStudent()
   End With
 End Sub
 Private Sub Command1_Click()
-  If (rs_available_stud.RecordCount > 0) Then
+
+End Sub
+
+Private Sub Command2_Click()
+
+End Sub
+
+Private Sub cmd_add_Click()
+    If (rs_available_stud.RecordCount > 0) Then
     sql_query = "Select * from tbl_student_level where 1 = 2"
     Call mysql_select(rs_tmp, sql_query)
     rs_tmp.AddNew
@@ -369,8 +377,8 @@ Private Sub Command1_Click()
   End If
 End Sub
 
-Private Sub Command2_Click()
-  If (rs_current_stud.RecordCount > 0) Then
+Private Sub cmd_delete_Click()
+    If (rs_current_stud.RecordCount > 0) Then
     sql_query = "Select * from tbl_student_level " & _
                 "Where ID = '" & rs_current_stud!LRN & "' " & _
                 "      And SY = '" & mainteacherform.cmb_sy.Text & "'"
@@ -383,9 +391,56 @@ Private Sub Command2_Click()
   End If
 End Sub
 
+Private Sub Command3_Click()
+  If (rs_current_stud.RecordCount > 0) Then
+  
+    rs_current_stud.MoveFirst
+    While Not rs_current_stud.EOF
+      sql_query = "Select * from tbl_student_level " & _
+                "Where ID = '" & rs_current_stud!LRN & "' " & _
+                "      And SY = '" & mainteacherform.cmb_sy.Text & "'"
+      Call mysql_select(rs_tmp, sql_query)
+      If (rs_tmp.RecordCount > 0) Then
+        rs_tmp.Delete
+      End If
+      rs_current_stud.MoveNext
+    Wend
+    MsgBox "Record Updated!", vbInformation
+    Call Form_Load
+  End If
+End Sub
+
+Private Sub Command4_Click()
+  If (rs_available_stud.RecordCount > 0) Then
+    sql_query = "Select * from tbl_student_level where 1 = 2"
+    Call mysql_select(rs_tmp, sql_query)
+    rs_available_stud.MoveFirst
+    While Not rs_available_stud.EOF
+      rs_tmp.AddNew
+      rs_tmp!id = rs_available_stud!LRN
+      rs_tmp!lvl_name = lbl_level
+      rs_tmp!section_name = lbl_section
+      rs_tmp!status = "ENROLLED"
+      rs_tmp!SY = mainteacherform.cmb_sy.Text
+      rs_tmp.Update
+      rs_available_stud.MoveNext
+    Wend
+    MsgBox "Update Complete!", vbInformation
+    Call Form_Load
+  End If
+End Sub
+
 Private Sub Command5_Click()
   Unload Me
   Call masterlistadvisoriesform.Form_Load
+End Sub
+
+Private Sub dg_available_stud_DblClick()
+ Call cmd_add_Click
+End Sub
+
+Private Sub dg_current_stud_DblClick()
+  Call cmd_delete_Click
 End Sub
 
 Public Sub Form_Load()
