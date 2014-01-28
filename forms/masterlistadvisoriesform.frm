@@ -26,9 +26,9 @@ Begin VB.Form masterlistadvisoriesform
          Strikethrough   =   0   'False
       EndProperty
       Height          =   360
-      ItemData        =   "masterlistadvisoriesform.frx":1B3CE
+      ItemData        =   "masterlistadvisoriesform.frx":AFCC2
       Left            =   3360
-      List            =   "masterlistadvisoriesform.frx":1B3DB
+      List            =   "masterlistadvisoriesform.frx":AFCCF
       TabIndex        =   9
       Top             =   720
       Width           =   3135
@@ -118,7 +118,7 @@ Begin VB.Form masterlistadvisoriesform
    Begin VB.CommandButton cmd_print 
       Height          =   615
       Left            =   3600
-      Picture         =   "masterlistadvisoriesform.frx":1B3FB
+      Picture         =   "masterlistadvisoriesform.frx":AFCEF
       Style           =   1  'Graphical
       TabIndex        =   0
       Top             =   5400
@@ -188,6 +188,25 @@ Begin VB.Form masterlistadvisoriesform
          BeginProperty Column01 
          EndProperty
       EndProperty
+   End
+   Begin VB.Label Label4 
+      BackStyle       =   0  'Transparent
+      Caption         =   "Add Students"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   700
+         Underline       =   -1  'True
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H000000FF&
+      Height          =   375
+      Left            =   360
+      TabIndex        =   10
+      Top             =   5520
+      Width           =   1695
    End
    Begin VB.Label Label3 
       BackStyle       =   0  'Transparent
@@ -300,10 +319,13 @@ Public Sub Form_Load()
      Call set_datagrid(dg_masterlist, rs_masterlist, _
                                         "SELECT @index := @index + 1 as No," _
                                             & "a.student_id as LRN, a.last_name as Last_Name, a.First_Name,a.Middle_Name FROM tbl_student a LEFT JOIN tbl_student_level b ON a.student_id = b.ID JOIN(SELECT @index :=0) c WHERE  b.section_name = '" & myadvisoriesform.rs_advisories.Fields("Section") & "'")
-
-    
-
      dg_masterlist.Columns(0).Width = 400
+End Sub
+Private Sub Label4_Click()
+  adviserAddStudent.lbl_level = lbl_level
+  adviserAddStudent.lbl_section = lbl_section
+  Call adviserAddStudent.Form_Load
+  Call load_form(adviserAddStudent, True)
 End Sub
 
 Private Sub lbl_set_grade_Click()

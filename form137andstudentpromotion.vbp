@@ -68,6 +68,7 @@ Designer=forms\dr_gradeall.Dsr
 Designer=forms\dr_promotion.Dsr
 Form=CharEncodePeriodSelect.frm
 Module=CommonHelper; CommonHelper.bas
+Form=adviserAddStudent.frm
 IconForm="loginform"
 Startup="loginform"
 HelpFile=""

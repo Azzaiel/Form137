@@ -936,45 +936,7 @@ Private Sub cmb_9_KeyUp(KeyCode As Integer, Shift As Integer)
 End Sub
 
 Private Sub cmd_cancel_Click()
-    cmb_1.Text = ""
-    cmb_2.Text = ""
-    cmb_3.Text = ""
-    cmb_4.Text = ""
-    cmb_5.Text = ""
-    cmb_6.Text = ""
-    cmb_7.Text = ""
-    cmb_8.Text = ""
-    cmb_9.Text = ""
-    cmb_10.Text = ""
-    cmb_11.Text = ""
-    cmb_12.Text = ""
-    cmb_13.Text = ""
-    cmb_14.Text = ""
-End Sub
-Private Sub oldSave()
-Dim ans As String
-     ans = MsgBox("Are you sure you want to update student's character building grade?", vbYesNo, "Character Building")
-                    If ans = vbNo Then
-                        Exit Sub
-                    Else
-    sql_string = "UPDATE tbl_character_grade SET Honesty='" & cmb_1.Text & "',Courtesy='" & cmb_2.Text & "',Helpfulness_and_Cooperation='" & cmb_3.Text & "',Resourcefulness_and_Creativity='" & cmb_4.Text & "',Consideration_for_Others='" & cmb_5.Text & "',Sportsmanship='" & cmb_6.Text & "',Obedience='" & cmb_7.Text & "',Self_Reliance='" & cmb_8.Text & "',Industry='" & cmb_9.Text & "',Cleanliness_and_Orderliness='" & cmb_10.Text & "',Promptness_and_Punctuality='" & cmb_11.Text & "',Sense_of_Responsibility='" & cmb_12.Text & "',Love_of_God='" & cmb_13.Text & "',Patriotism_and_Love_of_Country='" & cmb_14.Text & "' WHERE ID= '" & lbl_id2.Caption & "'AND section_name= '" & section & "' AND period= '" & lbl_period2.Caption & "'"
-    Call mysql_select(charactergradeform.rs_grade, sql_string)
-    MsgBox "Character grade encoded."
-    End If
-    If lbl_period2.Caption = "Final" Then
-          Call mysql_select(public_rs, "SELECT * FROM tbl_attendance WHERE ID = '" & lbl_id2.Caption & "'")
-          If public_rs.RecordCount = 0 Then
-            attendanceform.lbl_id2.Caption = lbl_id2.Caption
-            attendanceform.lbl_name2.Caption = lbl_name2.Caption
-            Call load_form(attendanceform, True)
-          Else
-            Call load_grade
-          End If
-        
-    Else
-        Call load_grade
-    End If
-
+   Unload Me
 End Sub
 Private Sub load_grade()
       Call set_datagrid(characterencodeform.dg_grades, rs_grade, _
@@ -982,6 +944,35 @@ Private Sub load_grade()
                                                 & "a.student_id as LRN, a.last_name as Last_Name, a.First_Name, b.Honesty,b.Courtesy,b.Helpfulness_and_Cooperation,b.Resourcefulness_and_Creativity,b.Consideration_for_Others,b.Sportsmanship,b.Obedience,b.Self_Reliance,b.Industry,b.Cleanliness_and_Orderliness,b.Promptness_and_Punctuality,b.Sense_of_Responsibility,b.Love_of_God,b.Patriotism_and_Love_of_Country  FROM tbl_student a LEFT JOIN tbl_character_grade b ON a.student_id = b.ID WHERE b.section_name = '" & section & "' AND b.period = '" & lbl_period2.Caption & "'")
        Call characterencodeform.cmb_period_Click
        Unload Me
+End Sub
+
+Private Sub cmd_save_Click()
+  
+  Dim ans As String
+  ans = MsgBox("Are you sure you want to update student's character building grade?", vbYesNo, "Character Building")
+  If ans = vbNo Then
+    Exit Sub
+  End If
+  
+  char_grade_rs!Honesty = cmb_1
+  char_grade_rs!Courtesy = cmb_2
+  char_grade_rs!Helpfulness_and_Cooperation = cmb_3
+  char_grade_rs!Resourcefulness_and_Creativity = cmb_4
+  char_grade_rs!Consideration_for_Others = cmb_5
+  char_grade_rs!Sportsmanship = cmb_6
+  char_grade_rs!Obedience = cmb_7
+  char_grade_rs!Self_Reliance = cmb_8
+  char_grade_rs!Industry = cmb_9
+  char_grade_rs!Cleanliness_and_Orderliness = cmb_10
+  char_grade_rs!Promptness_and_Punctuality = cmb_11
+  char_grade_rs!Sense_of_Responsibility = cmb_12
+  char_grade_rs!Love_of_God = cmb_13
+  char_grade_rs!Patriotism_and_Love_of_Country = cmb_14
+  
+  char_grade_rs.Update
+  
+  MsgBox "Record Updated", vbInformation
+  
 End Sub
 
 Private Sub Form_Load()
@@ -1020,4 +1011,28 @@ Private Sub Form_Load()
   End If
     
 End Sub
+Private Sub oldSave()
+Dim ans As String
+     ans = MsgBox("Are you sure you want to update student's character building grade?", vbYesNo, "Character Building")
+                    If ans = vbNo Then
+                        Exit Sub
+                    Else
+    sql_string = "UPDATE tbl_character_grade SET Honesty='" & cmb_1.Text & "',Courtesy='" & cmb_2.Text & "',Helpfulness_and_Cooperation='" & cmb_3.Text & "',Resourcefulness_and_Creativity='" & cmb_4.Text & "',Consideration_for_Others='" & cmb_5.Text & "',Sportsmanship='" & cmb_6.Text & "',Obedience='" & cmb_7.Text & "',Self_Reliance='" & cmb_8.Text & "',Industry='" & cmb_9.Text & "',Cleanliness_and_Orderliness='" & cmb_10.Text & "',Promptness_and_Punctuality='" & cmb_11.Text & "',Sense_of_Responsibility='" & cmb_12.Text & "',Love_of_God='" & cmb_13.Text & "',Patriotism_and_Love_of_Country='" & cmb_14.Text & "' WHERE ID= '" & lbl_id2.Caption & "'AND section_name= '" & section & "' AND period= '" & lbl_period2.Caption & "'"
+    Call mysql_select(charactergradeform.rs_grade, sql_string)
+    MsgBox "Character grade encoded."
+    End If
+    If lbl_period2.Caption = "Final" Then
+          Call mysql_select(public_rs, "SELECT * FROM tbl_attendance WHERE ID = '" & lbl_id2.Caption & "'")
+          If public_rs.RecordCount = 0 Then
+            attendanceform.lbl_id2.Caption = lbl_id2.Caption
+            attendanceform.lbl_name2.Caption = lbl_name2.Caption
+            Call load_form(attendanceform, True)
+          Else
+            Call load_grade
+          End If
+        
+    Else
+        Call load_grade
+    End If
 
+End Sub
