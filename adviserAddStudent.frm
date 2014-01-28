@@ -262,14 +262,45 @@ Begin VB.Form adviserAddStudent
       TabIndex        =   0
       Top             =   720
       Width           =   5895
+      Begin VB.TextBox txt_last_name 
+         Height          =   285
+         Left            =   3480
+         TabIndex        =   18
+         Top             =   120
+         Width           =   1815
+      End
+      Begin VB.TextBox txt_lrn 
+         Height          =   285
+         Left            =   720
+         TabIndex        =   17
+         Top             =   120
+         Width           =   1575
+      End
+      Begin VB.CommandButton Command2 
+         Caption         =   "C"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   375
+         Left            =   5400
+         TabIndex        =   16
+         Top             =   120
+         Width           =   375
+      End
       Begin MSDataGridLib.DataGrid dg_available_stud 
-         Height          =   5055
+         Height          =   5895
          Left            =   120
          TabIndex        =   11
-         Top             =   1320
+         Top             =   480
          Width           =   5655
          _ExtentX        =   9975
-         _ExtentY        =   8916
+         _ExtentY        =   10398
          _Version        =   393216
          AllowUpdate     =   0   'False
          HeadLines       =   1
@@ -327,6 +358,42 @@ Begin VB.Form adviserAddStudent
             EndProperty
          EndProperty
       End
+      Begin VB.Label Label3 
+         BackStyle       =   0  'Transparent
+         Caption         =   "Last Name:"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   255
+         Left            =   2280
+         TabIndex        =   15
+         Top             =   120
+         Width           =   1215
+      End
+      Begin VB.Label Label12 
+         BackStyle       =   0  'Transparent
+         Caption         =   "LRN:"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   375
+         Left            =   120
+         TabIndex        =   14
+         Top             =   120
+         Width           =   855
+      End
    End
 End
 Attribute VB_Name = "adviserAddStudent"
@@ -354,10 +421,6 @@ Private Sub populateCurrentStudent()
   End With
 End Sub
 Private Sub Command1_Click()
-
-End Sub
-
-Private Sub Command2_Click()
 
 End Sub
 
@@ -452,11 +515,31 @@ End Sub
 Private Sub populateAvailableStundet()
   sql_query = "Select a.STUDENT_ID as LRN, CONCAT(a.LAST_NAME, ', ' , a.FIRST_NAME) as Name, a.GENDER " & _
               "From tbl_student a " & _
-              "Where a.STUDENT_ID not in (Select ID from tbl_student_level where SY = '" & mainteacherform.cmb_sy.Text & "') " & _
-              "Order By a.Gender"
+              "Where a.STUDENT_ID not in (Select ID from tbl_student_level where SY = '" & mainteacherform.cmb_sy.Text & "')"
+                      
+  If (txt_lrn <> vbNullString) Then
+     sql_query = sql_query & " And a.STUDENT_ID like '%" & txt_lrn & "%'"
+  End If
+                      
+                      
+  If (txt_last_name <> vbNullString) Then
+     sql_query = sql_query & " And a.LAST_NAME like '%" & txt_last_name & "%'"
+  End If
+              
+  sql_query = sql_query & " Order By a.Gender"
+  
+  
   Call set_datagrid(dg_available_stud, rs_available_stud, sql_query)
   With dg_available_stud
     .Columns(0).Width = 1550
     .Columns(2).Width = 1000
   End With
+End Sub
+
+Private Sub txt_last_name_Change()
+  Call populateAvailableStundet
+End Sub
+
+Private Sub txt_lrn_Change()
+  Call populateAvailableStundet
 End Sub
