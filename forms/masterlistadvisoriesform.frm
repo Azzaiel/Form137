@@ -234,6 +234,7 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Public rs_masterlist As New ADODB.Recordset
 Dim rs_grade As New ADODB.Recordset
+Public sel_student_name As String
 Public sel_lrn As String
 
 
@@ -289,8 +290,9 @@ Private Sub encodeStudentCharacterGrade()
   
 End Sub
 
-Private Sub dg_masterlist_Click()
-   sel_lrn = rs_masterlist!lrn
+Private Sub dg_masterlist_DblClick()
+   sel_lrn = rs_masterlist!LRN
+   sel_student_name = rs_masterlist!LAST_NAME & ", " & rs_masterlist!FIRST_NAME
    Call load_form(CharEncodePeriodSelect, True)
 End Sub
 

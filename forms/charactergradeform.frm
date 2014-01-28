@@ -19,7 +19,7 @@ Begin VB.Form charactergradeform
       Left            =   6840
       Picture         =   "charactergradeform.frx":1B3CE
       Style           =   1  'Graphical
-      TabIndex        =   16
+      TabIndex        =   17
       Top             =   5280
       Width           =   1095
    End
@@ -37,7 +37,7 @@ Begin VB.Form charactergradeform
       ItemData        =   "charactergradeform.frx":1C149
       Left            =   7800
       List            =   "charactergradeform.frx":1C159
-      TabIndex        =   14
+      TabIndex        =   15
       Top             =   4320
       Width           =   735
    End
@@ -55,7 +55,7 @@ Begin VB.Form charactergradeform
       ItemData        =   "charactergradeform.frx":1C169
       Left            =   7800
       List            =   "charactergradeform.frx":1C179
-      TabIndex        =   13
+      TabIndex        =   14
       Top             =   3720
       Width           =   735
    End
@@ -73,7 +73,7 @@ Begin VB.Form charactergradeform
       ItemData        =   "charactergradeform.frx":1C189
       Left            =   7800
       List            =   "charactergradeform.frx":1C199
-      TabIndex        =   12
+      TabIndex        =   13
       Top             =   3120
       Width           =   735
    End
@@ -91,7 +91,7 @@ Begin VB.Form charactergradeform
       ItemData        =   "charactergradeform.frx":1C1A9
       Left            =   7800
       List            =   "charactergradeform.frx":1C1B9
-      TabIndex        =   11
+      TabIndex        =   12
       Top             =   2520
       Width           =   735
    End
@@ -109,7 +109,7 @@ Begin VB.Form charactergradeform
       ItemData        =   "charactergradeform.frx":1C1C9
       Left            =   7800
       List            =   "charactergradeform.frx":1C1D9
-      TabIndex        =   10
+      TabIndex        =   11
       Top             =   1920
       Width           =   735
    End
@@ -127,7 +127,7 @@ Begin VB.Form charactergradeform
       ItemData        =   "charactergradeform.frx":1C1E9
       Left            =   7800
       List            =   "charactergradeform.frx":1C1F9
-      TabIndex        =   9
+      TabIndex        =   10
       Top             =   1320
       Width           =   735
    End
@@ -145,7 +145,7 @@ Begin VB.Form charactergradeform
       ItemData        =   "charactergradeform.frx":1C209
       Left            =   7800
       List            =   "charactergradeform.frx":1C219
-      TabIndex        =   8
+      TabIndex        =   9
       Top             =   720
       Width           =   735
    End
@@ -163,7 +163,7 @@ Begin VB.Form charactergradeform
       ItemData        =   "charactergradeform.frx":1C229
       Left            =   3360
       List            =   "charactergradeform.frx":1C239
-      TabIndex        =   7
+      TabIndex        =   8
       Top             =   4320
       Width           =   735
    End
@@ -181,7 +181,7 @@ Begin VB.Form charactergradeform
       ItemData        =   "charactergradeform.frx":1C249
       Left            =   3360
       List            =   "charactergradeform.frx":1C259
-      TabIndex        =   6
+      TabIndex        =   7
       Top             =   3720
       Width           =   735
    End
@@ -199,7 +199,7 @@ Begin VB.Form charactergradeform
       ItemData        =   "charactergradeform.frx":1C269
       Left            =   3360
       List            =   "charactergradeform.frx":1C279
-      TabIndex        =   5
+      TabIndex        =   6
       Top             =   3120
       Width           =   735
    End
@@ -217,7 +217,7 @@ Begin VB.Form charactergradeform
       ItemData        =   "charactergradeform.frx":1C289
       Left            =   3360
       List            =   "charactergradeform.frx":1C299
-      TabIndex        =   4
+      TabIndex        =   5
       Top             =   2520
       Width           =   735
    End
@@ -235,7 +235,7 @@ Begin VB.Form charactergradeform
       ItemData        =   "charactergradeform.frx":1C2A9
       Left            =   3360
       List            =   "charactergradeform.frx":1C2B9
-      TabIndex        =   3
+      TabIndex        =   4
       Top             =   1920
       Width           =   735
    End
@@ -253,7 +253,7 @@ Begin VB.Form charactergradeform
       ItemData        =   "charactergradeform.frx":1C2C9
       Left            =   3360
       List            =   "charactergradeform.frx":1C2D9
-      TabIndex        =   2
+      TabIndex        =   3
       Top             =   1320
       Width           =   735
    End
@@ -271,7 +271,7 @@ Begin VB.Form charactergradeform
       ItemData        =   "charactergradeform.frx":1C2E9
       Left            =   3360
       List            =   "charactergradeform.frx":1C2F9
-      TabIndex        =   1
+      TabIndex        =   2
       Top             =   720
       Width           =   735
    End
@@ -374,7 +374,7 @@ Begin VB.Form charactergradeform
       Left            =   5520
       Picture         =   "charactergradeform.frx":1C309
       Style           =   1  'Graphical
-      TabIndex        =   15
+      TabIndex        =   16
       Top             =   5280
       Width           =   1095
    End
@@ -416,10 +416,10 @@ Begin VB.Form charactergradeform
          EndProperty
          ForeColor       =   &H00FFFFFF&
          Height          =   255
-         Left            =   2880
+         Left            =   3120
          TabIndex        =   46
          Top             =   240
-         Width           =   3375
+         Width           =   3015
       End
       Begin VB.Label lbl_id2 
          BackStyle       =   0  'Transparent
@@ -471,7 +471,7 @@ Begin VB.Form charactergradeform
          EndProperty
          ForeColor       =   &H00FFFFFF&
          Height          =   255
-         Left            =   2160
+         Left            =   2400
          TabIndex        =   24
          Top             =   240
          Width           =   855
@@ -491,7 +491,7 @@ Begin VB.Form charactergradeform
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Left            =   120
-         TabIndex        =   23
+         TabIndex        =   1
          Top             =   240
          Width           =   735
       End
@@ -510,7 +510,7 @@ Begin VB.Form charactergradeform
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Left            =   6240
-         TabIndex        =   22
+         TabIndex        =   23
          Top             =   240
          Width           =   975
       End
@@ -528,7 +528,7 @@ Begin VB.Form charactergradeform
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Left            =   2040
-         TabIndex        =   21
+         TabIndex        =   22
          Top             =   240
          Width           =   735
       End
@@ -546,7 +546,7 @@ Begin VB.Form charactergradeform
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Left            =   2040
-         TabIndex        =   20
+         TabIndex        =   21
          Top             =   600
          Width           =   735
       End
@@ -564,7 +564,7 @@ Begin VB.Form charactergradeform
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Left            =   2040
-         TabIndex        =   19
+         TabIndex        =   20
          Top             =   960
          Width           =   735
       End
@@ -582,7 +582,7 @@ Begin VB.Form charactergradeform
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Left            =   2040
-         TabIndex        =   18
+         TabIndex        =   19
          Top             =   1320
          Width           =   735
       End
@@ -600,7 +600,7 @@ Begin VB.Form charactergradeform
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Left            =   2040
-         TabIndex        =   17
+         TabIndex        =   18
          Top             =   1680
          Width           =   735
       End
@@ -870,11 +870,6 @@ Private char_grade_rs As New ADODB.Recordset
 
 
 
-Private Sub cmb_1_KeyUp(KeyCode As Integer, Shift As Integer)
-    MsgBox "Please select an item from the list."
-    cmb_1.Text = ""
-End Sub
-
 Private Sub cmb_10_KeyUp(KeyCode As Integer, Shift As Integer)
      MsgBox "Please select an item from the list."
     cmb_10.Text = ""
@@ -956,8 +951,7 @@ Private Sub cmd_cancel_Click()
     cmb_13.Text = ""
     cmb_14.Text = ""
 End Sub
-
-Private Sub cmd_save_Click()
+Private Sub oldSave()
 Dim ans As String
      ans = MsgBox("Are you sure you want to update student's character building grade?", vbYesNo, "Character Building")
                     If ans = vbNo Then
@@ -980,9 +974,8 @@ Dim ans As String
     Else
         Call load_grade
     End If
-    
-End Sub
 
+End Sub
 Private Sub load_grade()
       Call set_datagrid(characterencodeform.dg_grades, rs_grade, _
                                             "SELECT " _
@@ -996,14 +989,35 @@ Private Sub Form_Load()
   sql_string = "Select * " & _
                "FROM tbl_character_grade " & _
                "Where ID = '" & masterlistadvisoriesform.sel_lrn & "' " & _
+               "      And Period = '" & period & "' " & _
                "      And SY = '" & mainteacherform.cmb_sy.Text & "' " & _
-               "      "
+               "      And section_name = '" & masterlistadvisoriesform.lbl_section & "' "
                
    
-  Call mysql_select(public_rs, sql_string)
-    
-  If (public_rs.RecordCount > 0) Then
+  Call mysql_select(char_grade_rs, sql_string)
+  
+  lbl_id2 = masterlistadvisoriesform.sel_lrn
+  lbl_name2 = masterlistadvisoriesform.sel_student_name
+  lbl_period2 = period
+  If (char_grade_rs.RecordCount > 0) Then
+    cmb_1 = CommonHelper.extractStringValue(char_grade_rs!Honesty)
+    cmb_2 = CommonHelper.extractStringValue(char_grade_rs!Courtesy)
+    cmb_3 = CommonHelper.extractStringValue(char_grade_rs!Helpfulness_and_Cooperation)
+    cmb_4 = CommonHelper.extractStringValue(char_grade_rs!Resourcefulness_and_Creativity)
+    cmb_5 = CommonHelper.extractStringValue(char_grade_rs!Consideration_for_Others)
+    cmb_6 = CommonHelper.extractStringValue(char_grade_rs!Sportsmanship)
+    cmb_7 = CommonHelper.extractStringValue(char_grade_rs!Obedience)
+    cmb_8 = CommonHelper.extractStringValue(char_grade_rs!Self_Reliance)
+    cmb_9 = CommonHelper.extractStringValue(char_grade_rs!Industry)
+    cmb_10 = CommonHelper.extractStringValue(char_grade_rs!Cleanliness_and_Orderliness)
+    cmb_11 = CommonHelper.extractStringValue(char_grade_rs!Promptness_and_Punctuality)
+    cmb_12 = CommonHelper.extractStringValue(char_grade_rs!Sense_of_Responsibility)
+    cmb_13 = CommonHelper.extractStringValue(char_grade_rs!Love_of_God)
+    cmb_14 = CommonHelper.extractStringValue(char_grade_rs!Patriotism_and_Love_of_Country)
   Else
+    MsgBox "Please Encode C.E. Grade first", vbCritical
+    Unload Me
   End If
     
 End Sub
+

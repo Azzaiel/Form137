@@ -95,6 +95,12 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
+Private Sub cmb_period_KeyPress(KeyAscii As Integer)
+  If (KeyAscii = 13) Then
+    Call Command1_Click
+  End If
+End Sub
+
 Private Sub Command1_Click()
   If (cmb_period.Text <> vbNullString) Then
     charactergradeform.period = cmb_period.Text
@@ -108,3 +114,4 @@ End Sub
 Private Sub Command2_Click()
    Unload Me
 End Sub
+
