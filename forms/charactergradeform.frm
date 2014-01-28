@@ -865,6 +865,10 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Public rs_grade As New ADODB.Recordset
 Dim sql_string As String
+Public period As String
+Private char_grade_rs As New ADODB.Recordset
+
+
 
 Private Sub cmb_1_KeyUp(KeyCode As Integer, Shift As Integer)
     MsgBox "Please select an item from the list."
@@ -987,3 +991,19 @@ Private Sub load_grade()
        Unload Me
 End Sub
 
+Private Sub Form_Load()
+
+  sql_string = "Select * " & _
+               "FROM tbl_character_grade " & _
+               "Where ID = '" & masterlistadvisoriesform.sel_lrn & "' " & _
+               "      And SY = '" & mainteacherform.cmb_sy.Text & "' " & _
+               "      "
+               
+   
+  Call mysql_select(public_rs, sql_string)
+    
+  If (public_rs.RecordCount > 0) Then
+  Else
+  End If
+    
+End Sub

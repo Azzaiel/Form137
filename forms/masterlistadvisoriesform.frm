@@ -27,7 +27,7 @@ Begin VB.Form masterlistadvisoriesform
       EndProperty
       Height          =   360
       ItemData        =   "masterlistadvisoriesform.frx":1B3CE
-      Left            =   3120
+      Left            =   3360
       List            =   "masterlistadvisoriesform.frx":1B3DB
       TabIndex        =   9
       Top             =   720
@@ -202,7 +202,7 @@ Begin VB.Form masterlistadvisoriesform
          Strikethrough   =   0   'False
       EndProperty
       Height          =   255
-      Left            =   1680
+      Left            =   1920
       TabIndex        =   8
       Top             =   840
       Width           =   1335
@@ -234,6 +234,8 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Public rs_masterlist As New ADODB.Recordset
 Dim rs_grade As New ADODB.Recordset
+Public sel_lrn As String
+
 
 Private Sub cmb_category_Click()
     Dim col_order As String
@@ -282,6 +284,14 @@ Private Sub cmd_print_Click()
         dr_advisories.Sections(2).Controls("lbl_section").Caption = lbl_level.Caption & " - " & lbl_section.Caption
          Set dr_advisories.DataSource = rs_masterlist
         dr_advisories.Show vbModal, Me
+End Sub
+Private Sub encodeStudentCharacterGrade()
+  
+End Sub
+
+Private Sub dg_masterlist_Click()
+   sel_lrn = rs_masterlist!lrn
+   Call load_form(CharEncodePeriodSelect, True)
 End Sub
 
 Public Sub Form_Load()

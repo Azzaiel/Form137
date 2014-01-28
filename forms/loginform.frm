@@ -49,6 +49,7 @@ Begin VB.Form loginform
       MaxLength       =   35
       PasswordChar    =   "*"
       TabIndex        =   1
+      Text            =   "taneo"
       Top             =   1320
       Width           =   2775
    End
@@ -67,6 +68,7 @@ Begin VB.Form loginform
       LinkTimeout     =   30
       MaxLength       =   20
       TabIndex        =   0
+      Text            =   "jenny"
       Top             =   600
       Width           =   2775
    End
