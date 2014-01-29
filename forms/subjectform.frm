@@ -353,6 +353,7 @@ Private Sub Form_Load()
 End Sub
 
 Private Sub formatDataGrid()
+    dg_subjects.Columns(1).Width = 4000
    dg_subjects.Columns(0).Visible = False
    dg_subjects.Columns(2).Visible = False
 End Sub
