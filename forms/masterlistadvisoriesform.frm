@@ -227,7 +227,7 @@ Begin VB.Form masterlistadvisoriesform
       Top             =   720
       Width           =   1335
    End
-   Begin VB.Label Label5 
+   Begin VB.Label lbl_click_info 
       BackStyle       =   0  'Transparent
       Caption         =   "Double Click to Encode Chracter Grade"
       BeginProperty Font 
@@ -368,10 +368,11 @@ End Sub
 
 Private Sub dg_masterlist_DblClick()
 
-  sel_lrn = rs_masterlist!LRN
-  sel_student_name = rs_masterlist!LAST_NAME & ", " & rs_masterlist!FIRST_NAME
-  Call load_form(CharEncodePeriodSelect, True)
-   
+  If (lbl_level <> "Kinder") Then
+    sel_lrn = rs_masterlist!lrn
+    sel_student_name = rs_masterlist!LAST_NAME & ", " & rs_masterlist!FIRST_NAME
+    Call load_form(CharEncodePeriodSelect, True)
+  End If
 End Sub
 
 Public Sub Form_Load()

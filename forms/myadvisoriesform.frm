@@ -226,10 +226,12 @@ Private Sub lbl_view_masterlist_Click()
      masterlistadvisoriesform.lbl_level.Caption = rs_advisories.Fields("Level")
     masterlistadvisoriesform.lbl_section.Caption = rs_advisories.Fields("Section")
     section = rs_advisories.Fields("Section")
-    If rs_advisories.Fields("Level").Value = "Kinder" Then
+    If rs_advisories.Fields("Level").value = "Kinder" Then
+        masterlistadvisoriesform.lbl_click_info.Visible = False
         masterlistadvisoriesform.lbl_set_grade.Enabled = False
     Else
         masterlistadvisoriesform.lbl_set_grade.Enabled = True
+        masterlistadvisoriesform.lbl_click_info.Visible = True
     End If
            
     Call load_form(masterlistadvisoriesform, True)
