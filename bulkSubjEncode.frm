@@ -29,7 +29,7 @@ Begin VB.Form bulkSubjEncode
          Strikethrough   =   0   'False
       EndProperty
    End
-   Begin VB.CommandButton Command1 
+   Begin VB.CommandButton cmd_close 
       Caption         =   "Close"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
@@ -46,7 +46,7 @@ Begin VB.Form bulkSubjEncode
       Top             =   5760
       Width           =   1215
    End
-   Begin VB.CommandButton cmd_add 
+   Begin VB.CommandButton cmd_save 
       Caption         =   "Save"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
@@ -190,8 +190,94 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
 Public rs_grades As New ADODB.Recordset
+Public rs_tmp As New ADODB.Recordset
 Public subj_code As String
+Private max_rows As Integer
 
+Private Sub cmd_add_Click()
+
+End Sub
+
+Private Sub cmd_close_Click()
+  Unload Me
+End Sub
+Private Sub updateGrade(grade As Double, lrn As String, period As String)
+
+  Dim isKinder As Boolean
+  
+  If (lbl_level = "Kinder") Then
+    isKinder = True
+  Else
+    isKinder = False
+  End If
+
+  If (rs_tmp.RecordCount > 0) Then
+    rs_tmp!grade = grade
+    rs_tmp!remark = mod_grade.getRemark(val(grade), isKinder)
+    rs_tmp.Update
+  Else
+    rs_tmp.AddNew
+    rs_tmp!id = lrn
+    rs_tmp!sy = mainteacherform.cmb_sy.Text
+    rs_tmp!SECTION_NAME = lbl_section
+    rs_tmp!SUBJECT_CODE = subj_code
+    rs_tmp!period = period
+    rs_tmp!grade = grade
+    rs_tmp!remark = mod_grade.getRemark(val(grade), isKinder)
+    rs_tmp.Update
+  End If
+End Sub
+Private Sub cmd_save_Click()
+  Dim index As Integer
+  Dim cur_lrn As String
+  Dim cur_period As String
+  
+  With flexGrade
+    For index = 1 To (max_rows - 1)
+      
+      .Row = index
+      
+      cur_lrn = .TextMatrix(index, 0)
+      
+      cur_period = "1st Grading"
+      Call mysql_select(rs_tmp, generatePeriodSelectGradeQuery(cur_lrn, cur_period))
+      .Col = 3
+      Call updateGrade(val(.Text), cur_lrn, cur_period)
+      
+      
+      cur_period = "2nd Grading"
+      Call mysql_select(rs_tmp, generatePeriodSelectGradeQuery(cur_lrn, cur_period))
+      .Col = 4
+      Call updateGrade(val(.Text), cur_lrn, cur_period)
+      
+      
+      cur_period = "3rd Grading"
+      Call mysql_select(rs_tmp, generatePeriodSelectGradeQuery(cur_lrn, cur_period))
+      .Col = 5
+      Call updateGrade(val(.Text), cur_lrn, cur_period)
+      
+      cur_period = "4th Grading"
+      Call mysql_select(rs_tmp, generatePeriodSelectGradeQuery(cur_lrn, cur_period))
+      .Col = 6
+      Call updateGrade(val(.Text), cur_lrn, cur_period)
+      
+    Next index
+  End With
+  
+  MsgBox "Record Updated", vbInformation
+  Call populateGrades
+  
+End Sub
+Private Function generatePeriodSelectGradeQuery(lrn As String, period As String) As String
+  Dim sql_query As String
+  sql_query = "Select SY, ID, SECTION_NAME, SUBJECT_CODE, PERIOD, GRADE, REMARK " & _
+              "From tbl_grade " & _
+              "Where ID = '" & lrn & "' " & _
+              "      And SY = '" & mainteacherform.cmb_sy.Text & "' " & _
+              "      And SECTION_NAME = '" & lbl_section & "' " & _
+              "      And PERIOD = '" & period & "'"
+  generatePeriodSelectGradeQuery = sql_query
+End Function
 Private Sub flexGrade_KeyPress(KeyAscii As Integer)
       With flexGrade
         Select Case KeyAscii
@@ -227,16 +313,18 @@ Public Sub populateGrades()
               "From tbl_student a, tbl_student_level b " & _
               "Where b.ID = a.STUDENT_ID " & _
               "      And b.SY= '" & mainteacherform.cmb_sy.Text & "' " & _
-              "      And b.LVL_NAME = '" & masterlistadvisoriesform.lbl_level & "' " & _
-              "      And b.SECTION_NAME = '" & masterlistadvisoriesform.lbl_section & "' " & _
+              "      And b.LVL_NAME = '" & lbl_level & "' " & _
+              "      And b.SECTION_NAME = '" & lbl_section & "' " & _
               "ORDER By a.gender desc"
   Call mysql_select(rs_grades, sql_query)
   
   Dim index As String
   index = 1
+  
   With flexGrade
-    
-    .Rows = rs_grades.RecordCount + 1
+    .Clear
+    max_rows = rs_grades.RecordCount + 1
+    .Rows = max_rows
     .Cols = 7
     
     .TextMatrix(0, 0) = "LRN"
@@ -263,7 +351,7 @@ Public Sub populateGrades()
     
     While Not rs_grades.EOF
     
-      .TextMatrix(index, 0) = rs_grades!LRN
+      .TextMatrix(index, 0) = rs_grades!lrn
       .TextMatrix(index, 1) = rs_grades!gender
       .TextMatrix(index, 2) = rs_grades!Name
       .Row = index
@@ -289,7 +377,6 @@ End Sub
 Private Sub MSFlexGrid1_KeyPress(KeyAscii As Integer)
 
 End Sub
-
 Private Function generateGradePeriodQuery(period As String) As String
   Dim sql_query As String
   sql_query = "(Select GRADE from tbl_grade " & _

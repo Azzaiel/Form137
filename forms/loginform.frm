@@ -157,11 +157,11 @@ Private Sub login()
             MsgBox "Incorrect username or password!"
         Else
             
-            user_type = public_rs.Fields("Usertype").Value
+            user_type = public_rs.Fields("Usertype").value
             
-            user_name = public_rs.Fields("Username").Value
-            user_password = public_rs.Fields("Password").Value
-            MsgBox "Welcome " & user_name & " to Form 137 and Promotion Report Generation System of Manuel S. Rojas Elementary School."
+            user_name = public_rs.Fields("Username").value
+            user_password = public_rs.Fields("Password").value
+'            MsgBox "Welcome " & user_name & " to Form 137 and Promotion Report Generation System of Manuel S. Rojas Elementary School."
         
             Call mysql_select(public_rs, "SELECT * FROM tbl_sy WHERE SY = " & Format(Date, "yyyy"))
             If public_rs.RecordCount = 0 Then
