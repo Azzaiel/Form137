@@ -271,15 +271,14 @@ Private Sub cmd_save_Click()
     Dim ans As String
     If txt_op.Text = "add" Then
         If txt_subject_name.Text <> "" Then
-            Call mysql_select(public_rs, "SELECT * FROM tbl_subject WHERE lvl_name = '" & cmb_level.Text & "'AND subject_code = '" & txt_subject_code.Text & "'")
+            Call mysql_select(public_rs, "SELECT * FROM tbl_subject WHERE lvl_name = '" & cmb_level.Text & "'AND subject_code = '" & txt_subject_name & "'")
             If public_rs.RecordCount = 0 Then
                  ans = MsgBox("Are you sure you want to add the subject", vbYesNo, "Add Subject")
                     If ans = vbNo Then
                         Exit Sub
                     Else
-                Call mysql_select(rs_subject, "INSERT INTO tbl_subject(lvl_name,subject_code,subject_name, last_mod_date) VALUES ('" & cmb_level.Text & "','" & txt_subject_code.Text & "', '" & txt_subject_name.Text & "', sysdate())")
+                Call mysql_select(rs_subject, "INSERT INTO tbl_subject(lvl_name,subject_code,subject_name, last_mod_date) VALUES ('" & cmb_level.Text & "','" & txt_subject_name & "', '" & txt_subject_name & "', sysdate())")
                 MsgBox "Subject successfully added!"
-                txt_subject_code.Text = ""
                 txt_subject_name.Text = ""
                 level = cmb_level.Text
                 Call Form_Load

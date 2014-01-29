@@ -7,8 +7,8 @@ Begin VB.Form bulkSubjEncode
    ClientTop       =   450
    ClientWidth     =   14595
    LinkTopic       =   "Form1"
-   ScaleHeight     =   6510
-   ScaleWidth      =   14595
+   ScaleHeight     =   10950
+   ScaleWidth      =   20250
    StartUpPosition =   2  'CenterScreen
    Begin MSFlexGridLib.MSFlexGrid flexGrade 
       Height          =   4815
@@ -83,10 +83,10 @@ Begin VB.Form bulkSubjEncode
          EndProperty
          ForeColor       =   &H00FFFFFF&
          Height          =   255
-         Left            =   11280
+         Left            =   10080
          TabIndex        =   6
          Top             =   240
-         Width           =   5775
+         Width           =   8895
       End
       Begin VB.Label Label3 
          BackStyle       =   0  'Transparent
@@ -102,7 +102,7 @@ Begin VB.Form bulkSubjEncode
          EndProperty
          ForeColor       =   &H00FFFFFF&
          Height          =   255
-         Left            =   10320
+         Left            =   9120
          TabIndex        =   5
          Top             =   240
          Width           =   855

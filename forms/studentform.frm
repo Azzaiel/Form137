@@ -163,7 +163,7 @@ Else
     studentinformationform.txt_lastname.Text = rs_student.Fields("Last_Name")
     studentinformationform.txt_middlename.Text = rs_student.Fields("Middle_Name")
     studentinformationform.cmb_gender.Text = rs_student.Fields("Gender")
-    studentinformationform.dateBday.Value = rs_student.Fields("Date_Of_Birth")
+    studentinformationform.dateBday.value = rs_student.Fields("Date_Of_Birth")
     studentinformationform.txt_no.Text = rs_student.Fields("Contact_Number")
     studentinformationform.txt_address.Text = rs_student.Fields("Address")
     studentinformationform.txt_father.Text = rs_student.Fields("Guardian_Name")
@@ -211,7 +211,7 @@ Private Sub cmd_new_Click()
     studentinformationform.txt_lastname.Text = ""
     studentinformationform.txt_middlename.Text = ""
     studentinformationform.cmb_gender.Text = ""
-    studentinformationform.dateBday.Value = Now
+    studentinformationform.dateBday.value = Now
     
     studentinformationform.txt_no.Text = ""
     studentinformationform.txt_address.Text = ""
@@ -235,6 +235,10 @@ Private Sub cmd_search_Click()
         MsgBox "Record not found."
       End If
       Call formatDataGrid
+End Sub
+
+Private Sub dg_students_DblClick()
+ Call cmd_edit_Click
 End Sub
 
 Public Sub Form_Load()
@@ -267,49 +271,49 @@ Private Sub set_level()
             Call mysql_select(public_rs, "SELECT * FROM tbl_section WHERE  section_name='" & section & "'")
                 level = public_rs.Fields("lvl_name")
             Call mysql_select(public_rs, "SELECT * FROM tbl_level ")
-            studentinformationform.cmb_level.Clear
-            While Not public_rs.EOF
-                studentinformationform.cmb_level.AddItem (public_rs.Fields("lvl_name"))
-                public_rs.MoveNext
-            Wend
-            If Not level = "" Then
-                studentinformationform.cmb_level.Text = level
+            'studentinformationform.cmb_level.Clear
+            'While Not public_rs.EOF
+            '    studentinformationform.cmb_level.AddItem (public_rs.Fields("lvl_name"))
+            '    public_rs.MoveNext
+            'Wend
+            'If Not level = "" Then
+            '    studentinformationform.cmb_level.Text = level
                 
                 
-            End If
-            Call mysql_select(public_rs, "SELECT * FROM tbl_section WHERE SY='" & mainform.lbl_sy.Caption & "' AND lvl_name = '" & level & "'")
-            studentinformationform.cmb_section.Clear
-            While Not public_rs.EOF
-                studentinformationform.cmb_section.AddItem (public_rs.Fields("section_name"))
-                public_rs.MoveNext
-            Wend
-            If Not section = "" Then
-                studentinformationform.cmb_section.Text = section
-                section = ""
-            End If
+            'End If
+            'Call mysql_select(public_rs, "SELECT * FROM tbl_section WHERE SY='" & mainform.lbl_sy.Caption & "' AND lvl_name = '" & level & "'")
+            'studentinformationform.cmb_section.Clear
+            'While Not public_rs.EOF
+            '    studentinformationform.cmb_section.AddItem (public_rs.Fields("section_name"))
+            '    public_rs.MoveNext
+            'Wend
+            'If Not section = "" Then
+            '    studentinformationform.cmb_section.Text = section
+            '    section = ""
+            'End If
         Else
             
-             Call mysql_select(public_rs, "SELECT * FROM tbl_level WHERE SY = '" & mainform.lbl_sy.Caption & "'")
-            studentinformationform.cmb_level.Clear
-            While Not public_rs.EOF
-                studentinformationform.cmb_level.AddItem (public_rs.Fields("lvl_name"))
-                public_rs.MoveNext
-            Wend
-            If Not level = "" Then
-                studentinformationform.cmb_level.Text = level
-                level = ""
+             'Call mysql_select(public_rs, "SELECT * FROM tbl_level WHERE SY = '" & mainform.lbl_sy.Caption & "'")
+            'studentinformationform.cmb_level.Clear
+            'While Not public_rs.EOF
+            '    studentinformationform.cmb_level.AddItem (public_rs.Fields("lvl_name"))
+            '    public_rs.MoveNext
+            'Wend
+            'If Not level = "" Then
+            '    studentinformationform.cmb_level.Text = level
+            '    level = ""
                 
-            End If
-            Call mysql_select(public_rs, "SELECT * FROM tbl_section WHERE SY='" & mainform.lbl_sy.Caption & "' AND lvl_name = '" & cmb_level.Text & "'")
-            studentinformationform.cmb_section.Clear
-            While Not public_rs.EOF
-                studentinformationform.cmb_section.AddItem (public_rs.Fields("section_name"))
-                public_rs.MoveNext
-            Wend
-            If Not section = "" Then
-                studentinformationform.cmb_section.Text = section
-                section = ""
-            End If
+            'End If
+            'Call mysql_select(public_rs, "SELECT * FROM tbl_section WHERE SY='" & mainform.lbl_sy.Caption & "' AND lvl_name = '" & cmb_level.Text & "'")
+            'studentinformationform.cmb_section.Clear
+            'While Not public_rs.EOF
+            '    studentinformationform.cmb_section.AddItem (public_rs.Fields("section_name"))
+            '    public_rs.MoveNext
+            'Wend
+            'If Not section = "" Then
+            '    studentinformationform.cmb_section.Text = section
+            '    section = ""
+            'End If
         End If
   
     

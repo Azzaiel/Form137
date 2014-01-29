@@ -68,7 +68,7 @@ Begin VB.Form loginform
       LinkTimeout     =   30
       MaxLength       =   20
       TabIndex        =   0
-      Text            =   "jenny"
+      Text            =   "M-0002Taneo"
       Top             =   600
       Width           =   2775
    End

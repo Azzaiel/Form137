@@ -300,7 +300,7 @@ Begin VB.Form studentinformationform
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Format          =   52559873
+      Format          =   106364929
       CurrentDate     =   41608
    End
    Begin VB.Label Label14 
@@ -691,7 +691,7 @@ Private Sub cmd_save_Click()
                     & " VALUES (" _
                         & "'" & id & "','" & txt_lastname.Text & "','" _
                         & txt_firstname.Text & "','" & txt_middlename.Text & "','" _
-                        & cmb_gender.Text & "','" & Format(dateBday.Value, "yyyy-mm-dd") & "','" & txt_place.Text & "','" _
+                        & cmb_gender.Text & "','" & Format(dateBday.value, "yyyy-mm-dd") & "','" & txt_place.Text & "','" _
                         & txt_no.Text & "','" _
                         & txt_address.Text & "', '" & txt_father.Text & "','" & txt_father_no.Text & "','" & txt_occupation.Text & "')"
         Call mysql_select(rs_student, sql_string)
@@ -701,7 +701,7 @@ Private Sub cmd_save_Click()
         End If
     Else
          If txt_id.Text = txt_oldid.Text Then
-             If txt_id.Text = "" Or txt_lastname.Text = "" Or txt_firstname.Text = "" Or cmb_level.Text = "" Or cmb_section.Text = "" Or cmb_status.Text = "" Then
+             If txt_id.Text = "" Or txt_lastname.Text = "" Or txt_firstname.Text = "" Or cmb_status.Text = "" Then
                 MsgBox "Please complete all fields."
                 Exit Sub
             Else
@@ -715,7 +715,7 @@ Private Sub cmd_save_Click()
                                 & "last_name = '" & txt_lastname.Text & "'," _
                                 & "first_name = '" & txt_firstname.Text & "',middle_name = '" _
                                 & txt_middlename.Text & "',gender = '" & cmb_gender.Text & "',bday" _
-                                & " = '" & Format(dateBday.Value, "yyyy-mm-dd") & "'" _
+                                & " = '" & Format(dateBday.value, "yyyy-mm-dd") & "'" _
                                 & ",birthplace='" & txt_place.Text & "', contact_no = '" & txt_no.Text _
                                 & "',address = '" & txt_address.Text & "',guardian ='" & txt_father.Text & "', guardian_no ='" & txt_father_no.Text & "', occupation='" & txt_occupation.Text & "'" _
                             & "WHERE " _
@@ -723,12 +723,12 @@ Private Sub cmd_save_Click()
                 Call mysql_select(rs_student, sql_string)
                 Call mysql_select(public_rs, "SELECT * FROM tbl_student_level WHERE ID='" & txt_oldid.Text & "'")
                 If public_rs.RecordCount <> 0 Then
-                sql_string = "UPDATE " _
-                                & "tbl_student_level " _
-                            & "SET " _
-                                & " lvl_name = '" & cmb_level.Text & "', section_name = '" & cmb_section.Text & "', Status= '" & cmb_status.Text & "'" _
-                            & "WHERE " _
-                                & " ID = '" & txt_oldid.Text & "'"
+                'sql_string = "UPDATE "
+                '                & "tbl_student_level " _
+                '            & "SET " _
+                '                & " lvl_name = '" & cmb_level.Text & "', section_name = '" & cmb_section.Text & "', Status= '" & cmb_status.Text & "'" _
+                '            & "WHERE " _
+                '                & " ID = '" & txt_oldid.Text & "'"
                 Call mysql_select(rs_student, sql_string)
                 Else
                     Call mysql_select(public_rs, "SELECT * FROM tbl_student_level WHERE ID='" & txt_oldid.Text & "'AND lvl_name = '" & cmb_level.Text & "'")
@@ -767,7 +767,7 @@ Private Sub cmd_save_Click()
                                 & "student_id='" & txt_id.Text & "', last_name = '" & txt_lastname.Text & "'," _
                                 & "first_name = '" & txt_firstname.Text & "',middle_name = '" _
                                 & txt_middlename.Text & "',gender = '" & cmb_gender.Text & "',bday" _
-                                & " = '" & Format(dateBday.Value, "yyyy-mm-dd") & "'" _
+                                & " = '" & Format(dateBday.value, "yyyy-mm-dd") & "'" _
                                 & ",birthplace='" & txt_place.Text & "',contact_no = '" & txt_no.Text _
                                 & "',address = '" & txt_address.Text & "',guardian ='" & txt_father.Text & "', guardian_no ='" & txt_father_no.Text & "', occupation='" & txt_occupation.Text & "'" _
                             & "WHERE " _
@@ -807,7 +807,7 @@ Private Sub cmd_save_Click()
 End Sub
 
 Private Sub dateBday_Change()
-    age = DateDiff("d", dateBday.Value, Date) / 365.25
+    age = DateDiff("d", dateBday.value, Date) / 365.25
     age = Round(age * 4, 0) / 4
     txt_age.Text = Str(age)
 End Sub

@@ -3,11 +3,11 @@ Begin VB.Form adviserSelectSubject
    ClientHeight    =   1665
    ClientLeft      =   120
    ClientTop       =   120
-   ClientWidth     =   5235
+   ClientWidth     =   6090
    ControlBox      =   0   'False
    LinkTopic       =   "Form1"
    ScaleHeight     =   1665
-   ScaleWidth      =   5235
+   ScaleWidth      =   6090
    StartUpPosition =   2  'CenterScreen
    Begin VB.Frame Frame1 
       BackColor       =   &H00808080&
@@ -15,7 +15,7 @@ Begin VB.Form adviserSelectSubject
       Left            =   0
       TabIndex        =   0
       Top             =   0
-      Width           =   5295
+      Width           =   6135
       Begin VB.ComboBox cmb_subject 
          BeginProperty Font 
             Name            =   "MS Sans Serif"
@@ -28,11 +28,11 @@ Begin VB.Form adviserSelectSubject
          EndProperty
          Height          =   360
          ItemData        =   "adviserSelectSubject.frx":0000
-         Left            =   2160
+         Left            =   1800
          List            =   "adviserSelectSubject.frx":0002
          TabIndex        =   3
          Top             =   480
-         Width           =   2535
+         Width           =   3975
       End
       Begin VB.CommandButton Command1 
          Caption         =   "Submit"
@@ -46,7 +46,7 @@ Begin VB.Form adviserSelectSubject
             Strikethrough   =   0   'False
          EndProperty
          Height          =   495
-         Left            =   1320
+         Left            =   1680
          TabIndex        =   2
          Top             =   1080
          Width           =   1215
@@ -63,7 +63,7 @@ Begin VB.Form adviserSelectSubject
             Strikethrough   =   0   'False
          EndProperty
          Height          =   495
-         Left            =   3120
+         Left            =   3480
          TabIndex        =   1
          Top             =   1080
          Width           =   1215
@@ -82,7 +82,7 @@ Begin VB.Form adviserSelectSubject
          EndProperty
          ForeColor       =   &H00FFFFFF&
          Height          =   255
-         Left            =   480
+         Left            =   240
          TabIndex        =   4
          Top             =   480
          Width           =   1695
@@ -123,9 +123,8 @@ End Sub
 Private Sub Form_Load()
   Dim sql_query As String
   sql_query = "Select Subject_Name, Subject_Code " & _
-              "From tbl_subjectset " & _
+              "From tbl_subject " & _
               "Where lvl_name = '" & masterlistadvisoriesform.lbl_level & "' " & _
-              "      and section_name = '" & masterlistadvisoriesform.lbl_section & "' " & _
               "Order By Subject_Name "
 
   Call mysql_select(public_rs, sql_query)
@@ -136,7 +135,7 @@ Private Sub Form_Load()
   index = 0
   While Not public_rs.EOF
     adviserSelectSubject.cmb_subject.AddItem public_rs!Subject_Name
-    subj_code_list(index) = public_rs!Subject_Code
+    subj_code_list(index) = public_rs!SUBJECT_CODE
     index = index + 1
     public_rs.MoveNext
   Wend
