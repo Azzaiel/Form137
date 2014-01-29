@@ -5,18 +5,18 @@ Begin VB.Form bulkSubjEncode
    ClientHeight    =   6510
    ClientLeft      =   120
    ClientTop       =   450
-   ClientWidth     =   12825
+   ClientWidth     =   14595
    LinkTopic       =   "Form1"
    ScaleHeight     =   6510
-   ScaleWidth      =   12825
+   ScaleWidth      =   14595
    StartUpPosition =   2  'CenterScreen
    Begin MSFlexGridLib.MSFlexGrid flexGrade 
       Height          =   4815
       Left            =   240
       TabIndex        =   9
       Top             =   840
-      Width           =   12375
-      _ExtentX        =   21828
+      Width           =   14175
+      _ExtentX        =   25003
       _ExtentY        =   8493
       _Version        =   393216
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -69,7 +69,7 @@ Begin VB.Form bulkSubjEncode
       Left            =   0
       TabIndex        =   0
       Top             =   0
-      Width           =   12855
+      Width           =   14655
       Begin VB.Label lbl_subject 
          BackStyle       =   0  'Transparent
          BeginProperty Font 
@@ -83,7 +83,7 @@ Begin VB.Form bulkSubjEncode
          EndProperty
          ForeColor       =   &H00FFFFFF&
          Height          =   255
-         Left            =   9600
+         Left            =   11280
          TabIndex        =   6
          Top             =   240
          Width           =   5775
@@ -102,7 +102,7 @@ Begin VB.Form bulkSubjEncode
          EndProperty
          ForeColor       =   &H00FFFFFF&
          Height          =   255
-         Left            =   8640
+         Left            =   10320
          TabIndex        =   5
          Top             =   240
          Width           =   855
@@ -120,7 +120,7 @@ Begin VB.Form bulkSubjEncode
          EndProperty
          ForeColor       =   &H00FFFFFF&
          Height          =   255
-         Left            =   5400
+         Left            =   6240
          TabIndex        =   4
          Top             =   240
          Width           =   3135
@@ -157,7 +157,7 @@ Begin VB.Form bulkSubjEncode
          EndProperty
          ForeColor       =   &H00FFFFFF&
          Height          =   255
-         Left            =   4320
+         Left            =   5160
          TabIndex        =   2
          Top             =   240
          Width           =   855
@@ -275,7 +275,8 @@ Private Function generatePeriodSelectGradeQuery(lrn As String, period As String)
               "Where ID = '" & lrn & "' " & _
               "      And SY = '" & mainteacherform.cmb_sy.Text & "' " & _
               "      And SECTION_NAME = '" & lbl_section & "' " & _
-              "      And PERIOD = '" & period & "'"
+              "      And PERIOD = '" & period & "'" & _
+              "      aND SUBJECT_CODE = '" & subj_code & "' "
   generatePeriodSelectGradeQuery = sql_query
 End Function
 Private Sub flexGrade_KeyPress(KeyAscii As Integer)
@@ -325,7 +326,7 @@ Public Sub populateGrades()
     .Clear
     max_rows = rs_grades.RecordCount + 1
     .Rows = max_rows
-    .Cols = 7
+    .Cols = 8
     
     .TextMatrix(0, 0) = "LRN"
     .TextMatrix(0, 1) = "GENDER"
@@ -334,6 +335,7 @@ Public Sub populateGrades()
     .TextMatrix(0, 4) = "2ND GRADING"
     .TextMatrix(0, 5) = "3RD GRADING"
     .TextMatrix(0, 6) = "4TH GRADING"
+    .TextMatrix(0, 7) = "FINAL GRADING"
 
     .ColWidth(0) = 1450
     .ColAlignment(1) = flexAlignCenterCenter
@@ -347,10 +349,13 @@ Public Sub populateGrades()
     .ColWidth(5) = 1650
     .ColAlignment(6) = flexAlignCenterCenter
     .ColWidth(6) = 1650
+    .ColAlignment(7) = flexAlignCenterCenter
+    .ColWidth(7) = 1850
 
+    Dim grades(0 To 3) As Double
     
     While Not rs_grades.EOF
-    
+     
       .TextMatrix(index, 0) = rs_grades!lrn
       .TextMatrix(index, 1) = rs_grades!gender
       .TextMatrix(index, 2) = rs_grades!Name
@@ -358,15 +363,21 @@ Public Sub populateGrades()
       
       .Col = 3
       .Text = CommonHelper.extractStringValue(rs_grades!First_Grading)
+      grades(0) = val(.Text)
       
       .Col = 4
       .Text = CommonHelper.extractStringValue(rs_grades!Second_Grading)
+      grades(1) = val(.Text)
       
       .Col = 5
       .Text = CommonHelper.extractStringValue(rs_grades!Third_Grading)
+      grades(2) = val(.Text)
       
       .Col = 6
       .Text = CommonHelper.extractStringValue(rs_grades!Fourth_Grading)
+      grades(3) = val(.Text)
+      
+      .TextMatrix(index, 7) = mod_grade.getFinalGrade(grades)
       
       rs_grades.MoveNext
       index = index + 1
