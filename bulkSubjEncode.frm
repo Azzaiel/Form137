@@ -1,5 +1,4 @@
 VERSION 5.00
-Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Object = "{5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0"; "MSFLXGRD.OCX"
 Begin VB.Form bulkSubjEncode 
    BackColor       =   &H8000000E&
@@ -10,80 +9,24 @@ Begin VB.Form bulkSubjEncode
    LinkTopic       =   "Form1"
    ScaleHeight     =   6510
    ScaleWidth      =   12825
-   StartUpPosition =   3  'Windows Default
+   StartUpPosition =   2  'CenterScreen
    Begin MSFlexGridLib.MSFlexGrid flexGrade 
-      Height          =   1335
-      Left            =   480
-      TabIndex        =   10
-      Top             =   2880
-      Width           =   11775
-      _ExtentX        =   20770
-      _ExtentY        =   2355
-      _Version        =   393216
-   End
-   Begin MSDataGridLib.DataGrid dg_grade 
-      Height          =   1575
-      Left            =   480
+      Height          =   4815
+      Left            =   240
       TabIndex        =   9
-      Top             =   960
-      Width           =   11775
-      _ExtentX        =   20770
-      _ExtentY        =   2778
+      Top             =   840
+      Width           =   12375
+      _ExtentX        =   21828
+      _ExtentY        =   8493
       _Version        =   393216
-      AllowUpdate     =   -1  'True
-      HeadLines       =   1
-      RowHeight       =   15
-      BeginProperty HeadFont {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-         Name            =   "MS Sans Serif"
-         Size            =   8.25
-         Charset         =   0
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "MS Sans Serif"
-         Size            =   8.25
+         Size            =   9.75
          Charset         =   0
-         Weight          =   400
+         Weight          =   700
          Underline       =   0   'False
          Italic          =   0   'False
          Strikethrough   =   0   'False
-      EndProperty
-      ColumnCount     =   2
-      BeginProperty Column00 
-         DataField       =   ""
-         Caption         =   ""
-         BeginProperty DataFormat {6D835690-900B-11D0-9484-00A0C91110ED} 
-            Type            =   0
-            Format          =   ""
-            HaveTrueFalseNull=   0
-            FirstDayOfWeek  =   0
-            FirstWeekOfYear =   0
-            LCID            =   1033
-            SubFormatType   =   0
-         EndProperty
-      EndProperty
-      BeginProperty Column01 
-         DataField       =   ""
-         Caption         =   ""
-         BeginProperty DataFormat {6D835690-900B-11D0-9484-00A0C91110ED} 
-            Type            =   0
-            Format          =   ""
-            HaveTrueFalseNull=   0
-            FirstDayOfWeek  =   0
-            FirstWeekOfYear =   0
-            LCID            =   1033
-            SubFormatType   =   0
-         EndProperty
-      EndProperty
-      SplitCount      =   1
-      BeginProperty Split0 
-         BeginProperty Column00 
-         EndProperty
-         BeginProperty Column01 
-         EndProperty
       EndProperty
    End
    Begin VB.CommandButton Command1 
@@ -100,7 +43,7 @@ Begin VB.Form bulkSubjEncode
       Height          =   495
       Left            =   6960
       TabIndex        =   8
-      Top             =   5640
+      Top             =   5760
       Width           =   1215
    End
    Begin VB.CommandButton cmd_add 
@@ -117,7 +60,7 @@ Begin VB.Form bulkSubjEncode
       Height          =   495
       Left            =   4320
       TabIndex        =   7
-      Top             =   5640
+      Top             =   5760
       Width           =   1215
    End
    Begin VB.Frame Frame3 
@@ -268,22 +211,13 @@ Private Sub flexGrade_KeyPress(KeyAscii As Integer)
                     .Col = .Col + 1
                 End If
             Case Else
-                .Text = .Text & Chr(KeyAscii)
+                If (Len(.Text) < 3 And (CommonHelper.isNumberAscii(KeyAscii) Or CommonHelper.isFunctionAscii(KeyAscii))) Then
+                   .Text = .Text & Chr(KeyAscii)
+                End If
         End Select
     End With
 End Sub
-
-'select a.student_id as LRN, a.GENDER, concat(a.LAST_NAME, ', ', a.FIRST_NAME)  as name
-'       , (Select GRADE from tbl_grade
-'          where ID = a.student_id and period = '1st Grading'
-'                and SY = '2013-2014' and subject_code = 'Eng'
-'          ) as 1ST_GRADING
-'from tbl_student a
-'ORDER By a.gender desc;
-Private Sub Form_Load()
-  Call populateGrades
-End Sub
-Private Sub populateGrades()
+Public Sub populateGrades()
   Dim sql_query As String
   sql_query = "Select a.student_id as LRN, a.GENDER, concat(a.LAST_NAME, ', ', a.FIRST_NAME)  as Name " & _
               "      , " & generateGradePeriodQuery("1st Grading") & "as First_Grading " & _
@@ -296,41 +230,56 @@ Private Sub populateGrades()
               "      And b.LVL_NAME = '" & masterlistadvisoriesform.lbl_level & "' " & _
               "      And b.SECTION_NAME = '" & masterlistadvisoriesform.lbl_section & "' " & _
               "ORDER By a.gender desc"
-  Call set_datagrid(dg_grade, rs_grades, sql_query)
-  
-  With dg_grade
-    
-    .Columns(0).Width = 1300
-   '.Columns(1).Locked = True
-    
-    .Columns(1).Width = 1000
-    '.Columns(1).Locked = True
-    
-    .Columns(2).Width = 2250
-    '.Columns(2).Locked = True
-    
-    .Columns(3).Width = 1400
-    .Columns(3).Alignment = dbgCenter
-    
-  End With
+  Call mysql_select(rs_grades, sql_query)
   
   Dim index As String
   index = 1
   With flexGrade
+    
     .Rows = rs_grades.RecordCount + 1
-    .Cols = 5
+    .Cols = 7
+    
     .TextMatrix(0, 0) = "LRN"
-    .TextMatrix(0, 1) = "Gender"
+    .TextMatrix(0, 1) = "GENDER"
     .TextMatrix(0, 2) = "NAME"
+    .TextMatrix(0, 3) = "1ST GRADING"
+    .TextMatrix(0, 4) = "2ND GRADING"
+    .TextMatrix(0, 5) = "3RD GRADING"
+    .TextMatrix(0, 6) = "4TH GRADING"
+
+    .ColWidth(0) = 1450
+    .ColAlignment(1) = flexAlignCenterCenter
+    .ColWidth(1) = 1100
+    .ColWidth(2) = 3000
+    .ColAlignment(3) = flexAlignCenterCenter
+    .ColWidth(3) = 1650
+    .ColAlignment(4) = flexAlignCenterCenter
+    .ColWidth(4) = 1650
+    .ColAlignment(5) = flexAlignCenterCenter
+    .ColWidth(5) = 1650
+    .ColAlignment(6) = flexAlignCenterCenter
+    .ColWidth(6) = 1650
+
+    
     While Not rs_grades.EOF
     
-      '.TextMatrix(index, 0) = rs_grades!lrn
-      .TextMatrix(index, 0) = rs_grades!lrn
+      .TextMatrix(index, 0) = rs_grades!LRN
       .TextMatrix(index, 1) = rs_grades!gender
       .TextMatrix(index, 2) = rs_grades!Name
-      .Col = 3
       .Row = index
-      .Text = "sdsds"
+      
+      .Col = 3
+      .Text = CommonHelper.extractStringValue(rs_grades!First_Grading)
+      
+      .Col = 4
+      .Text = CommonHelper.extractStringValue(rs_grades!Second_Grading)
+      
+      .Col = 5
+      .Text = CommonHelper.extractStringValue(rs_grades!Third_Grading)
+      
+      .Col = 6
+      .Text = CommonHelper.extractStringValue(rs_grades!Fourth_Grading)
+      
       rs_grades.MoveNext
       index = index + 1
     Wend
@@ -350,3 +299,4 @@ Private Function generateGradePeriodQuery(period As String) As String
               ") "
   generateGradePeriodQuery = sql_query
 End Function
+

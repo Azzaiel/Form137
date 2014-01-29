@@ -109,6 +109,7 @@ Private Sub Command1_Click()
     bulkSubjEncode.subj_code = subj_code_list(cmb_subject.ListIndex)
     Dim sql_query As String
     sql_query = ""
+    Call bulkSubjEncode.populateGrades
     Call load_form(bulkSubjEncode, True)
   Else
     MsgBox "Please select a Subject", vbCritical
