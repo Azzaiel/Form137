@@ -288,6 +288,10 @@ Private Sub updateGrade(grade As Double, lrn As String, period As String)
     rs_tmp!remark = mod_grade.getRemark(val(grade), isKinder)
     rs_tmp.Update
   End If
+  
+  
+  
+  
 End Sub
 Private Sub saveFlexData(flexGrid As MSFlexGrid)
   Dim index As Integer
