@@ -288,10 +288,10 @@ Begin VB.Form charactergradeform
          Strikethrough   =   0   'False
       EndProperty
       Height          =   1215
-      Left            =   120
+      Left            =   0
       TabIndex        =   40
       Top             =   4800
-      Width           =   4575
+      Width           =   4335
       Begin VB.Label Label21 
          BackStyle       =   0  'Transparent
          Caption         =   "D - Needs Improvement"

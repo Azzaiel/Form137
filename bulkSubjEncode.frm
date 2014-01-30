@@ -19,7 +19,6 @@ Begin VB.Form bulkSubjEncode
       _ExtentX        =   17595
       _ExtentY        =   4260
       _Version        =   393216
-      FormatString    =   ""
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "MS Sans Serif"
          Size            =   9.75
@@ -192,7 +191,6 @@ Begin VB.Form bulkSubjEncode
       _ExtentX        =   17595
       _ExtentY        =   4260
       _Version        =   393216
-      FormatString    =   ""
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "MS Sans Serif"
          Size            =   9.75
@@ -266,6 +264,8 @@ End Sub
 Private Sub updateGrade(grade As Double, lrn As String, period As String)
 
   Dim isKinder As Boolean
+  Dim gradeChanged As Boolean
+  gradeChanged = False
   
   If (lbl_level = "Kinder") Then
     isKinder = True
@@ -274,14 +274,18 @@ Private Sub updateGrade(grade As Double, lrn As String, period As String)
   End If
 
   If (rs_tmp.RecordCount > 0) Then
-    rs_tmp!grade = grade
-    rs_tmp!remark = mod_grade.getRemark(val(grade), isKinder)
-    rs_tmp.Update
+    If (val(rs_tmp!grade) <> val(grade)) Then
+      rs_tmp!grade = grade
+      rs_tmp!remark = mod_grade.getRemark(val(grade), isKinder)
+      rs_tmp.Update
+      gradeChanged = True
+    End If
   Else
+    gradeChanged = True
     rs_tmp.AddNew
     rs_tmp!id = lrn
-    rs_tmp!sy = mainteacherform.cmb_sy.Text
-    rs_tmp!SECTION_NAME = lbl_section
+    rs_tmp!SY = mainteacherform.cmb_sy.Text
+    rs_tmp!section_name = lbl_section
     rs_tmp!SUBJECT_CODE = subj_code
     rs_tmp!period = period
     rs_tmp!grade = grade
@@ -289,8 +293,42 @@ Private Sub updateGrade(grade As Double, lrn As String, period As String)
     rs_tmp.Update
   End If
   
-  
-  
+  If (gradeChanged And isKinder = False And subj_code = "Edukasyon sa Pagpapakatao") Then
+    Dim sql_query As String
+    sql_query = "Select * " & _
+                "From tbl_character_grade " & _
+                "Where  SY = '" & mainteacherform.cmb_sy.Text & "' " & _
+                "       and ID = '" & lrn & "' " & _
+                "       and section_name = '" & lbl_section & "' " & _
+                "       and period = '" & period & "' "
+    Call mysql_select(rs_grades, sql_query)
+    
+    If (rs_grades.RecordCount = 0) Then
+      rs_grades.AddNew
+      rs_grades!SY = mainteacherform.cmb_sy.Text
+      rs_grades!id = lrn
+      rs_grades!section_name = lbl_section
+      rs_grades!period = period
+    End If
+    Dim charRenar As String
+    charRenar = mod_grade.getCharacterRemark(val(grade))
+    rs_grades!Honesty = charRenar
+    rs_grades!Courtesy = charRenar
+    rs_grades!Helpfulness_and_Cooperation = charRenar
+    rs_grades!Resourcefulness_and_Creativity = charRenar
+    rs_grades!Consideration_for_Others = charRenar
+    rs_grades!Sportsmanship = charRenar
+    rs_grades!Obedience = charRenar
+    rs_grades!Self_Reliance = charRenar
+    rs_grades!Industry = charRenar
+    rs_grades!Cleanliness_and_Orderliness = charRenar
+    rs_grades!Promptness_and_Punctuality = charRenar
+    rs_grades!Sense_of_Responsibility = mod_grade.getRemark(val(grade))
+    rs_grades!Love_of_God = mod_grade.getRemark(val(grade))
+    rs_grades!Patriotism_and_Love_of_Country = charRenar
+    rs_grades.Update
+    
+  End If
   
 End Sub
 Private Sub saveFlexData(flexGrid As MSFlexGrid)
@@ -498,3 +536,4 @@ End Sub
 Private Sub flexGradeGirls_KeyPress(KeyAscii As Integer)
   Call encodeFlexData(KeyAscii, flexGradeGirls)
 End Sub
+

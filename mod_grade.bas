@@ -29,6 +29,19 @@ Public Function getRemark(grade As Double, Optional isKinder As Boolean = False)
     End If
   End If
 End Function
+Public Function getCharacterRemark(grade As Double)
+    If (grade >= 96) Then
+      getCharacterRemark = "A"
+    ElseIf (grade >= 89) Then
+      getCharacterRemark = "B"
+    ElseIf (grade >= 83) Then
+      getCharacterRemark = "C"
+    ElseIf (grade >= 79) Then
+      getCharacterRemark = "D"
+    Else
+      getCharacterRemark = "E"
+    End If
+End Function
 
 Public Function getFinalGrade(grades() As Double) As Integer
   Const arraySize As Integer = 3
