@@ -2,23 +2,24 @@ VERSION 5.00
 Object = "{5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0"; "MSFLXGRD.OCX"
 Begin VB.Form bulkSubjEncode 
    BackColor       =   &H8000000E&
-   ClientHeight    =   6510
+   ClientHeight    =   7740
    ClientLeft      =   120
    ClientTop       =   450
-   ClientWidth     =   14595
+   ClientWidth     =   10005
    LinkTopic       =   "Form1"
-   ScaleHeight     =   10950
-   ScaleWidth      =   20250
+   ScaleHeight     =   7740
+   ScaleWidth      =   10005
    StartUpPosition =   2  'CenterScreen
-   Begin MSFlexGridLib.MSFlexGrid flexGrade 
-      Height          =   4815
-      Left            =   240
+   Begin MSFlexGridLib.MSFlexGrid flexGradeBoys 
+      Height          =   2415
+      Left            =   0
       TabIndex        =   9
-      Top             =   840
-      Width           =   14175
-      _ExtentX        =   25003
-      _ExtentY        =   8493
+      Top             =   1440
+      Width           =   9975
+      _ExtentX        =   17595
+      _ExtentY        =   4260
       _Version        =   393216
+      FormatString    =   ""
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "MS Sans Serif"
          Size            =   9.75
@@ -41,9 +42,9 @@ Begin VB.Form bulkSubjEncode
          Strikethrough   =   0   'False
       EndProperty
       Height          =   495
-      Left            =   6960
+      Left            =   5280
       TabIndex        =   8
-      Top             =   5760
+      Top             =   7080
       Width           =   1215
    End
    Begin VB.CommandButton cmd_save 
@@ -58,18 +59,18 @@ Begin VB.Form bulkSubjEncode
          Strikethrough   =   0   'False
       EndProperty
       Height          =   495
-      Left            =   4320
+      Left            =   2880
       TabIndex        =   7
-      Top             =   5760
+      Top             =   7080
       Width           =   1215
    End
    Begin VB.Frame Frame3 
       BackColor       =   &H00808080&
-      Height          =   735
+      Height          =   855
       Left            =   0
       TabIndex        =   0
       Top             =   0
-      Width           =   14655
+      Width           =   9975
       Begin VB.Label lbl_subject 
          BackStyle       =   0  'Transparent
          BeginProperty Font 
@@ -83,9 +84,9 @@ Begin VB.Form bulkSubjEncode
          EndProperty
          ForeColor       =   &H00FFFFFF&
          Height          =   255
-         Left            =   10080
+         Left            =   4200
          TabIndex        =   6
-         Top             =   240
+         Top             =   480
          Width           =   8895
       End
       Begin VB.Label Label3 
@@ -102,9 +103,9 @@ Begin VB.Form bulkSubjEncode
          EndProperty
          ForeColor       =   &H00FFFFFF&
          Height          =   255
-         Left            =   9120
+         Left            =   3240
          TabIndex        =   5
-         Top             =   240
+         Top             =   480
          Width           =   855
       End
       Begin VB.Label lbl_section 
@@ -120,7 +121,7 @@ Begin VB.Form bulkSubjEncode
          EndProperty
          ForeColor       =   &H00FFFFFF&
          Height          =   255
-         Left            =   6240
+         Left            =   6840
          TabIndex        =   4
          Top             =   240
          Width           =   3135
@@ -141,7 +142,7 @@ Begin VB.Form bulkSubjEncode
          Left            =   1080
          TabIndex        =   3
          Top             =   240
-         Width           =   2895
+         Width           =   2055
       End
       Begin VB.Label Label2 
          BackStyle       =   0  'Transparent
@@ -157,7 +158,7 @@ Begin VB.Form bulkSubjEncode
          EndProperty
          ForeColor       =   &H00FFFFFF&
          Height          =   255
-         Left            =   5160
+         Left            =   5880
          TabIndex        =   2
          Top             =   240
          Width           =   855
@@ -182,6 +183,66 @@ Begin VB.Form bulkSubjEncode
          Width           =   735
       End
    End
+   Begin MSFlexGridLib.MSFlexGrid flexGradeGirls 
+      Height          =   2415
+      Left            =   0
+      TabIndex        =   11
+      Top             =   4440
+      Width           =   9975
+      _ExtentX        =   17595
+      _ExtentY        =   4260
+      _Version        =   393216
+      FormatString    =   ""
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "MS Sans Serif"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+   End
+   Begin VB.Label Label5 
+      Alignment       =   2  'Center
+      BackColor       =   &H00808080&
+      Caption         =   "Girls"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   12
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H00FFFFFF&
+      Height          =   375
+      Left            =   0
+      TabIndex        =   12
+      Top             =   4080
+      Width           =   9975
+   End
+   Begin VB.Label Label4 
+      Alignment       =   2  'Center
+      BackColor       =   &H00808080&
+      Caption         =   "Boys"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   12
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H00FFFFFF&
+      Height          =   375
+      Left            =   0
+      TabIndex        =   10
+      Top             =   1080
+      Width           =   9975
+   End
 End
 Attribute VB_Name = "bulkSubjEncode"
 Attribute VB_GlobalNameSpace = False
@@ -192,7 +253,8 @@ Option Explicit
 Public rs_grades As New ADODB.Recordset
 Public rs_tmp As New ADODB.Recordset
 Public subj_code As String
-Private max_rows As Integer
+Private temp_grades(0 To 3) As Double
+Private temp As Integer
 
 Private Sub cmd_add_Click()
 
@@ -227,17 +289,16 @@ Private Sub updateGrade(grade As Double, lrn As String, period As String)
     rs_tmp.Update
   End If
 End Sub
-Private Sub cmd_save_Click()
+Private Sub saveFlexData(flexGrid As MSFlexGrid)
   Dim index As Integer
   Dim cur_lrn As String
   Dim cur_period As String
   
-  With flexGrade
-    For index = 1 To (max_rows - 1)
+  With flexGrid
+    For index = 1 To (flexGrid.Rows - 1)
       
       .Row = index
-      
-      cur_lrn = .TextMatrix(index, 0)
+      cur_lrn = .TextMatrix(index, 1)
       
       cur_period = "1st Grading"
       Call mysql_select(rs_tmp, generatePeriodSelectGradeQuery(cur_lrn, cur_period))
@@ -264,9 +325,14 @@ Private Sub cmd_save_Click()
     Next index
   End With
   
+End Sub
+
+
+Private Sub cmd_save_Click()
+  Call saveFlexData(flexGradeBoys)
+  Call saveFlexData(flexGradeGirls)
   MsgBox "Record Updated", vbInformation
   Call populateGrades
-  
 End Sub
 Private Function generatePeriodSelectGradeQuery(lrn As String, period As String) As String
   Dim sql_query As String
@@ -279,8 +345,8 @@ Private Function generatePeriodSelectGradeQuery(lrn As String, period As String)
               "      aND SUBJECT_CODE = '" & subj_code & "' "
   generatePeriodSelectGradeQuery = sql_query
 End Function
-Private Sub flexGrade_KeyPress(KeyAscii As Integer)
-      With flexGrade
+Private Sub encodeFlexData(KeyAscii As Integer, flexGrid As MSFlexGrid)
+    With flexGrid
         Select Case KeyAscii
             Case 8
                 If Not .Text = "" Then
@@ -302,8 +368,91 @@ Private Sub flexGrade_KeyPress(KeyAscii As Integer)
                    .Text = .Text & Chr(KeyAscii)
                 End If
         End Select
+        temp = .Col
+        .Col = 3
+        temp_grades(0) = val(.Text)
+        .Col = 4
+        temp_grades(1) = val(.Text)
+        .Col = 5
+        temp_grades(2) = val(.Text)
+        .Col = 6
+        temp_grades(3) = val(.Text)
+        .TextMatrix(.Row, 7) = mod_grade.getFinalGrade(temp_grades)
+        .Col = temp
     End With
+
 End Sub
+Private Sub flexGradeBoys_KeyPress(KeyAscii As Integer)
+  Call encodeFlexData(KeyAscii, flexGradeBoys)
+End Sub
+Public Sub populateGradeFlex(flexGrid As MSFlexGrid, rs As ADODB.Recordset)
+    Dim index As String
+  index = 1
+  
+  With flexGrid
+    .Clear
+    .Rows = rs.RecordCount + 1
+    .Cols = 8
+    
+    .TextMatrix(0, 0) = "NO"
+    .TextMatrix(0, 1) = "LRN"
+    .TextMatrix(0, 2) = "NAME"
+    .TextMatrix(0, 3) = "1"
+    .TextMatrix(0, 4) = "2"
+    .TextMatrix(0, 5) = "3"
+    .TextMatrix(0, 6) = "4"
+    .TextMatrix(0, 7) = "FINALS"
+
+    .ColAlignment(0) = flexAlignCenterCenter
+    .ColWidth(0) = 500
+    .ColAlignment(1) = flexAlignCenterCenter
+    .ColWidth(1) = 1650
+    .ColWidth(2) = 3000
+    .ColAlignment(3) = flexAlignCenterCenter
+    .ColWidth(3) = 900
+    .ColAlignment(4) = flexAlignCenterCenter
+    .ColWidth(4) = 900
+    .ColAlignment(5) = flexAlignCenterCenter
+    .ColWidth(5) = 900
+    .ColAlignment(6) = flexAlignCenterCenter
+    .ColWidth(6) = 900
+    .ColAlignment(7) = flexAlignCenterCenter
+    .ColWidth(7) = 900
+
+    Dim grades(0 To 3) As Double
+    
+    While Not rs.EOF
+     
+      .TextMatrix(index, 0) = index
+      .TextMatrix(index, 1) = rs!lrn
+      .TextMatrix(index, 2) = rs!Name
+      .Row = index
+      
+      .Col = 3
+      .Text = CommonHelper.extractStringValue(rs!First_Grading)
+      grades(0) = val(.Text)
+      
+      .Col = 4
+      .Text = CommonHelper.extractStringValue(rs!Second_Grading)
+      grades(1) = val(.Text)
+      
+      .Col = 5
+      .Text = CommonHelper.extractStringValue(rs!Third_Grading)
+      grades(2) = val(.Text)
+      
+      .Col = 6
+      .Text = CommonHelper.extractStringValue(rs!Fourth_Grading)
+      grades(3) = val(.Text)
+      
+      .TextMatrix(index, 7) = mod_grade.getFinalGrade(grades)
+      
+      rs.MoveNext
+      index = index + 1
+    Wend
+  End With
+
+End Sub
+
 Public Sub populateGrades()
   Dim sql_query As String
   sql_query = "Select a.student_id as LRN, a.GENDER, concat(a.LAST_NAME, ', ', a.FIRST_NAME)  as Name " & _
@@ -315,78 +464,14 @@ Public Sub populateGrades()
               "Where b.ID = a.STUDENT_ID " & _
               "      And b.SY= '" & mainteacherform.cmb_sy.Text & "' " & _
               "      And b.LVL_NAME = '" & lbl_level & "' " & _
-              "      And b.SECTION_NAME = '" & lbl_section & "' " & _
-              "ORDER By a.gender desc"
-  Call mysql_select(rs_grades, sql_query)
+              "      And b.SECTION_NAME = '" & lbl_section & "' "
   
-  Dim index As String
-  index = 1
+  Call mysql_select(rs_grades, sql_query & "And a.Gender = 'Male' ")
+  Call populateGradeFlex(flexGradeBoys, rs_grades)
   
-  With flexGrade
-    .Clear
-    max_rows = rs_grades.RecordCount + 1
-    .Rows = max_rows
-    .Cols = 8
-    
-    .TextMatrix(0, 0) = "LRN"
-    .TextMatrix(0, 1) = "GENDER"
-    .TextMatrix(0, 2) = "NAME"
-    .TextMatrix(0, 3) = "1ST GRADING"
-    .TextMatrix(0, 4) = "2ND GRADING"
-    .TextMatrix(0, 5) = "3RD GRADING"
-    .TextMatrix(0, 6) = "4TH GRADING"
-    .TextMatrix(0, 7) = "FINAL GRADING"
-
-    .ColWidth(0) = 1450
-    .ColAlignment(1) = flexAlignCenterCenter
-    .ColWidth(1) = 1100
-    .ColWidth(2) = 3000
-    .ColAlignment(3) = flexAlignCenterCenter
-    .ColWidth(3) = 1650
-    .ColAlignment(4) = flexAlignCenterCenter
-    .ColWidth(4) = 1650
-    .ColAlignment(5) = flexAlignCenterCenter
-    .ColWidth(5) = 1650
-    .ColAlignment(6) = flexAlignCenterCenter
-    .ColWidth(6) = 1650
-    .ColAlignment(7) = flexAlignCenterCenter
-    .ColWidth(7) = 1850
-
-    Dim grades(0 To 3) As Double
-    
-    While Not rs_grades.EOF
-     
-      .TextMatrix(index, 0) = rs_grades!lrn
-      .TextMatrix(index, 1) = rs_grades!gender
-      .TextMatrix(index, 2) = rs_grades!Name
-      .Row = index
-      
-      .Col = 3
-      .Text = CommonHelper.extractStringValue(rs_grades!First_Grading)
-      grades(0) = val(.Text)
-      
-      .Col = 4
-      .Text = CommonHelper.extractStringValue(rs_grades!Second_Grading)
-      grades(1) = val(.Text)
-      
-      .Col = 5
-      .Text = CommonHelper.extractStringValue(rs_grades!Third_Grading)
-      grades(2) = val(.Text)
-      
-      .Col = 6
-      .Text = CommonHelper.extractStringValue(rs_grades!Fourth_Grading)
-      grades(3) = val(.Text)
-      
-      .TextMatrix(index, 7) = mod_grade.getFinalGrade(grades)
-      
-      rs_grades.MoveNext
-      index = index + 1
-    Wend
-  End With
+  Call mysql_select(rs_grades, sql_query & "And a.Gender = 'Female' ")
+  Call populateGradeFlex(flexGradeGirls, rs_grades)
   
-End Sub
-Private Sub MSFlexGrid1_KeyPress(KeyAscii As Integer)
-
 End Sub
 Private Function generateGradePeriodQuery(period As String) As String
   Dim sql_query As String
@@ -398,3 +483,14 @@ Private Function generateGradePeriodQuery(period As String) As String
   generateGradePeriodQuery = sql_query
 End Function
 
+Private Sub flexGradeBoysBoys_Click()
+
+End Sub
+
+Private Sub MSFlexGrid1_Click()
+
+End Sub
+
+Private Sub flexGradeGirls_KeyPress(KeyAscii As Integer)
+  Call encodeFlexData(KeyAscii, flexGradeGirls)
+End Sub
