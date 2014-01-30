@@ -273,24 +273,29 @@ Private Sub updateGrade(grade As Double, lrn As String, period As String)
     isKinder = False
   End If
 
-  If (rs_tmp.RecordCount > 0) Then
-    If (val(rs_tmp!grade) <> val(grade)) Then
+  If (period <> "Final") Then
+
+    If (rs_tmp.RecordCount > 0) Then
+      If (val(rs_tmp!grade) <> val(grade)) Then
+        rs_tmp!grade = grade
+        rs_tmp!remark = mod_grade.getRemark(val(grade), isKinder)
+        rs_tmp.Update
+        gradeChanged = True
+      End If
+    Else
+      gradeChanged = True
+      rs_tmp.AddNew
+      rs_tmp!id = lrn
+      rs_tmp!SY = mainteacherform.cmb_sy.Text
+      rs_tmp!section_name = lbl_section
+      rs_tmp!SUBJECT_CODE = subj_code
+      rs_tmp!period = period
       rs_tmp!grade = grade
       rs_tmp!remark = mod_grade.getRemark(val(grade), isKinder)
       rs_tmp.Update
-      gradeChanged = True
     End If
   Else
     gradeChanged = True
-    rs_tmp.AddNew
-    rs_tmp!id = lrn
-    rs_tmp!SY = mainteacherform.cmb_sy.Text
-    rs_tmp!section_name = lbl_section
-    rs_tmp!SUBJECT_CODE = subj_code
-    rs_tmp!period = period
-    rs_tmp!grade = grade
-    rs_tmp!remark = mod_grade.getRemark(val(grade), isKinder)
-    rs_tmp.Update
   End If
   
   If (gradeChanged And isKinder = False And subj_code = "Edukasyon sa Pagpapakatao") Then
@@ -310,22 +315,23 @@ Private Sub updateGrade(grade As Double, lrn As String, period As String)
       rs_grades!section_name = lbl_section
       rs_grades!period = period
     End If
-    Dim charRenar As String
-    charRenar = mod_grade.getCharacterRemark(val(grade))
-    rs_grades!Honesty = charRenar
-    rs_grades!Courtesy = charRenar
-    rs_grades!Helpfulness_and_Cooperation = charRenar
-    rs_grades!Resourcefulness_and_Creativity = charRenar
-    rs_grades!Consideration_for_Others = charRenar
-    rs_grades!Sportsmanship = charRenar
-    rs_grades!Obedience = charRenar
-    rs_grades!Self_Reliance = charRenar
-    rs_grades!Industry = charRenar
-    rs_grades!Cleanliness_and_Orderliness = charRenar
-    rs_grades!Promptness_and_Punctuality = charRenar
-    rs_grades!Sense_of_Responsibility = mod_grade.getRemark(val(grade))
-    rs_grades!Love_of_God = mod_grade.getRemark(val(grade))
-    rs_grades!Patriotism_and_Love_of_Country = charRenar
+    Dim charRemark  As String
+    
+    charRemark = mod_grade.getCharacterRemark(val(grade))
+    rs_grades!Honesty = charRemark
+    rs_grades!Courtesy = charRemark
+    rs_grades!Helpfulness_and_Cooperation = charRemark
+    rs_grades!Resourcefulness_and_Creativity = charRemark
+    rs_grades!Consideration_for_Others = charRemark
+    rs_grades!Sportsmanship = charRemark
+    rs_grades!Obedience = charRemark
+    rs_grades!Self_Reliance = charRemark
+    rs_grades!Industry = charRemark
+    rs_grades!Cleanliness_and_Orderliness = charRemark
+    rs_grades!Promptness_and_Punctuality = charRemark
+    rs_grades!Sense_of_Responsibility = charRemark
+    rs_grades!Love_of_God = charRemark
+    rs_grades!Patriotism_and_Love_of_Country = charRemark
     rs_grades.Update
     
   End If
@@ -363,6 +369,9 @@ Private Sub saveFlexData(flexGrid As MSFlexGrid)
       Call mysql_select(rs_tmp, generatePeriodSelectGradeQuery(cur_lrn, cur_period))
       .Col = 6
       Call updateGrade(val(.Text), cur_lrn, cur_period)
+      
+     .Col = 7
+      Call updateGrade(val(.Text), cur_lrn, "Final")
       
     Next index
   End With
