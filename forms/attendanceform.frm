@@ -718,10 +718,10 @@ Private Sub cmd_save_Click()
                         Exit Sub
                     Else
          sql_string = "INSERT INTO " _
-                                & "tbl_attendance ( ID, section_name, no_school_days,no_days_absent, causes_of_absences,no_days_tardiness,causes_of_tardiness,no_days_present)" _
-                            & " VALUES ('" _
+                                & "tbl_attendance ( SY, ID, section_name, no_school_days,no_days_absent, causes_of_absences,no_days_tardiness,causes_of_tardiness,no_days_present)" _
+                            & " VALUES ('" & mainteacherform.cmb_sy.Text & "', '" _
                                 & lbl_id2.Caption & "','" _
-                                & characterencodeform.lbl_section.Caption & "','" & txt_school_days.Text & "','" & txt_days_absent.Text & "','" & causes_absences & "','" & txt_days_tardy.Text & "','" & causes_tardiness & "','" & txt_days_present.Text & "')"
+                                & masterlistadvisoriesform.lbl_section & "','" & txt_school_days.Text & "','" & txt_days_absent.Text & "','" & causes_absences & "','" & txt_days_tardy.Text & "','" & causes_tardiness & "','" & txt_days_present.Text & "')"
         Call mysql_select(attendanceform.rs_grade, sql_string)
         MsgBox "Attendance report has been added."
         Call load_grade

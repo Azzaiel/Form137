@@ -974,14 +974,13 @@ Private Sub cmd_save_Click()
   MsgBox "Record Updated", vbInformation
   
    If lbl_period2.Caption = "Final" Then
-          Call mysql_select(public_rs, "SELECT * FROM tbl_attendance WHERE ID = '" & lbl_id2.Caption & "'")
+          Call mysql_select(public_rs, "SELECT * FROM tbl_attendance WHERE SY = '" & mainteacherform.cmb_sy.Text & "' and ID = '" & lbl_id2.Caption & "'")
           If public_rs.RecordCount = 0 Then
             attendanceform.lbl_id2.Caption = lbl_id2.Caption
             attendanceform.lbl_name2.Caption = lbl_name2.Caption
             Call load_form(attendanceform, True)
           End If
-        
-    Else
+  End If
   
 End Sub
 
