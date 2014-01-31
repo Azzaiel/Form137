@@ -3,13 +3,13 @@ Object = "{5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0"; "MSFLXGRD.OCX"
 Begin VB.Form studentPromotion 
    BackColor       =   &H8000000E&
    Caption         =   "Form1"
-   ClientHeight    =   8595
+   ClientHeight    =   7935
    ClientLeft      =   120
    ClientTop       =   450
-   ClientWidth     =   14760
+   ClientWidth     =   13050
    LinkTopic       =   "Form1"
-   ScaleHeight     =   8595
-   ScaleWidth      =   14760
+   ScaleHeight     =   7935
+   ScaleWidth      =   13050
    StartUpPosition =   2  'CenterScreen
    Begin VB.CommandButton cmb_export 
       Caption         =   "Export"
@@ -23,8 +23,8 @@ Begin VB.Form studentPromotion
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   9120
-      TabIndex        =   4
+      Left            =   9720
+      TabIndex        =   2
       Top             =   240
       Width           =   1095
    End
@@ -40,9 +40,9 @@ Begin VB.Form studentPromotion
       EndProperty
       Height          =   360
       ItemData        =   "studentPromotion.frx":0000
-      Left            =   1680
+      Left            =   2280
       List            =   "studentPromotion.frx":000A
-      TabIndex        =   1
+      TabIndex        =   0
       Top             =   240
       Width           =   2415
    End
@@ -58,9 +58,9 @@ Begin VB.Form studentPromotion
       EndProperty
       Height          =   360
       ItemData        =   "studentPromotion.frx":001C
-      Left            =   6480
+      Left            =   7080
       List            =   "studentPromotion.frx":001E
-      TabIndex        =   0
+      TabIndex        =   1
       Top             =   240
       Width           =   2415
    End
@@ -69,8 +69,8 @@ Begin VB.Form studentPromotion
       Left            =   0
       TabIndex        =   5
       Top             =   1200
-      Width           =   14775
-      _ExtentX        =   26061
+      Width           =   13095
+      _ExtentX        =   23098
       _ExtentY        =   5106
       _Version        =   393216
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -87,9 +87,9 @@ Begin VB.Form studentPromotion
       Height          =   3015
       Left            =   0
       TabIndex        =   7
-      Top             =   4920
-      Width           =   14775
-      _ExtentX        =   26061
+      Top             =   4680
+      Width           =   13095
+      _ExtentX        =   23098
       _ExtentY        =   5318
       _Version        =   393216
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -119,8 +119,8 @@ Begin VB.Form studentPromotion
       Height          =   375
       Left            =   0
       TabIndex        =   8
-      Top             =   4560
-      Width           =   14775
+      Top             =   4320
+      Width           =   13095
    End
    Begin VB.Label Label4 
       Alignment       =   2  'Center
@@ -140,7 +140,7 @@ Begin VB.Form studentPromotion
       Left            =   0
       TabIndex        =   6
       Top             =   840
-      Width           =   14775
+      Width           =   13095
    End
    Begin VB.Label Label7 
       BackStyle       =   0  'Transparent
@@ -156,8 +156,8 @@ Begin VB.Form studentPromotion
       EndProperty
       ForeColor       =   &H00000000&
       Height          =   255
-      Left            =   240
-      TabIndex        =   3
+      Left            =   840
+      TabIndex        =   4
       Top             =   240
       Width           =   1455
    End
@@ -175,8 +175,8 @@ Begin VB.Form studentPromotion
       EndProperty
       ForeColor       =   &H00000000&
       Height          =   255
-      Left            =   4920
-      TabIndex        =   2
+      Left            =   5520
+      TabIndex        =   3
       Top             =   360
       Width           =   1815
    End
@@ -190,6 +190,7 @@ Option Explicit
 Private teacher_id As String
 Private prom_girls_list() As Variant
 Private prom_boys_list() As Variant
+Private temp_rs As New ADODB.Recordset
 Private Sub cmb_level_Click()
     Dim sqlQuery As String
         
@@ -215,7 +216,7 @@ Private Sub cmb_section_Click()
   If cmb_section.Text <> vbNullString Then
     Dim base_query As String
     
-    base_query = "Select stud.last_name, stud.first_name, stud.middle_name, stud.address " & _
+    base_query = "Select stud.student_id, stud.last_name, stud.first_name, stud.middle_name, stud.address " & _
                  "       , ( " & _
                  "            select count(*) " & _
                  "            from tbl_student a, tbl_student_level b " & _
@@ -260,8 +261,8 @@ Public Function populatePromotionFlex(flexGrid As MSFlexGrid, rs As ADODB.Record
     .WordWrap = True
     
     .RowHeight(0) = 1050
-    .ColAlignment(0) = flexAlignCenterCenter
-    .ColWidth(0) = 6000
+    .ColAlignment(0) = flexAlignLeftCenter
+    .ColWidth(0) = 3700
     .ColAlignment(1) = flexAlignCenterCenter
     .ColWidth(1) = 2000
     .ColAlignment(2) = flexAlignCenterCenter
@@ -275,10 +276,10 @@ Public Function populatePromotionFlex(flexGrid As MSFlexGrid, rs As ADODB.Record
     .ColAlignment(6) = flexAlignCenterCenter
     .ColWidth(6) = 900
     .ColAlignment(7) = flexAlignCenterCenter
-    .ColWidth(7) = 1500
+    .ColWidth(7) = 2250
     
     
-    .TextMatrix(0, 0) = "NAME"
+    .TextMatrix(0, 0) = "                         NAME"
     .TextMatrix(0, 1) = "HOME ADDRESS"
     .TextMatrix(0, 2) = "YEARS IN SHCOOL"
     .TextMatrix(0, 3) = "AGE"
@@ -286,10 +287,60 @@ Public Function populatePromotionFlex(flexGrid As MSFlexGrid, rs As ADODB.Record
     .TextMatrix(0, 5) = "FINAL RATING"
     .TextMatrix(0, 6) = "ACTION TAKEN"
     .TextMatrix(0, 7) = "REMARK"
-        
+    
+    Dim sql_query As String
+    Dim divider As Integer
+    Dim total_grade As Integer
     While Not rs.EOF
-      prom_list(index, 0) = index & " " & rs!LAST_NAME & ", " & rs!First_Name
+      
+      prom_list(index, 0) = index & " " & CommonHelper.extractStringValue(rs!LAST_NAME) & ", " & CommonHelper.extractStringValue(rs!First_Name) & " " & toIntial(rs!MIDDLE_NAME)
       .TextMatrix(index, 0) = prom_list(index, 0)
+      
+      prom_list(index, 1) = CommonHelper.extractStringValue(rs!address)
+      .TextMatrix(index, 1) = prom_list(index, 1)
+      
+      prom_list(index, 2) = CommonHelper.extractStringValue(rs!years_in_school)
+      .TextMatrix(index, 2) = prom_list(index, 2)
+      
+      prom_list(index, 3) = CommonHelper.extractStringValue(rs!age)
+      .TextMatrix(index, 3) = prom_list(index, 3)
+      
+      prom_list(index, 4) = CommonHelper.extractStringValue(rs!days_in_school)
+      .TextMatrix(index, 4) = prom_list(index, 4)
+    
+      sql_query = "Select GRADE " & _
+                  "From tbl_grade " & _
+                  "Where SY = '" & mainteacherform.cmb_sy.Text & "' " & _
+                  "      And ID = '" & rs!student_id & "' "
+
+      divider = 0
+      Call mysql_select(temp_rs, sql_query)
+      
+      total_grade = 0
+      
+      While Not temp_rs.EOF
+        If (val(temp_rs!grade) > 0) Then
+          total_grade = total_grade + val(temp_rs!grade)
+          divider = divider + 1
+        End If
+        temp_rs.MoveNext
+      Wend
+      
+      If (total_grade > 0) Then
+      
+         prom_list(index, 5) = Round(val(total_grade / divider), 0)
+        .TextMatrix(index, 5) = prom_list(index, 5)
+        
+        If (val(prom_list(index, 5)) >= 75) Then
+          prom_list(index, 6) = "Prom."
+        Else
+          prom_list(index, 6) = "Failed"
+        End If
+        
+        .TextMatrix(index, 6) = prom_list(index, 6)
+      
+      End If
+      
       index = index + 1
       rs.MoveNext
     Wend
@@ -298,6 +349,13 @@ Public Function populatePromotionFlex(flexGrid As MSFlexGrid, rs As ADODB.Record
   
   populatePromotionFlex = prom_list()
   
+End Function
+Private Function toIntial(m_name As String)
+  If (m_name <> vbNullString) Then
+    toIntial = UCase(Right(m_name, 1)) & "."
+  Else
+    toIntial = ""
+  End If
 End Function
 
 Private Sub Form_Load()
