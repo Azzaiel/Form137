@@ -2,18 +2,35 @@ VERSION 5.00
 Object = "{5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0"; "MSFLXGRD.OCX"
 Begin VB.Form bulkSubjEncode 
    BackColor       =   &H8000000E&
-   ClientHeight    =   7740
+   ClientHeight    =   7635
    ClientLeft      =   120
    ClientTop       =   450
    ClientWidth     =   10005
    LinkTopic       =   "Form1"
-   ScaleHeight     =   7740
+   ScaleHeight     =   7635
    ScaleWidth      =   10005
    StartUpPosition =   2  'CenterScreen
+   Begin VB.CommandButton cmb_export 
+      Caption         =   "Export"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   495
+      Left            =   4320
+      TabIndex        =   1
+      Top             =   6960
+      Width           =   1215
+   End
    Begin MSFlexGridLib.MSFlexGrid flexGradeBoys 
       Height          =   2415
       Left            =   0
-      TabIndex        =   9
+      TabIndex        =   10
       Top             =   1440
       Width           =   9975
       _ExtentX        =   17595
@@ -41,9 +58,9 @@ Begin VB.Form bulkSubjEncode
          Strikethrough   =   0   'False
       EndProperty
       Height          =   495
-      Left            =   5280
-      TabIndex        =   8
-      Top             =   7080
+      Left            =   5640
+      TabIndex        =   2
+      Top             =   6960
       Width           =   1215
    End
    Begin VB.CommandButton cmd_save 
@@ -58,16 +75,16 @@ Begin VB.Form bulkSubjEncode
          Strikethrough   =   0   'False
       EndProperty
       Height          =   495
-      Left            =   2880
-      TabIndex        =   7
-      Top             =   7080
+      Left            =   3000
+      TabIndex        =   0
+      Top             =   6960
       Width           =   1215
    End
    Begin VB.Frame Frame3 
       BackColor       =   &H00808080&
       Height          =   855
       Left            =   0
-      TabIndex        =   0
+      TabIndex        =   3
       Top             =   0
       Width           =   9975
       Begin VB.Label lbl_subject 
@@ -84,7 +101,7 @@ Begin VB.Form bulkSubjEncode
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Left            =   4200
-         TabIndex        =   6
+         TabIndex        =   9
          Top             =   480
          Width           =   8895
       End
@@ -103,7 +120,7 @@ Begin VB.Form bulkSubjEncode
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Left            =   3240
-         TabIndex        =   5
+         TabIndex        =   8
          Top             =   480
          Width           =   855
       End
@@ -121,7 +138,7 @@ Begin VB.Form bulkSubjEncode
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Left            =   6840
-         TabIndex        =   4
+         TabIndex        =   7
          Top             =   240
          Width           =   3135
       End
@@ -139,7 +156,7 @@ Begin VB.Form bulkSubjEncode
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Left            =   1080
-         TabIndex        =   3
+         TabIndex        =   6
          Top             =   240
          Width           =   2055
       End
@@ -158,7 +175,7 @@ Begin VB.Form bulkSubjEncode
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Left            =   5880
-         TabIndex        =   2
+         TabIndex        =   5
          Top             =   240
          Width           =   855
       End
@@ -177,7 +194,7 @@ Begin VB.Form bulkSubjEncode
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Left            =   240
-         TabIndex        =   1
+         TabIndex        =   4
          Top             =   240
          Width           =   735
       End
@@ -185,7 +202,7 @@ Begin VB.Form bulkSubjEncode
    Begin MSFlexGridLib.MSFlexGrid flexGradeGirls 
       Height          =   2415
       Left            =   0
-      TabIndex        =   11
+      TabIndex        =   12
       Top             =   4440
       Width           =   9975
       _ExtentX        =   17595
@@ -217,7 +234,7 @@ Begin VB.Form bulkSubjEncode
       ForeColor       =   &H00FFFFFF&
       Height          =   375
       Left            =   0
-      TabIndex        =   12
+      TabIndex        =   13
       Top             =   4080
       Width           =   9975
    End
@@ -237,7 +254,7 @@ Begin VB.Form bulkSubjEncode
       ForeColor       =   &H00FFFFFF&
       Height          =   375
       Left            =   0
-      TabIndex        =   10
+      TabIndex        =   11
       Top             =   1080
       Width           =   9975
    End
@@ -255,6 +272,18 @@ Private temp_grades(0 To 3) As Double
 Private temp As Integer
 
 Private Sub cmd_add_Click()
+
+End Sub
+
+Private Sub cmb_export_Click()
+  
+  Dim excelApp As New Excel.Application
+  Dim oBook As New Excel.Workbook
+  Dim oSheet As New Excel.Worksheet
+  
+  Set excelApp = CreateObject("Excel.Application")
+  Set oBook = excelApp.Workbooks.Open(CommonHelper.getTemplatesPath & "\" & Constants.INVENTORY_TEMPLATE)
+  Set oSheet = excelApp.Worksheets(1)
 
 End Sub
 
@@ -433,6 +462,11 @@ Private Sub encodeFlexData(KeyAscii As Integer, flexGrid As MSFlexGrid)
     End With
 
 End Sub
+
+Private Sub Command1_Click()
+
+End Sub
+
 Private Sub flexGradeBoys_KeyPress(KeyAscii As Integer)
   Call encodeFlexData(KeyAscii, flexGradeBoys)
 End Sub
