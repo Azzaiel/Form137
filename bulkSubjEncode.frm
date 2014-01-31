@@ -284,6 +284,11 @@ Private Sub cmb_export_Click()
   Set excelApp = CreateObject("Excel.Application")
   Set oBook = excelApp.Workbooks.Open(CommonHelper.getTemplatesPath & "\" & Constants.INVENTORY_TEMPLATE)
   Set oSheet = excelApp.Worksheets(1)
+  
+  excelApp.DisplayAlerts = False
+  oBook.SaveAs CommonHelper.getTempPath & "\tmp.xlsx"
+
+  excelApp.Visible = True
 
 End Sub
 

@@ -147,14 +147,14 @@ Public Function getFileName(flname As String) As String
     
 End Function
 Public Function getImgPath() As String
-  getImgPath = App.Path & "\" & Constants.IMG_FOLDER
+  getImgPath = App.Path & "\img"
 End Function
 
 Public Function getTemplatesPath() As String
-  getTemplatesPath = App.Path & "\" & Constants.TEMPLATE_FOLDER
+  getTemplatesPath = App.Path & "\template"
 End Function
 Public Function getTempPath() As String
-  getTempPath = App.Path & "\" & Constants.TEMP_FOLDER
+  getTempPath = App.Path & "\tmp"
 End Function
 
 

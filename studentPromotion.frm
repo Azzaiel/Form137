@@ -191,6 +191,99 @@ Private teacher_id As String
 Private prom_girls_list() As Variant
 Private prom_boys_list() As Variant
 Private temp_rs As New ADODB.Recordset
+
+Private Const name_index = 0
+Private Const addess_index = 5
+Private Const year_in_school_index = 8
+Private Const age_index = 9
+Private Const days_in_school_index = 10
+Private Const grade_index = 11
+Private Const action_index = 12
+Private Sub cmb_export_Click()
+  
+  Dim excelApp As New Excel.Application
+  Dim oBook As New Excel.Workbook
+  Dim oSheet As New Excel.Worksheet
+  
+  Set excelApp = CreateObject("Excel.Application")
+  Set oBook = excelApp.Workbooks.Open(CommonHelper.getTemplatesPath & "\Student_Promotion.xlsx")
+  Set oSheet = excelApp.Worksheets(1)
+  
+  excelApp.DisplayAlerts = False
+  oBook.SaveAs CommonHelper.getTempPath & "\tmp.xlsx"
+  Dim total_age As Double
+  Dim average_age As Double
+  Dim index As Integer
+  
+  oSheet.Range("C7").value = "SCHOOL YEAR " & mainteacherform.cmb_sy.Text
+  oSheet.Range("M9").value = Now
+  
+  Dim currIndex As Integer
+  currIndex = 16
+  
+  oSheet.Range("A" & currIndex & ":N" & (currIndex + (UBound(prom_boys_list) - 1))).value = prom_boys_list
+  
+  currIndex = currIndex + UBound(prom_boys_list) + 1
+  
+  oSheet.Range("A" & currIndex).value = "Total Age"
+  oSheet.Range("A" & currIndex).Font.Bold = True
+  oSheet.Range("A" & currIndex).HorizontalAlignment = xlCenter
+  
+  total_age = 0
+  
+  For index = 1 To UBound(prom_boys_list)
+    total_age = total_age + prom_boys_list(index, age_index)
+  Next index
+  oSheet.Range("J" & currIndex).value = total_age
+  oSheet.Range("J" & currIndex).Font.Bold = True
+  
+  currIndex = currIndex + 1
+  
+  oSheet.Range("A" & currIndex).Font.Bold = True
+  oSheet.Range("A" & currIndex).value = "Average Age"
+  oSheet.Range("A" & currIndex).HorizontalAlignment = xlCenter
+  
+  average_age = Round(total_age / UBound(prom_boys_list), 2)
+  oSheet.Range("J" & currIndex).value = average_age
+  oSheet.Range("J" & currIndex).Font.Bold = True
+   
+  currIndex = currIndex + 2
+  
+  oSheet.Range("A" & currIndex).value = "Girls"
+  oSheet.Range("A" & currIndex).HorizontalAlignment = xlCenter
+  
+  currIndex = currIndex + 1
+  oSheet.Range("A" & currIndex & ":N" & (currIndex + (UBound(prom_girls_list) - 1))).value = prom_girls_list
+  
+  currIndex = currIndex + UBound(prom_girls_list) + 1
+  
+  oSheet.Range("A" & currIndex).value = "Total Age"
+  oSheet.Range("A" & currIndex).Font.Bold = True
+  oSheet.Range("A" & currIndex).HorizontalAlignment = xlCenter
+  
+  total_age = 0
+  
+  For index = 1 To UBound(prom_girls_list)
+    total_age = total_age + prom_girls_list(index, age_index)
+  Next index
+  oSheet.Range("J" & currIndex).value = total_age
+  oSheet.Range("J" & currIndex).Font.Bold = True
+  
+  currIndex = currIndex + 1
+  
+  oSheet.Range("A" & currIndex).Font.Bold = True
+  oSheet.Range("A" & currIndex).value = "Average Age"
+  oSheet.Range("A" & currIndex).HorizontalAlignment = xlCenter
+  
+  average_age = Round(total_age / UBound(prom_girls_list), 2)
+  oSheet.Range("J" & currIndex).value = average_age
+  oSheet.Range("J" & currIndex).Font.Bold = True
+  
+
+  excelApp.Visible = True
+  
+End Sub
+
 Private Sub cmb_level_Click()
     Dim sqlQuery As String
         
@@ -251,7 +344,7 @@ Public Function populatePromotionFlex(flexGrid As MSFlexGrid, rs As ADODB.Record
   Dim index As String
   index = 1
   Dim prom_list() As Variant
-  ReDim prom_list(1 To rs.RecordCount, 0 To 7) As Variant
+  ReDim prom_list(1 To rs.RecordCount, 0 To 13) As Variant
   
   With flexGrid
     .Clear
@@ -293,20 +386,20 @@ Public Function populatePromotionFlex(flexGrid As MSFlexGrid, rs As ADODB.Record
     Dim total_grade As Integer
     While Not rs.EOF
       
-      prom_list(index, 0) = index & " " & CommonHelper.extractStringValue(rs!LAST_NAME) & ", " & CommonHelper.extractStringValue(rs!First_Name) & " " & toIntial(rs!MIDDLE_NAME)
-      .TextMatrix(index, 0) = prom_list(index, 0)
+      prom_list(index, name_index) = index & " " & CommonHelper.extractStringValue(rs!LAST_NAME) & ", " & CommonHelper.extractStringValue(rs!First_Name) & " " & toIntial(rs!MIDDLE_NAME)
+      .TextMatrix(index, 0) = prom_list(index, name_index)
       
-      prom_list(index, 1) = CommonHelper.extractStringValue(rs!address)
-      .TextMatrix(index, 1) = prom_list(index, 1)
+      prom_list(index, addess_index) = CommonHelper.extractStringValue(rs!address)
+      .TextMatrix(index, 1) = prom_list(index, addess_index)
       
-      prom_list(index, 2) = CommonHelper.extractStringValue(rs!years_in_school)
-      .TextMatrix(index, 2) = prom_list(index, 2)
+      prom_list(index, year_in_school_index) = CommonHelper.extractStringValue(rs!years_in_school)
+      .TextMatrix(index, 2) = prom_list(index, year_in_school_index)
       
-      prom_list(index, 3) = CommonHelper.extractStringValue(rs!age)
-      .TextMatrix(index, 3) = prom_list(index, 3)
+      prom_list(index, age_index) = CommonHelper.extractStringValue(rs!age)
+      .TextMatrix(index, 3) = prom_list(index, age_index)
       
-      prom_list(index, 4) = CommonHelper.extractStringValue(rs!days_in_school)
-      .TextMatrix(index, 4) = prom_list(index, 4)
+      prom_list(index, days_in_school_index) = CommonHelper.extractStringValue(rs!days_in_school)
+      .TextMatrix(index, 4) = prom_list(index, days_in_school_index)
     
       sql_query = "Select GRADE " & _
                   "From tbl_grade " & _
@@ -328,16 +421,17 @@ Public Function populatePromotionFlex(flexGrid As MSFlexGrid, rs As ADODB.Record
       
       If (total_grade > 0) Then
       
-         prom_list(index, 5) = Round(val(total_grade / divider), 0)
-        .TextMatrix(index, 5) = prom_list(index, 5)
+         prom_list(index, grade_index) = Round(val(total_grade / divider), 0)
+        .TextMatrix(index, 5) = prom_list(index, grade_index)
         
-        If (val(prom_list(index, 5)) >= 75) Then
-          prom_list(index, 6) = "Prom."
+        If (val(prom_list(index, 11)) >= 75) Then
+          prom_list(index, action_index) = "Prom."
         Else
-          prom_list(index, 6) = "Failed"
+          prom_list(index, action_index) = "Failed"
         End If
         
-        .TextMatrix(index, 6) = prom_list(index, 6)
+        .TextMatrix(index, 6) = prom_list(index, action_index)
+        prom_list(index, 13) = ""
       
       End If
       
