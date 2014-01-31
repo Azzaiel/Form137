@@ -281,6 +281,10 @@ Private Sub toolbar_logout_Click()
     Unload Me
 End Sub
 
+Private Sub toolbar_promotion_Click()
+  Call load_form(studentPromotion, True)
+End Sub
+
 Private Sub toolbar_section_Click()
      Call load_form(mysectionform, True)
 End Sub

@@ -73,6 +73,7 @@ Form=bulkSubjEncode.frm
 Form=adviserSelectSubject.frm
 Object={5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0; MSFLXGRD.OCX
 Module=mod_grade; mod_grade.bas
+Form=studentPromotion.frm
 IconForm="loginform"
 Startup="loginform"
 HelpFile=""
