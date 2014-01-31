@@ -605,6 +605,26 @@ Begin VB.Form charactergradeform
          Width           =   735
       End
    End
+   Begin VB.Label lbl_view_attendance 
+      BackStyle       =   0  'Transparent
+      Caption         =   "View student's attendance report."
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   700
+         Underline       =   -1  'True
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H000000FF&
+      Height          =   375
+      Left            =   5040
+      TabIndex        =   48
+      Top             =   4920
+      Visible         =   0   'False
+      Width           =   3495
+   End
    Begin VB.Label Label17 
       BackStyle       =   0  'Transparent
       Caption         =   "Patriotism and Love of Country:"
@@ -1014,6 +1034,14 @@ Private Sub Form_Load()
     cmb_12 = CommonHelper.extractStringValue(char_grade_rs!Sense_of_Responsibility)
     cmb_13 = CommonHelper.extractStringValue(char_grade_rs!Love_of_God)
     cmb_14 = CommonHelper.extractStringValue(char_grade_rs!Patriotism_and_Love_of_Country)
+  
+    Call mysql_select(public_rs, "SELECT * FROM tbl_attendance WHERE ID = '" & masterlistadvisoriesform.sel_lrn & "' And SY = '" & mainteacherform.cmb_sy.Text & "' AND section_name='" & masterlistadvisoriesform.lbl_section & "'")
+    If public_rs.RecordCount = 0 Then
+      lbl_view_attendance.Visible = False
+    Else
+      lbl_view_attendance.Visible = True
+    End If
+  
   Else
     MsgBox "Please Encode C.E. Grade first", vbCritical
     Unload Me
@@ -1046,3 +1074,19 @@ Dim ans As String
 
 End Sub
 
+Private Sub lbl_view_attendance_Click()
+    attendanceform.lbl_id2.Caption = lbl_id2
+    attendanceform.lbl_name2.Caption = lbl_name2
+    
+    Call mysql_select(public_rs, "SELECT * FROM tbl_attendance WHERE ID = '" & lbl_id2 & "' And SY ='" & mainteacherform.cmb_sy & "' ")
+     If public_rs.RecordCount = 0 Then
+        MsgBox "No attendance record for this student. Please complete first the final grade of character building."
+        Exit Sub
+    Else
+     attendanceform.txt_school_days.Text = public_rs.Fields("no_school_days")
+     attendanceform.txt_days_absent.Text = public_rs.Fields("no_days_absent")
+     attendanceform.txt_days_tardy.Text = public_rs.Fields("no_days_tardiness")
+     attendanceform.txt_days_present.Text = public_rs.Fields("no_days_present")
+    Call load_form(attendanceform, True)
+    End If
+End Sub
