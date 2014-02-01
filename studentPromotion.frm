@@ -3,12 +3,12 @@ Object = "{5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0"; "MSFLXGRD.OCX"
 Begin VB.Form studentPromotion 
    BackColor       =   &H8000000E&
    Caption         =   "Form1"
-   ClientHeight    =   7935
+   ClientHeight    =   8295
    ClientLeft      =   120
    ClientTop       =   450
    ClientWidth     =   13050
    LinkTopic       =   "Form1"
-   ScaleHeight     =   7935
+   ScaleHeight     =   8295
    ScaleWidth      =   13050
    StartUpPosition =   2  'CenterScreen
    Begin VB.CommandButton cmb_export 
@@ -23,9 +23,9 @@ Begin VB.Form studentPromotion
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   9720
+      Left            =   10200
       TabIndex        =   2
-      Top             =   240
+      Top             =   120
       Width           =   1095
    End
    Begin VB.ComboBox cmb_level 
@@ -40,10 +40,10 @@ Begin VB.Form studentPromotion
       EndProperty
       Height          =   360
       ItemData        =   "studentPromotion.frx":0000
-      Left            =   2280
+      Left            =   2520
       List            =   "studentPromotion.frx":000A
       TabIndex        =   0
-      Top             =   240
+      Top             =   120
       Width           =   2415
    End
    Begin VB.ComboBox cmb_section 
@@ -58,10 +58,10 @@ Begin VB.Form studentPromotion
       EndProperty
       Height          =   360
       ItemData        =   "studentPromotion.frx":001C
-      Left            =   7080
+      Left            =   7440
       List            =   "studentPromotion.frx":001E
       TabIndex        =   1
-      Top             =   240
+      Top             =   120
       Width           =   2415
    End
    Begin MSFlexGridLib.MSFlexGrid flexPromotionBoys 
@@ -87,7 +87,7 @@ Begin VB.Form studentPromotion
       Height          =   3015
       Left            =   0
       TabIndex        =   7
-      Top             =   4680
+      Top             =   5040
       Width           =   13095
       _ExtentX        =   23098
       _ExtentY        =   5318
@@ -119,7 +119,7 @@ Begin VB.Form studentPromotion
       Height          =   375
       Left            =   0
       TabIndex        =   8
-      Top             =   4320
+      Top             =   4560
       Width           =   13095
    End
    Begin VB.Label Label4 
@@ -156,9 +156,9 @@ Begin VB.Form studentPromotion
       EndProperty
       ForeColor       =   &H00000000&
       Height          =   255
-      Left            =   840
+      Left            =   1080
       TabIndex        =   4
-      Top             =   240
+      Top             =   120
       Width           =   1455
    End
    Begin VB.Label Label8 
@@ -175,9 +175,9 @@ Begin VB.Form studentPromotion
       EndProperty
       ForeColor       =   &H00000000&
       Height          =   255
-      Left            =   5520
+      Left            =   5880
       TabIndex        =   3
-      Top             =   360
+      Top             =   240
       Width           =   1815
    End
 End
@@ -187,6 +187,8 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
+Public isAdminMode As Boolean
+
 Private teacher_id As String
 Private prom_girls_list() As Variant
 Private prom_boys_list() As Variant
@@ -216,13 +218,21 @@ Private Sub cmb_export_Click()
   Dim average_age As Double
   Dim index As Integer
   
+  Dim age_total As Double
+  Dim ave_totel As Double
+  
+  age_total = 0
+  ave_totel = 0
+    
+  On Error GoTo openExcel
   
   Call mysql_select(public_rs, "SELECT * FROM tbl_teacher where teacher_id = '" & teacher_id & "'")
-  teacher_name = public_rs!first_name & " " & public_rs!middle_name & " " & public_rs!last_name
+  teacher_name = public_rs!FIRST_NAME & " " & public_rs!middle_name & " " & public_rs!LAST_NAME
   
   oSheet.Range("C7").value = "SCHOOL YEAR " & mainteacherform.cmb_sy.Text
   oSheet.Range("M9").value = Now
   oSheet.Range("M10").value = teacher_name
+  oSheet.Range("J10").value = cmb_level.Text
   
   Dim currIndex As Integer
   currIndex = 16
@@ -243,6 +253,8 @@ Private Sub cmb_export_Click()
   oSheet.Range("J" & currIndex).value = total_age
   oSheet.Range("J" & currIndex).Font.Bold = True
   
+  age_total = age_total + total_age
+  
   currIndex = currIndex + 1
   
   oSheet.Range("A" & currIndex).Font.Bold = True
@@ -250,6 +262,7 @@ Private Sub cmb_export_Click()
   oSheet.Range("A" & currIndex).HorizontalAlignment = xlCenter
   
   average_age = Round(total_age / UBound(prom_boys_list), 2)
+  ave_totel = ave_totel + average_age
   oSheet.Range("J" & currIndex).value = average_age
   oSheet.Range("J" & currIndex).Font.Bold = True
    
@@ -272,6 +285,9 @@ Private Sub cmb_export_Click()
   For index = 1 To UBound(prom_girls_list)
     total_age = total_age + prom_girls_list(index, age_index)
   Next index
+  
+  age_total = age_total + total_age
+  
   oSheet.Range("J" & currIndex).value = total_age
   oSheet.Range("J" & currIndex).Font.Bold = True
   
@@ -282,10 +298,32 @@ Private Sub cmb_export_Click()
   oSheet.Range("A" & currIndex).HorizontalAlignment = xlCenter
   
   average_age = Round(total_age / UBound(prom_girls_list), 2)
+  ave_totel = ave_totel + average_age
+  
   oSheet.Range("J" & currIndex).value = average_age
   oSheet.Range("J" & currIndex).Font.Bold = True
   
-
+  Const max_row_index As Integer = 135
+  currIndex = currIndex + 4
+  
+  oSheet.Range("A" & currIndex & ":A" & max_row_index).EntireRow.Hidden = True
+  
+  oSheet.Range("A137").value = "Total Age"
+  oSheet.Range("A137").Font.Bold = True
+  oSheet.Range("A137").HorizontalAlignment = xlCenter
+  oSheet.Range("J137").value = age_total
+  oSheet.Range("J137").Font.Bold = True
+  
+  oSheet.Range("A138").Font.Bold = True
+  oSheet.Range("A138").value = "Average Age"
+  oSheet.Range("A138").HorizontalAlignment = xlCenter
+  oSheet.Range("J138").value = Round((ave_totel / 2), 2)
+   oSheet.Range("J138").Font.Bold = True
+  
+  
+  
+openExcel:
+  oSheet.Protect ("password")
   excelApp.Visible = True
   
 End Sub
@@ -392,7 +430,7 @@ Public Function populatePromotionFlex(flexGrid As MSFlexGrid, rs As ADODB.Record
     Dim total_grade As Integer
     While Not rs.EOF
       
-      prom_list(index, name_index) = index & " " & CommonHelper.extractStringValue(rs!last_name) & ", " & CommonHelper.extractStringValue(rs!first_name) & " " & toIntial(rs!middle_name)
+      prom_list(index, name_index) = index & " " & CommonHelper.extractStringValue(rs!LAST_NAME) & ", " & CommonHelper.extractStringValue(rs!FIRST_NAME) & " " & toIntial(rs!middle_name)
       .TextMatrix(index, 0) = prom_list(index, name_index)
       
       prom_list(index, addess_index) = CommonHelper.extractStringValue(rs!address)
@@ -463,7 +501,6 @@ Private Sub Form_Load()
     Call mysql_select(public_rs, "SELECT * FROM tbl_user WHERE Username = '" & mainform.lbl_username.Caption & "'")
     teacher_id = public_rs.Fields("ID")
     
-
     
     Dim sqlQuery As String
         
