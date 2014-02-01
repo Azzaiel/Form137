@@ -284,20 +284,35 @@ Private Sub cmb_export_Click()
   Set excelApp = CreateObject("Excel.Application")
   Set oBook = excelApp.Workbooks.Open(CommonHelper.getTemplatesPath & "\Stud_Subj_Grade")
   Set oSheet = excelApp.Worksheets(1)
-    
+  Dim temp_list() As Variant
+  
   Dim studet_query As String
+  Dim index As Integer
+  Dim currIndex As Integer
   
   studet_query = "Select a.student_id as LRN, a.GENDER, concat(a.LAST_NAME, ', ', a.FIRST_NAME)  as Name " & _
-                 "From tbl_student a " & _
-                 "" & _
-                 "" & _
-                 "" & _
-                 "" & _
-                 "" & _
-                 "" & _
-                 "" & _
-                 ""
+                 "From tbl_student a, tbl_student_level b " & _
+                 "Where b.ID = a.STUDENT_ID " & _
+                 "      And b.SY= '" & mainteacherform.cmb_sy.Text & "' " & _
+                 "      And b.LVL_NAME = '" & lbl_level & "' " & _
+                 "      And b.SECTION_NAME = '" & lbl_section & "' "
+                 
+  Call mysql_select(public_rs, studet_query)
   
+  ReDim temp_list(0 To public_rs.RecordCount, 0 To 11) As Variant
+  
+  index = 0
+  
+  While Not public_rs.EOF
+    temp_list(index, 0) = public_rs!lrn
+    temp_list(index, 1) = public_rs!Name
+    index = index + 1
+    public_rs.MoveNext
+  Wend
+  
+  currIndex = 6
+  
+  oSheet.Range("A" & currIndex & ":L" & (currIndex + (public_rs.RecordCount - 1))).value = temp_list
   
   excelApp.DisplayAlerts = False
   oBook.SaveAs CommonHelper.getTempPath & "\tmp.xlsx"
