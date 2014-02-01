@@ -288,8 +288,13 @@ Private Sub cmb_export_Click()
   Dim studet_query As String
   Dim index As Integer
   Dim currIndex As Integer
-                 
-  currIndex = 6
+  
+  oSheet.Range("B1").value = mainteacherform.cmb_sy.Text
+  oSheet.Range("B2").value = lbl_level
+  oSheet.Range("B3").value = lbl_section
+  oSheet.Range("B4").value = lbl_subject
+    
+  currIndex = 7
   oSheet.Range("A" & currIndex).value = "Boys"
   oSheet.Range("A" & currIndex).Font.Bold = True
   currIndex = currIndex + 1

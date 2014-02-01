@@ -191,6 +191,7 @@ Private teacher_id As String
 Private prom_girls_list() As Variant
 Private prom_boys_list() As Variant
 Private temp_rs As New ADODB.Recordset
+Private teacher_name
 
 Private Const name_index = 0
 Private Const addess_index = 5
@@ -215,8 +216,13 @@ Private Sub cmb_export_Click()
   Dim average_age As Double
   Dim index As Integer
   
+  
+  Call mysql_select(public_rs, "SELECT * FROM tbl_teacher where teacher_id = '" & teacher_id & "'")
+  teacher_name = public_rs!first_name & " " & public_rs!middke_name & " " & public_rs!last_name
+  
   oSheet.Range("C7").value = "SCHOOL YEAR " & mainteacherform.cmb_sy.Text
   oSheet.Range("M9").value = Now
+  oSheet.Range("M10").value = teacher_name
   
   Dim currIndex As Integer
   currIndex = 16
@@ -386,7 +392,7 @@ Public Function populatePromotionFlex(flexGrid As MSFlexGrid, rs As ADODB.Record
     Dim total_grade As Integer
     While Not rs.EOF
       
-      prom_list(index, name_index) = index & " " & CommonHelper.extractStringValue(rs!LAST_NAME) & ", " & CommonHelper.extractStringValue(rs!First_Name) & " " & toIntial(rs!MIDDLE_NAME)
+      prom_list(index, name_index) = index & " " & CommonHelper.extractStringValue(rs!last_name) & ", " & CommonHelper.extractStringValue(rs!first_name) & " " & toIntial(rs!MIDDLE_NAME)
       .TextMatrix(index, 0) = prom_list(index, name_index)
       
       prom_list(index, addess_index) = CommonHelper.extractStringValue(rs!address)
@@ -456,6 +462,8 @@ Private Sub Form_Load()
 
     Call mysql_select(public_rs, "SELECT * FROM tbl_user WHERE Username = '" & mainform.lbl_username.Caption & "'")
     teacher_id = public_rs.Fields("ID")
+    
+
     
     Dim sqlQuery As String
         
