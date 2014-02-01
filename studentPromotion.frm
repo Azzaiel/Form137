@@ -218,7 +218,7 @@ Private Sub cmb_export_Click()
   
   
   Call mysql_select(public_rs, "SELECT * FROM tbl_teacher where teacher_id = '" & teacher_id & "'")
-  teacher_name = public_rs!first_name & " " & public_rs!middke_name & " " & public_rs!last_name
+  teacher_name = public_rs!first_name & " " & public_rs!middle_name & " " & public_rs!last_name
   
   oSheet.Range("C7").value = "SCHOOL YEAR " & mainteacherform.cmb_sy.Text
   oSheet.Range("M9").value = Now
@@ -392,7 +392,7 @@ Public Function populatePromotionFlex(flexGrid As MSFlexGrid, rs As ADODB.Record
     Dim total_grade As Integer
     While Not rs.EOF
       
-      prom_list(index, name_index) = index & " " & CommonHelper.extractStringValue(rs!last_name) & ", " & CommonHelper.extractStringValue(rs!first_name) & " " & toIntial(rs!MIDDLE_NAME)
+      prom_list(index, name_index) = index & " " & CommonHelper.extractStringValue(rs!last_name) & ", " & CommonHelper.extractStringValue(rs!first_name) & " " & toIntial(rs!middle_name)
       .TextMatrix(index, 0) = prom_list(index, name_index)
       
       prom_list(index, addess_index) = CommonHelper.extractStringValue(rs!address)

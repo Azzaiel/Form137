@@ -1,4 +1,4 @@
-loginform = 96, -1, 882, 450, C, 25, 25, 810, 476, C
+loginform = 96, -1, 882, 450, Z, 25, 25, 810, 476, C
 mainform = 150, 150, 879, 601, C, 50, 50, 835, 501, C
 mod_db = 277, 23, 1063, 474, C
 mod_globals = 125, 125, 911, 576, I
@@ -58,7 +58,7 @@ dr_promotion = 0, 0, 0, 0, C, 120, 40, 969, 703, C
 CharEncodePeriodSelect = 0, 0, 0, 0, C, 125, 125, 1012, 576, C
 CommonHelper = 57, 51, 955, 461, C
 adviserAddStudent = 125, 125, 1012, 576, C, 100, 100, 987, 551, C
-bulkSubjEncode = -19, 62, 1057, 589, Z, 8, 4, 1022, 605, C
+bulkSubjEncode = -19, 62, 1057, 589, , 8, 4, 1022, 605, C
 adviserSelectSubject = 151, 71, 1038, 522, C, 2, 1, 889, 452, C
 mod_grade = 75, 75, 962, 526, C
-studentPromotion = 200, 200, 1087, 651, C, 0, 2, 1087, 624, C
+studentPromotion = 200, 200, 1087, 651, , 0, 2, 1087, 624, C
