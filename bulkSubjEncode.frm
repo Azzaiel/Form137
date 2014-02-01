@@ -551,10 +551,10 @@ Public Sub populateGrades()
               "      And b.LVL_NAME = '" & lbl_level & "' " & _
               "      And b.SECTION_NAME = '" & lbl_section & "' "
   
-  Call mysql_select(rs_grades, sql_query & "And a.Gender = 'Male' ")
+  Call mysql_select(rs_grades, sql_query & "And a.Gender = 'Male' Order By a.LAST_NAME ")
   Call populateGradeFlex(flexGradeBoys, rs_grades)
   
-  Call mysql_select(rs_grades, sql_query & "And a.Gender = 'Female' ")
+  Call mysql_select(rs_grades, sql_query & "And a.Gender = 'Female' Order By a.LAST_NAME ")
   Call populateGradeFlex(flexGradeGirls, rs_grades)
   
 End Sub
@@ -580,3 +580,6 @@ Private Sub flexGradeGirls_KeyPress(KeyAscii As Integer)
   Call encodeFlexData(KeyAscii, flexGradeGirls)
 End Sub
 
+Private Sub Form_Load()
+
+End Sub

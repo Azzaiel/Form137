@@ -429,7 +429,7 @@ Private Sub cmd_add_Click()
     sql_query = "Select * from tbl_student_level where 1 = 2"
     Call mysql_select(rs_tmp, sql_query)
     rs_tmp.AddNew
-    rs_tmp!id = rs_available_stud!LRN
+    rs_tmp!id = rs_available_stud!lrn
     rs_tmp!lvl_name = lbl_level
     rs_tmp!section_name = lbl_section
     rs_tmp!status = "ENROLLED"
@@ -443,7 +443,7 @@ End Sub
 Private Sub cmd_delete_Click()
     If (rs_current_stud.RecordCount > 0) Then
     sql_query = "Select * from tbl_student_level " & _
-                "Where ID = '" & rs_current_stud!LRN & "' " & _
+                "Where ID = '" & rs_current_stud!lrn & "' " & _
                 "      And SY = '" & mainteacherform.cmb_sy.Text & "'"
     Call mysql_select(rs_tmp, sql_query)
     If (rs_tmp.RecordCount > 0) Then
@@ -460,7 +460,7 @@ Private Sub Command3_Click()
     rs_current_stud.MoveFirst
     While Not rs_current_stud.EOF
       sql_query = "Select * from tbl_student_level " & _
-                "Where ID = '" & rs_current_stud!LRN & "' " & _
+                "Where ID = '" & rs_current_stud!lrn & "' " & _
                 "      And SY = '" & mainteacherform.cmb_sy.Text & "'"
       Call mysql_select(rs_tmp, sql_query)
       If (rs_tmp.RecordCount > 0) Then
@@ -480,7 +480,7 @@ Private Sub Command4_Click()
     rs_available_stud.MoveFirst
     While Not rs_available_stud.EOF
       rs_tmp.AddNew
-      rs_tmp!id = rs_available_stud!LRN
+      rs_tmp!id = rs_available_stud!lrn
       rs_tmp!lvl_name = lbl_level
       rs_tmp!section_name = lbl_section
       rs_tmp!status = "ENROLLED"
@@ -526,7 +526,7 @@ Private Sub populateAvailableStundet()
      sql_query = sql_query & " And a.LAST_NAME like '%" & txt_last_name & "%'"
   End If
               
-  sql_query = sql_query & " Order By a.Gender"
+  sql_query = sql_query & " Order By a.Gender, a.LAST_NAME "
   
   
   Call set_datagrid(dg_available_stud, rs_available_stud, sql_query)
