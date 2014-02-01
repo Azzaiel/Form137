@@ -284,6 +284,7 @@ Private Sub cmb_export_Click()
   Set excelApp = CreateObject("Excel.Application")
   Set oBook = excelApp.Workbooks.Open(CommonHelper.getTemplatesPath & "\Stud_Subj_Grade")
   Set oSheet = excelApp.Worksheets(1)
+    
   
   excelApp.DisplayAlerts = False
   oBook.SaveAs CommonHelper.getTempPath & "\tmp.xlsx"
@@ -399,8 +400,10 @@ Private Sub saveFlexData(flexGrid As MSFlexGrid)
       .Col = 6
       Call updateGrade(val(.Text), cur_lrn, cur_period)
       
-     .Col = 7
-      Call updateGrade(val(.Text), cur_lrn, "Final")
+      .Col = 7
+      cur_period = "Final"
+      Call mysql_select(rs_tmp, generatePeriodSelectGradeQuery(cur_lrn, cur_period))
+      Call updateGrade(val(.Text), cur_lrn, cur_period)
       
     Next index
   End With
@@ -580,6 +583,3 @@ Private Sub flexGradeGirls_KeyPress(KeyAscii As Integer)
   Call encodeFlexData(KeyAscii, flexGradeGirls)
 End Sub
 
-Private Sub Form_Load()
-
-End Sub
