@@ -1747,14 +1747,16 @@ Set excelApp = CreateObject("Excel.Application")
         'Save new workbook
         ExcelWorkbook.SaveAs MyFileName
     End If
+    
+    excelApp.Visible = True
 
         'Close Excel
-        ExcelWorkbook.Close savechanges:=False
-        excelApp.Quit
-        Set excelApp = Nothing
-        Set ExcelWorkbook = Nothing
-        Set ExcelSheet = Nothing
-    MsgBox "Form 137 for Grades has been exported to an excel file."
+        'ExcelWorkbook.Close savechanges:=False
+        'excelApp.Quit
+        'Set excelApp = Nothing
+        'Set ExcelWorkbook = Nothing
+        'Set ExcelSheet = Nothing
+    'MsgBox "Form 137 for Grades has been exported to an excel file."
     End If
 End Sub
 Public Sub next_code()

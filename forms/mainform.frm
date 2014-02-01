@@ -124,6 +124,7 @@ Begin VB.Form mainform
          TabIndex        =   0
          ToolTipText     =   "Set School Year"
          Top             =   1200
+         Visible         =   0   'False
          Width           =   1335
       End
    End
@@ -252,7 +253,7 @@ Begin VB.Form mainform
    End
    Begin VB.Image Image1 
       Height          =   7095
-      Left            =   840
+      Left            =   720
       Picture         =   "mainform.frx":C313
       Stretch         =   -1  'True
       Top             =   1200

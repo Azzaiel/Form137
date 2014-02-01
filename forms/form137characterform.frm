@@ -1629,13 +1629,13 @@ Set excelApp = CreateObject("Excel.Application")
     End If
     
         'Close Excel
-        
-        ExcelWorkbook.Close savechanges:=False
-        excelApp.Quit
-        Set excelApp = Nothing
-        Set ExcelWorkbook = Nothing
-        Set ExcelSheet = Nothing
-    MsgBox "Form 137 for Character Building Grade has been exported to an excel file."
+     excelApp.Visible = True
+        'ExcelWorkbook.Close savechanges:=False
+        'excelApp.Quit
+        'Set excelApp = Nothing
+        'Set ExcelWorkbook = Nothing
+        'Set ExcelSheet = Nothing
+    'MsgBox "Form 137 for Character Building Grade has been exported to an excel file."
     End If
     Call attendance
 End Sub
@@ -1875,12 +1875,12 @@ Set excelApp = CreateObject("Excel.Application")
     End If
     
         'Close Excel
-        
-        ExcelWorkbook.Close savechanges:=False
-        excelApp.Quit
-        Set excelApp = Nothing
-        Set ExcelWorkbook = Nothing
-        Set ExcelSheet = Nothing
+        excelApp.Visible = True
+        'ExcelWorkbook.Close savechanges:=False
+        'excelApp.Quit
+        'Set excelApp = Nothing
+        'Set ExcelWorkbook = Nothing
+        'Set ExcelSheet = Nothing
    
     End If
     

@@ -4,7 +4,7 @@ Begin VB.Form masterlistadvisoriesform
    BackColor       =   &H8000000E&
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Masterlist"
-   ClientHeight    =   6375
+   ClientHeight    =   6270
    ClientLeft      =   45
    ClientTop       =   375
    ClientWidth     =   9000
@@ -12,7 +12,7 @@ Begin VB.Form masterlistadvisoriesform
    MaxButton       =   0   'False
    MinButton       =   0   'False
    Picture         =   "masterlistadvisoriesform.frx":0000
-   ScaleHeight     =   6375
+   ScaleHeight     =   6270
    ScaleWidth      =   9000
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
@@ -122,14 +122,14 @@ Begin VB.Form masterlistadvisoriesform
       Picture         =   "masterlistadvisoriesform.frx":AFCEF
       Style           =   1  'Graphical
       TabIndex        =   0
-      Top             =   5640
+      Top             =   5520
       Width           =   1575
    End
    Begin MSDataGridLib.DataGrid dg_masterlist 
       Height          =   3855
       Left            =   240
       TabIndex        =   7
-      Top             =   1680
+      Top             =   1560
       Width           =   8535
       _ExtentX        =   15055
       _ExtentY        =   6800
@@ -205,27 +205,9 @@ Begin VB.Form masterlistadvisoriesform
       ForeColor       =   &H000000FF&
       Height          =   375
       Left            =   6360
-      TabIndex        =   13
-      Top             =   5640
-      Width           =   2535
-   End
-   Begin VB.Label Label6 
-      BackStyle       =   0  'Transparent
-      Caption         =   "Sort by:"
-      BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   255
-      Left            =   360
       TabIndex        =   12
-      Top             =   720
-      Width           =   1335
+      Top             =   5520
+      Width           =   2535
    End
    Begin VB.Label lbl_click_info 
       BackStyle       =   0  'Transparent
@@ -242,7 +224,7 @@ Begin VB.Form masterlistadvisoriesform
       Height          =   375
       Left            =   240
       TabIndex        =   11
-      Top             =   1320
+      Top             =   1200
       Width           =   4815
    End
    Begin VB.Label Label4 
@@ -261,7 +243,7 @@ Begin VB.Form masterlistadvisoriesform
       Height          =   375
       Left            =   360
       TabIndex        =   10
-      Top             =   5640
+      Top             =   5520
       Width           =   2295
    End
    Begin VB.Label Label3 
@@ -298,7 +280,7 @@ Begin VB.Form masterlistadvisoriesform
       Height          =   375
       Left            =   6120
       TabIndex        =   1
-      Top             =   5280
+      Top             =   5160
       Visible         =   0   'False
       Width           =   2655
    End

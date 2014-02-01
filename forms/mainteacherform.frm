@@ -194,6 +194,7 @@ Begin VB.Form mainteacherform
          TabIndex        =   0
          ToolTipText     =   "My Sections"
          Top             =   1320
+         Visible         =   0   'False
          Width           =   1335
       End
       Begin VB.CommandButton toolbar_logout 

@@ -33,6 +33,7 @@ Begin VB.Form sectionform
       Style           =   1  'Graphical
       TabIndex        =   5
       Top             =   5400
+      Visible         =   0   'False
       Width           =   1815
    End
    Begin VB.TextBox txt_op 

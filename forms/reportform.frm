@@ -21,7 +21,7 @@ Begin VB.Form reportsform
       Left            =   9240
       Picture         =   "reportform.frx":1DD3
       Style           =   1  'Graphical
-      TabIndex        =   2
+      TabIndex        =   1
       Top             =   5280
       Width           =   1575
    End
@@ -29,7 +29,7 @@ Begin VB.Form reportsform
       BackColor       =   &H00808080&
       Height          =   975
       Left            =   120
-      TabIndex        =   3
+      TabIndex        =   2
       Top             =   -120
       Width           =   10935
       Begin VB.ComboBox cmb_sort 
@@ -44,10 +44,10 @@ Begin VB.Form reportsform
          EndProperty
          Height          =   360
          ItemData        =   "reportform.frx":2D29
-         Left            =   3600
+         Left            =   7560
          List            =   "reportform.frx":2D2B
-         TabIndex        =   7
-         Top             =   480
+         TabIndex        =   5
+         Top             =   360
          Width           =   2055
       End
       Begin VB.ComboBox cmb_category 
@@ -62,28 +62,11 @@ Begin VB.Form reportsform
          EndProperty
          Height          =   360
          ItemData        =   "reportform.frx":2D2D
-         Left            =   120
-         List            =   "reportform.frx":2D3D
+         Left            =   2160
+         List            =   "reportform.frx":2D3A
          TabIndex        =   0
-         Top             =   480
+         Top             =   360
          Width           =   3375
-      End
-      Begin VB.TextBox txt_search 
-         Enabled         =   0   'False
-         BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   9.75
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   375
-         Left            =   5760
-         TabIndex        =   1
-         Top             =   480
-         Width           =   5055
       End
       Begin VB.Label Label2 
          BackStyle       =   0  'Transparent
@@ -99,9 +82,9 @@ Begin VB.Form reportsform
          EndProperty
          ForeColor       =   &H00FFFFFF&
          Height          =   255
-         Left            =   3600
-         TabIndex        =   8
-         Top             =   240
+         Left            =   6480
+         TabIndex        =   6
+         Top             =   480
          Width           =   1815
       End
       Begin VB.Label Label4 
@@ -118,35 +101,16 @@ Begin VB.Form reportsform
          EndProperty
          ForeColor       =   &H00FFFFFF&
          Height          =   255
-         Left            =   240
-         TabIndex        =   5
-         Top             =   240
+         Left            =   840
+         TabIndex        =   3
+         Top             =   480
          Width           =   1815
-      End
-      Begin VB.Label Label1 
-         BackStyle       =   0  'Transparent
-         Caption         =   "Search:"
-         BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   9.75
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H00FFFFFF&
-         Height          =   255
-         Left            =   5760
-         TabIndex        =   4
-         Top             =   240
-         Width           =   2535
       End
    End
    Begin MSDataGridLib.DataGrid dg_reports 
       Height          =   4215
       Left            =   240
-      TabIndex        =   6
+      TabIndex        =   4
       Top             =   960
       Width           =   10575
       _ExtentX        =   18653
@@ -223,7 +187,7 @@ Begin VB.Form reportsform
       ForeColor       =   &H00404040&
       Height          =   495
       Left            =   240
-      TabIndex        =   9
+      TabIndex        =   7
       Top             =   5400
       Width           =   8295
    End
@@ -251,11 +215,6 @@ Private Sub cmb_category_Change()
                                         "SELECT " _
                                             & "Usertype, Username FROM tbl_user")
                                         
-                    
-    ElseIf cmb_category.Text = "Masterlist" Then
-         Call set_datagrid(dg_reports, rs_report, _
-                                        "SELECT " _
-                                            & "lvl_name as Level, section_name as Section FROM tbl_section WHERE SY='" & mainform.lbl_sy.Caption & "'")
                                         
     Else
         dg_reports.ClearFields
@@ -451,10 +410,10 @@ End Sub
 
 Private Sub dg_reports_DblClick()
     If cmb_category.Text = "Masterlist" Then
-        txt_search.Text = rs_report.Fields("Section").Value
+        txt_search.Text = rs_report.Fields("Section").value
         Call set_datagrid(dg_reports, rs_report, _
                                         "SELECT  @index := @index + 1 as No," _
-                                            & "a.student_id as LRN, a.last_name as Last_Name, a.First_Name,a.Middle_Name FROM tbl_student a LEFT JOIN tbl_student_level b ON a.student_id = b.ID JOIN(SELECT @index :=0) c WHERE  b.section_name = '" & rs_report.Fields("Section").Value & "'")
+                                            & "a.student_id as LRN, a.last_name as Last_Name, a.First_Name,a.Middle_Name FROM tbl_student a LEFT JOIN tbl_student_level b ON a.student_id = b.ID JOIN(SELECT @index :=0) c WHERE  b.section_name = '" & rs_report.Fields("Section").value & "'")
           cmb_sort.Clear
           cmb_sort.AddItem ("ID")
           cmb_sort.AddItem ("Last Name")
