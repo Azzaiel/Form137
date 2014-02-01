@@ -996,10 +996,6 @@ Set excelApp = CreateObject("Excel.Application")
     Set ExcelWorkbook = excelApp.Workbooks.Add
     Set ExcelSheet = ExcelWorkbook.Worksheets(1)
     ExcelSheet.Name = "Character Building Grades"
-   
-   With ExcelSheet.PageSetup
-     .PaperSize = xlPaperLegal
-   End With
         
    excelApp.Range("A1:P1").Merge
    excelApp.Range("A2:P2").Merge
@@ -1618,8 +1614,10 @@ Set excelApp = CreateObject("Excel.Application")
         ExcelSheet.Cells(18, 16).value = public_rs.Fields(18)
     End If
     
-      
-    
+   With ExcelSheet.PageSetup
+     .PaperSize = xlPaperLegal
+     .FitToPagesWide = 1
+   End With
     
    Call next_prod
     If FileCheck = MyMonth + "_" + MyYear + MyExtension Then
