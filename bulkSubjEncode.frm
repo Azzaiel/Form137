@@ -282,7 +282,7 @@ Private Sub cmb_export_Click()
   Dim oSheet As New Excel.Worksheet
   
   Set excelApp = CreateObject("Excel.Application")
-  Set oBook = excelApp.Workbooks.Open(CommonHelper.getTemplatesPath & "\" & Constants.INVENTORY_TEMPLATE)
+  Set oBook = excelApp.Workbooks.Open(CommonHelper.getTemplatesPath & "\Stud_Subj_Grade")
   Set oSheet = excelApp.Worksheets(1)
   
   excelApp.DisplayAlerts = False
@@ -306,9 +306,7 @@ Private Sub updateGrade(grade As Double, lrn As String, period As String)
   Else
     isKinder = False
   End If
-
-  If (period <> "Final") Then
-
+    
     If (rs_tmp.RecordCount > 0) Then
       If (val(rs_tmp!grade) <> val(grade)) Then
         rs_tmp!grade = grade
@@ -329,8 +327,6 @@ Private Sub updateGrade(grade As Double, lrn As String, period As String)
       rs_tmp.Update
     End If
   Else
-    gradeChanged = True
-  End If
   
   If (gradeChanged And isKinder = False And subj_code = "Edukasyon sa Pagpapakatao") Then
     Dim sql_query As String
