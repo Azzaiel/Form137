@@ -366,12 +366,7 @@ Private Sub dg_sections_DblClick()
     txt_op.Text = "edit"
     txt_section.Text = rs_section.Fields("Section_Name")
     txt_oldsection.Text = rs_section.Fields("Section_Name")
-     Call mysql_select(public_rs, "SELECT CONCAT(first_name,' ', last_name) as Name FROM tbl_teacher WHERE status = 'On-Duty'")
-    cmb_adviser.Clear
-    While Not public_rs.EOF
-        cmb_adviser.AddItem (public_rs.Fields("Name"))
-        public_rs.MoveNext
-    Wend
+    Call mysql_select(public_rs, "SELECT CONCAT(first_name,' ', last_name) as Name FROM tbl_teacher WHERE status = 'On-Duty'")
 End Sub
 
 Private Sub Form_Load()

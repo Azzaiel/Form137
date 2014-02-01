@@ -274,7 +274,6 @@ Private temp As Integer
 Private Sub cmd_add_Click()
 
 End Sub
-
 Private Sub cmb_export_Click()
   
   Dim excelApp As New Excel.Application
@@ -289,30 +288,87 @@ Private Sub cmb_export_Click()
   Dim studet_query As String
   Dim index As Integer
   Dim currIndex As Integer
-  
-  studet_query = "Select a.student_id as LRN, a.GENDER, concat(a.LAST_NAME, ', ', a.FIRST_NAME)  as Name " & _
-                 "From tbl_student a, tbl_student_level b " & _
-                 "Where b.ID = a.STUDENT_ID " & _
-                 "      And b.SY= '" & mainteacherform.cmb_sy.Text & "' " & _
-                 "      And b.LVL_NAME = '" & lbl_level & "' " & _
-                 "      And b.SECTION_NAME = '" & lbl_section & "' "
                  
-  Call mysql_select(public_rs, studet_query)
-  
-  ReDim temp_list(0 To public_rs.RecordCount, 0 To 11) As Variant
-  
-  index = 0
-  
-  While Not public_rs.EOF
-    temp_list(index, 0) = public_rs!lrn
-    temp_list(index, 1) = public_rs!Name
-    index = index + 1
-    public_rs.MoveNext
-  Wend
-  
   currIndex = 6
+  oSheet.Range("A" & currIndex).value = "Boys"
+  oSheet.Range("A" & currIndex).Font.Bold = True
+  currIndex = currIndex + 1
   
-  oSheet.Range("A" & currIndex & ":L" & (currIndex + (public_rs.RecordCount - 1))).value = temp_list
+  ' Boys
+  
+  ReDim temp_list(1 To flexGradeBoys.Rows, 0 To 11) As Variant
+   
+  For index = 1 To (flexGradeBoys.Rows - 1)
+    With flexGradeBoys
+      .Row = index
+      temp_list(index, 0) = .TextMatrix(index, 1)
+      temp_list(index, 1) = .TextMatrix(index, 2)
+      
+      .Col = 3
+      temp_list(index, 2) = .Text
+      temp_list(index, 3) = mod_grade.getRemark(val(temp_list(index, 2)))
+      
+      .Col = 4
+      temp_list(index, 4) = .Text
+      temp_list(index, 5) = mod_grade.getRemark(val(temp_list(index, 4)))
+      
+      .Col = 5
+      temp_list(index, 6) = .Text
+      temp_list(index, 7) = mod_grade.getRemark(val(temp_list(index, 6)))
+      
+      .Col = 6
+      temp_list(index, 8) = .Text
+      temp_list(index, 9) = mod_grade.getRemark(val(temp_list(index, 8)))
+      
+      .Col = 7
+      temp_list(index, 10) = .Text
+      temp_list(index, 11) = mod_grade.getRemark(val(temp_list(index, 10)))
+      
+    End With
+  Next index
+  
+  oSheet.Range("A" & currIndex & ":L" & (currIndex + (flexGradeBoys.Rows - 1))).value = temp_list
+  
+  currIndex = currIndex + flexGradeBoys.Rows + 2
+  
+  oSheet.Range("A" & currIndex).value = "Girls"
+  oSheet.Range("A" & currIndex).Font.Bold = True
+  
+  currIndex = currIndex + 1
+  
+  ' Girls
+  ReDim temp_list(1 To flexGradeGirls.Rows, 0 To 11) As Variant
+   
+  For index = 1 To (flexGradeGirls.Rows - 1)
+    With flexGradeGirls
+      .Row = index
+      temp_list(index, 0) = .TextMatrix(index, 1)
+      temp_list(index, 1) = .TextMatrix(index, 2)
+      
+      .Col = 3
+      temp_list(index, 2) = .Text
+      temp_list(index, 3) = mod_grade.getRemark(val(temp_list(index, 2)))
+      
+      .Col = 4
+      temp_list(index, 4) = .Text
+      temp_list(index, 5) = mod_grade.getRemark(val(temp_list(index, 4)))
+      
+      .Col = 5
+      temp_list(index, 6) = .Text
+      temp_list(index, 7) = mod_grade.getRemark(val(temp_list(index, 6)))
+      
+      .Col = 6
+      temp_list(index, 8) = .Text
+      temp_list(index, 9) = mod_grade.getRemark(val(temp_list(index, 8)))
+      
+      .Col = 7
+      temp_list(index, 10) = .Text
+      temp_list(index, 11) = mod_grade.getRemark(val(temp_list(index, 10)))
+      
+    End With
+  Next index
+  
+  oSheet.Range("A" & currIndex & ":L" & (currIndex + (flexGradeGirls.Rows - 1))).value = temp_list
   
   excelApp.DisplayAlerts = False
   oBook.SaveAs CommonHelper.getTempPath & "\tmp.xlsx"
