@@ -326,7 +326,6 @@ Private Sub updateGrade(grade As Double, lrn As String, period As String)
       rs_tmp!remark = mod_grade.getRemark(val(grade), isKinder)
       rs_tmp.Update
     End If
-  Else
   
   If (gradeChanged And isKinder = False And subj_code = "Edukasyon sa Pagpapakatao") Then
     Dim sql_query As String

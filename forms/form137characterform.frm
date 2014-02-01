@@ -999,7 +999,6 @@ Set excelApp = CreateObject("Excel.Application")
    
    With ExcelSheet.PageSetup
      .PaperSize = xlPaperLegal
-     
    End With
         
    excelApp.Range("A1:P1").Merge
