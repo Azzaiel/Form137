@@ -285,6 +285,19 @@ Private Sub cmb_export_Click()
   Set oBook = excelApp.Workbooks.Open(CommonHelper.getTemplatesPath & "\Stud_Subj_Grade")
   Set oSheet = excelApp.Worksheets(1)
     
+  Dim studet_query As String
+  
+  studet_query = "Select a.student_id as LRN, a.GENDER, concat(a.LAST_NAME, ', ', a.FIRST_NAME)  as Name " & _
+                 "From tbl_student a " & _
+                 "" & _
+                 "" & _
+                 "" & _
+                 "" & _
+                 "" & _
+                 "" & _
+                 "" & _
+                 ""
+  
   
   excelApp.DisplayAlerts = False
   oBook.SaveAs CommonHelper.getTempPath & "\tmp.xlsx"
@@ -388,7 +401,6 @@ Private Sub saveFlexData(flexGrid As MSFlexGrid)
       Call mysql_select(rs_tmp, generatePeriodSelectGradeQuery(cur_lrn, cur_period))
       .Col = 4
       Call updateGrade(val(.Text), cur_lrn, cur_period)
-      
       
       cur_period = "3rd Grading"
       Call mysql_select(rs_tmp, generatePeriodSelectGradeQuery(cur_lrn, cur_period))

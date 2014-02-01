@@ -415,7 +415,7 @@ Private Sub cmb_period_Click()
     End If
     If cmb_period.Text = "All" Then
         Call set_datagrid(dg_grades, rs_grade, _
-                                        "SELECT " _
+                                        "SELECT distinct " _
                                             & "a.subject_code as Code, b.subject_name as Subject, a.grade as Grade, a.Remark FROM tbl_grade a LEFT JOIN tbl_subject b ON a.subject_code = b.subject_code WHERE a.SY='" & cmb_sy.Text & "'AND a.ID='" & lbl_id.Caption & "'")
                                         
                     
@@ -449,7 +449,7 @@ Private Sub cmb_period_Click()
     
     Else
       Call set_datagrid(dg_grades, rs_grade, _
-                                        "SELECT " _
+                                        "SELECT distinct " _
                                             & "a.subject_code as Code, b.subject_name as Subject, a.grade as Grade, a.Remark FROM tbl_grade a LEFT JOIN tbl_subject b ON a.subject_code = b.subject_code WHERE a.SY='" & cmb_sy.Text & "'AND a.ID='" & lbl_id.Caption & "' AND a.Period='" & cmb_period.Text & "'")
                                         
                     
