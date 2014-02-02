@@ -302,6 +302,14 @@ Private Sub cmb_export_Click()
   ' Boys
   
   ReDim temp_list(1 To flexGradeBoys.Rows, 0 To 11) As Variant
+  
+  Dim isKinder As Boolean
+  
+  If (lbl_level = "Kinder") Then
+    isKinder = True
+  Else
+    isKinder = False
+  End If
    
   For index = 1 To (flexGradeBoys.Rows - 1)
     With flexGradeBoys
@@ -311,23 +319,23 @@ Private Sub cmb_export_Click()
       
       .Col = 3
       temp_list(index, 2) = .Text
-      temp_list(index, 3) = mod_grade.getRemark(val(temp_list(index, 2)))
+      temp_list(index, 3) = mod_grade.getRemark(val(temp_list(index, 2)), isKinder)
       
       .Col = 4
       temp_list(index, 4) = .Text
-      temp_list(index, 5) = mod_grade.getRemark(val(temp_list(index, 4)))
+      temp_list(index, 5) = mod_grade.getRemark(val(temp_list(index, 4)), isKinder)
       
       .Col = 5
       temp_list(index, 6) = .Text
-      temp_list(index, 7) = mod_grade.getRemark(val(temp_list(index, 6)))
+      temp_list(index, 7) = mod_grade.getRemark(val(temp_list(index, 6)), isKinder)
       
       .Col = 6
       temp_list(index, 8) = .Text
-      temp_list(index, 9) = mod_grade.getRemark(val(temp_list(index, 8)))
+      temp_list(index, 9) = mod_grade.getRemark(val(temp_list(index, 8)), isKinder)
       
       .Col = 7
       temp_list(index, 10) = .Text
-      temp_list(index, 11) = mod_grade.getRemark(val(temp_list(index, 10)))
+      temp_list(index, 11) = mod_grade.getRemark(val(temp_list(index, 10)), isKinder)
       
     End With
   Next index
@@ -352,23 +360,23 @@ Private Sub cmb_export_Click()
       
       .Col = 3
       temp_list(index, 2) = .Text
-      temp_list(index, 3) = mod_grade.getRemark(val(temp_list(index, 2)))
+      temp_list(index, 3) = mod_grade.getRemark(val(temp_list(index, 2)), isKinder)
       
       .Col = 4
       temp_list(index, 4) = .Text
-      temp_list(index, 5) = mod_grade.getRemark(val(temp_list(index, 4)))
+      temp_list(index, 5) = mod_grade.getRemark(val(temp_list(index, 4)), isKinder)
       
       .Col = 5
       temp_list(index, 6) = .Text
-      temp_list(index, 7) = mod_grade.getRemark(val(temp_list(index, 6)))
+      temp_list(index, 7) = mod_grade.getRemark(val(temp_list(index, 6)), isKinder)
       
       .Col = 6
       temp_list(index, 8) = .Text
-      temp_list(index, 9) = mod_grade.getRemark(val(temp_list(index, 8)))
+      temp_list(index, 9) = mod_grade.getRemark(val(temp_list(index, 8)), isKinder)
       
       .Col = 7
       temp_list(index, 10) = .Text
-      temp_list(index, 11) = mod_grade.getRemark(val(temp_list(index, 10)))
+      temp_list(index, 11) = mod_grade.getRemark(val(temp_list(index, 10)), isKinder)
       
     End With
   Next index
@@ -408,7 +416,7 @@ Private Sub updateGrade(grade As Double, lrn As String, period As String)
       gradeChanged = True
       rs_tmp.AddNew
       rs_tmp!id = lrn
-      rs_tmp!SY = mainteacherform.cmb_sy.Text
+      rs_tmp!sy = mainteacherform.cmb_sy.Text
       rs_tmp!section_name = lbl_section
       rs_tmp!SUBJECT_CODE = subj_code
       rs_tmp!period = period
@@ -429,7 +437,7 @@ Private Sub updateGrade(grade As Double, lrn As String, period As String)
     
     If (rs_grades.RecordCount = 0) Then
       rs_grades.AddNew
-      rs_grades!SY = mainteacherform.cmb_sy.Text
+      rs_grades!sy = mainteacherform.cmb_sy.Text
       rs_grades!id = lrn
       rs_grades!section_name = lbl_section
       rs_grades!period = period

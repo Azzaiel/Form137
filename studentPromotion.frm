@@ -2,15 +2,52 @@ VERSION 5.00
 Object = "{5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0"; "MSFLXGRD.OCX"
 Begin VB.Form studentPromotion 
    BackColor       =   &H8000000E&
-   Caption         =   "Form1"
-   ClientHeight    =   8295
+   ClientHeight    =   8340
    ClientLeft      =   120
    ClientTop       =   450
    ClientWidth     =   13050
    LinkTopic       =   "Form1"
-   ScaleHeight     =   8295
+   ScaleHeight     =   8340
    ScaleWidth      =   13050
    StartUpPosition =   2  'CenterScreen
+   Begin VB.ComboBox cmb_adviser 
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   360
+      ItemData        =   "studentPromotion.frx":0000
+      Left            =   7440
+      List            =   "studentPromotion.frx":0002
+      Style           =   2  'Dropdown List
+      TabIndex        =   11
+      Top             =   120
+      Width           =   2895
+   End
+   Begin VB.ComboBox cmb_sy 
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   360
+      ItemData        =   "studentPromotion.frx":0004
+      Left            =   2520
+      List            =   "studentPromotion.frx":0006
+      Style           =   2  'Dropdown List
+      TabIndex        =   9
+      Top             =   120
+      Width           =   2415
+   End
    Begin VB.CommandButton cmb_export 
       Caption         =   "Export"
       BeginProperty Font 
@@ -23,10 +60,10 @@ Begin VB.Form studentPromotion
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   10200
+      Left            =   10680
       TabIndex        =   2
-      Top             =   120
-      Width           =   1095
+      Top             =   600
+      Width           =   1215
    End
    Begin VB.ComboBox cmb_level 
       BeginProperty Font 
@@ -39,11 +76,11 @@ Begin VB.Form studentPromotion
          Strikethrough   =   0   'False
       EndProperty
       Height          =   360
-      ItemData        =   "studentPromotion.frx":0000
+      ItemData        =   "studentPromotion.frx":0008
       Left            =   2520
       List            =   "studentPromotion.frx":000A
       TabIndex        =   0
-      Top             =   120
+      Top             =   600
       Width           =   2415
    End
    Begin VB.ComboBox cmb_section 
@@ -57,18 +94,18 @@ Begin VB.Form studentPromotion
          Strikethrough   =   0   'False
       EndProperty
       Height          =   360
-      ItemData        =   "studentPromotion.frx":001C
+      ItemData        =   "studentPromotion.frx":000C
       Left            =   7440
-      List            =   "studentPromotion.frx":001E
+      List            =   "studentPromotion.frx":000E
       TabIndex        =   1
-      Top             =   120
-      Width           =   2415
+      Top             =   600
+      Width           =   2895
    End
    Begin MSFlexGridLib.MSFlexGrid flexPromotionBoys 
       Height          =   2895
       Left            =   0
       TabIndex        =   5
-      Top             =   1200
+      Top             =   1560
       Width           =   13095
       _ExtentX        =   23098
       _ExtentY        =   5106
@@ -87,7 +124,7 @@ Begin VB.Form studentPromotion
       Height          =   3015
       Left            =   0
       TabIndex        =   7
-      Top             =   5040
+      Top             =   5160
       Width           =   13095
       _ExtentX        =   23098
       _ExtentY        =   5318
@@ -101,6 +138,44 @@ Begin VB.Form studentPromotion
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
+   End
+   Begin VB.Label Label3 
+      BackStyle       =   0  'Transparent
+      Caption         =   "Adviser"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H00000000&
+      Height          =   255
+      Left            =   6000
+      TabIndex        =   12
+      Top             =   120
+      Width           =   1335
+   End
+   Begin VB.Label Label2 
+      BackStyle       =   0  'Transparent
+      Caption         =   "School Year"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H00000000&
+      Height          =   255
+      Left            =   1080
+      TabIndex        =   10
+      Top             =   120
+      Width           =   1455
    End
    Begin VB.Label Label1 
       Alignment       =   2  'Center
@@ -119,7 +194,7 @@ Begin VB.Form studentPromotion
       Height          =   375
       Left            =   0
       TabIndex        =   8
-      Top             =   4560
+      Top             =   4800
       Width           =   13095
    End
    Begin VB.Label Label4 
@@ -139,7 +214,7 @@ Begin VB.Form studentPromotion
       Height          =   375
       Left            =   0
       TabIndex        =   6
-      Top             =   840
+      Top             =   1200
       Width           =   13095
    End
    Begin VB.Label Label7 
@@ -158,7 +233,7 @@ Begin VB.Form studentPromotion
       Height          =   255
       Left            =   1080
       TabIndex        =   4
-      Top             =   120
+      Top             =   600
       Width           =   1455
    End
    Begin VB.Label Label8 
@@ -177,7 +252,7 @@ Begin VB.Form studentPromotion
       Height          =   255
       Left            =   5880
       TabIndex        =   3
-      Top             =   240
+      Top             =   720
       Width           =   1815
    End
 End
@@ -194,6 +269,8 @@ Private prom_girls_list() As Variant
 Private prom_boys_list() As Variant
 Private temp_rs As New ADODB.Recordset
 Private teacher_name
+Private school_year As String
+Private teach_list() As Variant
 
 Private Const name_index = 0
 Private Const addess_index = 5
@@ -202,8 +279,29 @@ Private Const age_index = 9
 Private Const days_in_school_index = 10
 Private Const grade_index = 11
 Private Const action_index = 12
+
+Private Sub cmb_adviser_Click()
+  If (isAdminMode And cmb_adviser.ListIndex <> -1) Then
+    teacher_id = teach_list(cmb_adviser.ListIndex)
+    teacher_name = cmb_adviser.Text
+     Dim sqlQuery As String
+        sqlQuery = "SELECT distinct b.lvl_name  " & _
+                   "FROM tbl_section b, tbl_teacher_sections a " & _
+                   "WHERE a.teacher_id='" & teacher_id & "'" & _
+                   "      and a.section_id = b.section_id " & _
+                   "ORDER BY b.lvl_name ASC "
+    Call mysql_select(public_rs, sqlQuery)
+    cmb_level.Clear
+    cmb_section.Clear
+    While Not public_rs.EOF
+      cmb_level.AddItem public_rs!lvl_name
+      public_rs.MoveNext
+    Wend
+  End If
+End Sub
+
 Private Sub cmb_export_Click()
-  
+
   Dim excelApp As New Excel.Application
   Dim oBook As New Excel.Workbook
   Dim oSheet As New Excel.Worksheet
@@ -226,10 +324,9 @@ Private Sub cmb_export_Click()
     
   On Error GoTo openExcel
   
-  Call mysql_select(public_rs, "SELECT * FROM tbl_teacher where teacher_id = '" & teacher_id & "'")
-  teacher_name = public_rs!FIRST_NAME & " " & public_rs!middle_name & " " & public_rs!LAST_NAME
+ 
   
-  oSheet.Range("C7").value = "SCHOOL YEAR " & mainteacherform.cmb_sy.Text
+  oSheet.Range("C7").value = "SCHOOL YEAR " & school_year
   oSheet.Range("M9").value = Now
   oSheet.Range("M10").value = teacher_name
   oSheet.Range("J10").value = cmb_level.Text
@@ -366,21 +463,26 @@ Private Sub cmb_section_Click()
                  "            select a.no_days_present " & _
                  "            from tbl_attendance a " & _
                  "            where a.id = stud.student_id " & _
-                 "                  and a.SY = '" & mainteacherform.cmb_sy.Text & "' " & _
+                 "                  and a.SY = '" & school_year & "' " & _
                  "            limit 1 " & _
                  "          ) as days_in_school " & _
                  "from tbl_student stud, tbl_student_level lvlsec " & _
                  "Where lvlsec.id = stud.student_id " & _
                  "      and lvlsec.lvl_name = '" & cmb_level.Text & "' " & _
-                 "      and lvlsec.section_name = '" & cmb_section.Text & "' "
+                 "      and lvlsec.section_name = '" & cmb_section.Text & "' " & _
+                 "      and lvlsec.sy = '" & tbl_student_level & "' "
                  
     'InputBox "", "", base_query
     
     Call mysql_select(public_rs, base_query & " and stud.gender = 'Male' ")
-    prom_boys_list = populatePromotionFlex(flexPromotionBoys, public_rs)
+    If (public_rs.RecordCount > 0) Then
+      prom_boys_list = populatePromotionFlex(flexPromotionBoys, public_rs)
+    End If
     
     Call mysql_select(public_rs, base_query & " and stud.gender = 'Female' ")
-    prom_girls_list = populatePromotionFlex(flexPromotionGirls, public_rs)
+    If (public_rs.RecordCount > 0) Then
+      prom_girls_list = populatePromotionFlex(flexPromotionGirls, public_rs)
+    End If
 
   End If
 End Sub
@@ -447,7 +549,7 @@ Public Function populatePromotionFlex(flexGrid As MSFlexGrid, rs As ADODB.Record
     
       sql_query = "Select GRADE " & _
                   "From tbl_grade " & _
-                  "Where SY = '" & mainteacherform.cmb_sy.Text & "' " & _
+                  "Where SY = '" & school_year & "' " & _
                   "      And ID = '" & rs!student_id & "' "
 
       divider = 0
@@ -496,30 +598,84 @@ Private Function toIntial(m_name As String)
   End If
 End Function
 
-Private Sub Form_Load()
-
-    Call mysql_select(public_rs, "SELECT * FROM tbl_user WHERE Username = '" & mainform.lbl_username.Caption & "'")
-    teacher_id = public_rs.Fields("ID")
-    
-    
-    Dim sqlQuery As String
-        
-    sqlQuery = "SELECT  Distinct b.lvl_name " & _
-               "FROM tbl_section b, tbl_teacher_sections a " & _
-               "WHERE a.teacher_id='" & teacher_id & "'" & _
-               "      and a.section_id = b.section_id " & _
-               "ORDER BY b.lvl_name ASC "
-         
-    Call mysql_select(public_rs, sqlQuery)
-    
+Private Sub cmb_sy_Click()
+  If (isAdminMode) Then
+    school_year = cmb_sy.Text
+    cmb_adviser.ListIndex = -1
     cmb_level.Clear
-    While Not public_rs.EOF
-      cmb_level.AddItem public_rs!lvl_name
-      public_rs.MoveNext
-    Wend
+    cmb_section.Clear
+  End If
+End Sub
+
+Private Sub Form_Load()
+    If (isAdminMode = False) Then
+      Call mysql_select(public_rs, "SELECT * FROM tbl_user WHERE Username = '" & mainform.lbl_username.Caption & "'")
+      teacher_id = public_rs.Fields("ID")
+      school_year = mainteacherform.cmb_sy.Text
     
+      Dim sqlQuery As String
+        
+      sqlQuery = "SELECT  Distinct b.lvl_name " & _
+                 "FROM tbl_section b, tbl_teacher_sections a " & _
+                 "WHERE a.teacher_id='" & teacher_id & "'" & _
+                 "      and a.section_id = b.section_id " & _
+                 "ORDER BY b.lvl_name ASC "
+         
+      Call mysql_select(public_rs, sqlQuery)
+    
+      cmb_level.Clear
+      While Not public_rs.EOF
+        cmb_level.AddItem public_rs!lvl_name
+        public_rs.MoveNext
+      Wend
+      
+      cmb_sy.Clear
+      cmb_sy.AddItem school_year
+      cmb_sy.Text = school_year
+      cmb_sy.Enabled = False
+      
+      Call mysql_select(public_rs, "SELECT * FROM tbl_teacher where teacher_id = '" & teacher_id & "'")
+      teacher_name = public_rs!FIRST_NAME & " " & public_rs!middle_name & " " & public_rs!LAST_NAME
+      
+      cmb_adviser.Clear
+      cmb_adviser.Enabled = False
+      cmb_adviser.AddItem teacher_name
+      cmb_adviser.Text = teacher_name
+    Else
+      
+      cmb_sy.Clear
+      cmb_sy.Enabled = True
+      Call mysql_select(public_rs, "SELECT distinct sy FROM tbl_student_level")
+      
+      If (public_rs.RecordCount > 0) Then
+        While Not public_rs.EOF
+          cmb_sy.AddItem public_rs!sy
+          public_rs.MoveNext
+        Wend
+        cmb_sy.ListIndex = 0
+        school_year = cmb_sy.Text
+      Else
+         school_year = ""
+      End If
+      
+      cmb_adviser.Clear
+      cmb_adviser.Enabled = True
+      Call mysql_select(public_rs, "SELECT teacher_id, concat(First_Name, ' ', middle_name, ' ', LAST_NAME) as name FROM tbl_teacher")
+      
+      ReDim teach_list(0 To public_rs.RecordCount) As Variant
+      Dim index As Integer
+      index = 0
+      While Not public_rs.EOF
+        teach_list(index) = public_rs!teacher_id
+        cmb_adviser.AddItem public_rs!Name
+        index = index + 1
+        public_rs.MoveNext
+      Wend
+           
+    End If
 End Sub
 
 Private Sub MSFlexGrid1_Click()
 
 End Sub
+

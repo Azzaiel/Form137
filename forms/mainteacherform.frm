@@ -283,6 +283,7 @@ Private Sub toolbar_logout_Click()
 End Sub
 
 Private Sub toolbar_promotion_Click()
+  studentPromotion.isAdminMode = False
   Call load_form(studentPromotion, True)
 End Sub
 
