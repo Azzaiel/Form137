@@ -32,7 +32,7 @@ CREATE TABLE `tbl_student_level` (
   `section_name` varchar(200) NOT NULL,
   `Status` varchar(100) NOT NULL,
   PRIMARY KEY (`No`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,7 +41,6 @@ CREATE TABLE `tbl_student_level` (
 
 LOCK TABLES `tbl_student_level` WRITE;
 /*!40000 ALTER TABLE `tbl_student_level` DISABLE KEYS */;
-INSERT INTO `tbl_student_level` VALUES (23,'109637222222','2013-2014','Grade 1','Banana','ENROLLED'),(24,'109637000006','2013-2014','Kinder','Dog','ENROLLED'),(25,'109637000001','2013-2014','Grade 1','Banana','ENROLLED'),(26,'109637111111','2013-2014','Grade 1','Banana','ENROLLED');
 /*!40000 ALTER TABLE `tbl_student_level` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-01-30 16:23:30
+-- Dump completed on 2014-02-02 10:17:57

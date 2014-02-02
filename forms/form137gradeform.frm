@@ -685,7 +685,7 @@ Private Sub cmd_print_Click()
              Set dr_gradeall.DataSource = public_all
             dr_gradeall.Show vbModal, Me
         Else
-      'dr_grade.Sections(2).Controls("lbl_sy").Caption = mainform.lbl_sy.Caption
+      dr_grade.Sections(2).Controls("lbl_sy").Caption = cmb_sy.Text
       dr_grade.Sections(2).Controls("lbl_date").Caption = Format(Now, "mmmm dd, yyyy") & "/ " & Time
         dr_grade.Sections(2).Controls("lbl_level").Caption = lbl_level.Caption
         dr_grade.Sections(2).Controls("lbl_section").Caption = lbl_section.Caption

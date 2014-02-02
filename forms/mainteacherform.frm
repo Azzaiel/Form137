@@ -251,7 +251,7 @@ Private Sub Form_Unload(Cancel As Integer)
                     Else
      sql_string = "UPDATE tbl_logs SET Logout='" & Now & "' WHERE Username='" & mainteacherform.lbl_username.Caption & "'AND Logout='None'"
     Call mysql_select(usereditform.rs_user, sql_string)
-    MsgBox "Thank you for using this application."
+    'MsgBox "Thank you for using this application."
     
     loginform.txt_username.Text = ""
     loginform.txt_password.Text = ""

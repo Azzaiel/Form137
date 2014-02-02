@@ -153,7 +153,9 @@ Begin VB.Form form137characterform
             Strikethrough   =   0   'False
          EndProperty
          Height          =   360
+         ItemData        =   "form137characterform.frx":1C376
          Left            =   1680
+         List            =   "form137characterform.frx":1C378
          TabIndex        =   1
          Top             =   1200
          Width           =   2535
@@ -419,7 +421,7 @@ Private Sub cmd_print_Click()
         Exit Sub
     End If
    
-      'dr_character.Sections(2).Controls("lbl_sy").Caption = mainform.lbl_sy.Caption
+      dr_character.Sections(2).Controls("lbl_sy").Caption = cmb_sy.Text
       dr_character.Sections(2).Controls("lbl_date").Caption = Format(Now, "mmmm dd, yyyy") & "/ " & Time
         dr_character.Sections(2).Controls("lbl_level").Caption = lbl_level.Caption
         dr_character.Sections(2).Controls("lbl_section").Caption = lbl_section.Caption

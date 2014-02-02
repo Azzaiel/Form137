@@ -31,7 +31,7 @@ CREATE TABLE `tbl_section` (
   `section_name` varchar(100) NOT NULL,
   `teacher_id` varchar(100) NOT NULL,
   PRIMARY KEY (`section_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +40,7 @@ CREATE TABLE `tbl_section` (
 
 LOCK TABLES `tbl_section` WRITE;
 /*!40000 ALTER TABLE `tbl_section` DISABLE KEYS */;
-INSERT INTO `tbl_section` VALUES ('2013-2014','Grade 1',1,'Apple','M-0001'),('2013-2014','Grade 1',2,'Banana','None'),('2013-2014','Grade 1',3,'Cherry','None'),('2013-2014','Grade 2',4,'Sampaguita','None'),('2013-2014','Grade 2',5,'Rose','None'),('2013-2014','Grade 3',6,'Jose Rizal','None'),('2014-2015','Grade 1',7,'Apple','M-0001'),('2013-2014','Kinder',8,'Dog','M-0001'),('2013-2014','Grade 1',9,'Duhat','M-0001');
+INSERT INTO `tbl_section` VALUES ('2013-2014','Grade 1',1,'Apple','M-0001'),('2013-2014','Grade 1',2,'Banana','None'),('2013-2014','Grade 1',3,'Cherry','None'),('2013-2014','Grade 2',4,'Sampaguita','None'),('2013-2014','Grade 2',5,'Rose','None'),('2013-2014','Grade 3',6,'Jose Rizal','None'),('2014-2015','Grade 1',7,'Apple','M-0001'),('2013-2014','Kinder',8,'Dog','M-0001'),('2013-2014','Grade 1',9,'Duhat','M-0001'),('','Kinder',10,'Cat','');
 /*!40000 ALTER TABLE `tbl_section` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-01-30 16:23:31
+-- Dump completed on 2014-02-02 10:17:58

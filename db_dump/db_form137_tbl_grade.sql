@@ -34,7 +34,7 @@ CREATE TABLE `tbl_grade` (
   `grade` varchar(100) NOT NULL,
   `remark` varchar(100) NOT NULL,
   PRIMARY KEY (`grd_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=84 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,7 +43,6 @@ CREATE TABLE `tbl_grade` (
 
 LOCK TABLES `tbl_grade` WRITE;
 /*!40000 ALTER TABLE `tbl_grade` DISABLE KEYS */;
-INSERT INTO `tbl_grade` VALUES (60,'2013-2014','109637000001','Banana','A.P','1st Grading','80','AP'),(61,'2013-2014','109637000001','Banana','A.P','2nd Grading','77','D'),(62,'2013-2014','109637000001','Banana','A.P','3rd Grading','90','A'),(63,'2013-2014','109637000001','Banana','A.P','4th Grading','0','B'),(64,'2013-2014','109637222222','Banana','A.P','1st Grading','88','P'),(65,'2013-2014','109637222222','Banana','A.P','2nd Grading','88','P'),(66,'2013-2014','109637222222','Banana','A.P','3rd Grading','80','AP'),(67,'2013-2014','109637222222','Banana','A.P','4th Grading','0','B'),(68,'2013-2014','109637111111','Banana','A.P','1st Grading','90','A'),(69,'2013-2014','109637111111','Banana','A.P','2nd Grading','88','P'),(70,'2013-2014','109637111111','Banana','A.P','3rd Grading','77','D'),(71,'2013-2014','109637111111','Banana','A.P','4th Grading','99','A'),(72,'2013-2014','109637111111','Banana','Arts','1st Grading','80','AP'),(73,'2013-2014','109637111111','Banana','Arts','2nd Grading','99','A'),(74,'2013-2014','109637111111','Banana','Arts','3rd Grading','0','B'),(75,'2013-2014','109637111111','Banana','Arts','4th Grading','0','B'),(76,'2013-2014','109637222222','Banana','Arts','1st Grading','90','A'),(77,'2013-2014','109637222222','Banana','Arts','2nd Grading','80','AP'),(78,'2013-2014','109637222222','Banana','Arts','3rd Grading','0','B'),(79,'2013-2014','109637222222','Banana','Arts','4th Grading','0','B'),(80,'2013-2014','109637000001','Banana','Arts','1st Grading','90','A'),(81,'2013-2014','109637000001','Banana','Arts','2nd Grading','0','B'),(82,'2013-2014','109637000001','Banana','Arts','3rd Grading','0','B'),(83,'2013-2014','109637000001','Banana','Arts','4th Grading','0','B');
 /*!40000 ALTER TABLE `tbl_grade` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -56,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-01-30 16:23:32
+-- Dump completed on 2014-02-02 10:17:59

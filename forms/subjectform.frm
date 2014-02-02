@@ -103,7 +103,7 @@ Begin VB.Form subjectform
    End
    Begin VB.CommandButton cmb_clear 
       Height          =   615
-      Left            =   4680
+      Left            =   4560
       Picture         =   "subjectform.frx":1C591
       Style           =   1  'Graphical
       TabIndex        =   3
@@ -112,7 +112,7 @@ Begin VB.Form subjectform
    End
    Begin VB.CommandButton cmd_save 
       Height          =   615
-      Left            =   3360
+      Left            =   3240
       Picture         =   "subjectform.frx":1D30C
       Style           =   1  'Graphical
       TabIndex        =   2

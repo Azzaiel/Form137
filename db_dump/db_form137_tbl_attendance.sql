@@ -43,7 +43,6 @@ CREATE TABLE `tbl_attendance` (
 
 LOCK TABLES `tbl_attendance` WRITE;
 /*!40000 ALTER TABLE `tbl_attendance` DISABLE KEYS */;
-INSERT INTO `tbl_attendance` VALUES ('2013-2014','109637111111','Apple','220','5','  ','0','  ','215'),('','109637222222','Apple','220','3','  ','1','  ','217'),('','109637333333','Banana','220','3','  ','0','  ','217');
 /*!40000 ALTER TABLE `tbl_attendance` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -56,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-01-30 16:23:31
+-- Dump completed on 2014-02-02 10:17:58

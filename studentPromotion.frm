@@ -470,7 +470,7 @@ Private Sub cmb_section_Click()
                  "Where lvlsec.id = stud.student_id " & _
                  "      and lvlsec.lvl_name = '" & cmb_level.Text & "' " & _
                  "      and lvlsec.section_name = '" & cmb_section.Text & "' " & _
-                 "      and lvlsec.sy = '" & tbl_student_level & "' "
+                 "      and lvlsec.sy = '" & school_year & "' "
                  
     'InputBox "", "", base_query
     

@@ -121,6 +121,7 @@ Dim sql_string As String
 Private Sub cmd_cancel_Click()
     txt_username.Text = ""
     txt_password.Text = ""
+    txt_username.SetFocus
 End Sub
 
 Private Sub cmd_login_Click()

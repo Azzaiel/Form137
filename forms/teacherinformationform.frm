@@ -8,28 +8,28 @@ Begin VB.Form teacherinformationform
    ClientHeight    =   5685
    ClientLeft      =   45
    ClientTop       =   375
-   ClientWidth     =   10020
+   ClientWidth     =   10500
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
    Picture         =   "teacherinformationform.frx":0000
    ScaleHeight     =   5685
-   ScaleWidth      =   10020
+   ScaleWidth      =   10500
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
    Begin VB.CommandButton Command2 
       Height          =   615
-      Left            =   7320
+      Left            =   7560
       Picture         =   "teacherinformationform.frx":1B3CE
       Style           =   1  'Graphical
       TabIndex        =   25
-      Top             =   4560
+      Top             =   4680
       Width           =   1095
    End
    Begin VB.CommandButton Command1 
       Height          =   615
-      Left            =   7200
-      Picture         =   "teacherinformationform.frx":1C149
+      Left            =   7560
+      Picture         =   "teacherinformationform.frx":1BF87
       Style           =   1  'Graphical
       TabIndex        =   24
       Top             =   1680
@@ -46,9 +46,9 @@ Begin VB.Form teacherinformationform
          Strikethrough   =   0   'False
       EndProperty
       Height          =   360
-      ItemData        =   "teacherinformationform.frx":1D0EC
-      Left            =   6600
-      List            =   "teacherinformationform.frx":1D0EE
+      ItemData        =   "teacherinformationform.frx":1CE5E
+      Left            =   6960
+      List            =   "teacherinformationform.frx":1CE60
       TabIndex        =   22
       Top             =   1200
       Width           =   2415
@@ -64,9 +64,9 @@ Begin VB.Form teacherinformationform
          Strikethrough   =   0   'False
       EndProperty
       Height          =   360
-      ItemData        =   "teacherinformationform.frx":1D0F0
-      Left            =   6600
-      List            =   "teacherinformationform.frx":1D0FA
+      ItemData        =   "teacherinformationform.frx":1CE62
+      Left            =   6960
+      List            =   "teacherinformationform.frx":1CE6C
       TabIndex        =   21
       Top             =   600
       Width           =   2415
@@ -98,9 +98,9 @@ Begin VB.Form teacherinformationform
          Strikethrough   =   0   'False
       EndProperty
       Height          =   360
-      ItemData        =   "teacherinformationform.frx":1D10C
+      ItemData        =   "teacherinformationform.frx":1CE7E
       Left            =   1920
-      List            =   "teacherinformationform.frx":1D116
+      List            =   "teacherinformationform.frx":1CE88
       TabIndex        =   6
       Top             =   3360
       Width           =   2175
@@ -123,7 +123,7 @@ Begin VB.Form teacherinformationform
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Format          =   52559873
+      Format          =   107937793
       CurrentDate     =   41540
    End
    Begin VB.ComboBox cmb_gender 
@@ -137,9 +137,9 @@ Begin VB.Form teacherinformationform
          Strikethrough   =   0   'False
       EndProperty
       Height          =   360
-      ItemData        =   "teacherinformationform.frx":1D12D
+      ItemData        =   "teacherinformationform.frx":1CE9F
       Left            =   1920
-      List            =   "teacherinformationform.frx":1D137
+      List            =   "teacherinformationform.frx":1CEA9
       TabIndex        =   4
       Top             =   2280
       Width           =   3495
@@ -147,7 +147,7 @@ Begin VB.Form teacherinformationform
    Begin VB.CommandButton cmd_save 
       Height          =   615
       Left            =   1920
-      Picture         =   "teacherinformationform.frx":1D149
+      Picture         =   "teacherinformationform.frx":1CEBB
       Style           =   1  'Graphical
       TabIndex        =   7
       Top             =   4080
@@ -156,7 +156,7 @@ Begin VB.Form teacherinformationform
    Begin VB.CommandButton cmd_cancel 
       Height          =   615
       Left            =   3840
-      Picture         =   "teacherinformationform.frx":1E0EC
+      Picture         =   "teacherinformationform.frx":1DE5E
       Style           =   1  'Graphical
       TabIndex        =   8
       Top             =   4080
@@ -233,7 +233,7 @@ Begin VB.Form teacherinformationform
    End
    Begin MSDataGridLib.DataGrid dg_sections 
       Height          =   2055
-      Left            =   5640
+      Left            =   6000
       TabIndex        =   23
       Top             =   2400
       Width           =   4215
@@ -296,6 +296,32 @@ Begin VB.Form teacherinformationform
          EndProperty
       EndProperty
    End
+   Begin VB.Label Label9 
+      BackStyle       =   0  'Transparent
+      Caption         =   "Assign Section to teacher"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   -1  'True
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H00000000&
+      Height          =   255
+      Left            =   5880
+      TabIndex        =   26
+      Top             =   0
+      Width           =   5535
+   End
+   Begin VB.Line Line1 
+      BorderWidth     =   3
+      X1              =   5655
+      X2              =   5640
+      Y1              =   0
+      Y2              =   5655
+   End
    Begin VB.Label Label8 
       BackStyle       =   0  'Transparent
       Caption         =   "Section"
@@ -310,7 +336,7 @@ Begin VB.Form teacherinformationform
       EndProperty
       ForeColor       =   &H00000000&
       Height          =   255
-      Left            =   7320
+      Left            =   7680
       TabIndex        =   20
       Top             =   960
       Width           =   1455
@@ -329,7 +355,7 @@ Begin VB.Form teacherinformationform
       EndProperty
       ForeColor       =   &H00000000&
       Height          =   255
-      Left            =   7440
+      Left            =   7800
       TabIndex        =   19
       Top             =   360
       Width           =   1455
@@ -351,7 +377,7 @@ Begin VB.Form teacherinformationform
       Left            =   120
       TabIndex        =   18
       Top             =   0
-      Width           =   7335
+      Width           =   5535
    End
    Begin VB.Label Label13 
       BackStyle       =   0  'Transparent
@@ -545,7 +571,7 @@ Private Sub cmd_cancel_Click()
     txt_lastname.Text = ""
     txt_middlename.Text = ""
     cmb_gender.Text = ""
-    dateBday.Value = Now
+    dateBday.value = Now
     'txt_contact.Text = ""
     'txt_address.Text = ""
     'txt_course.Text = ""
@@ -579,7 +605,7 @@ Private Sub cmd_save_Click()
                     & " VALUES (" _
                         & "'" & txt_id.Text & "','" & txt_lastname.Text & "','" _
                         & txt_firstname.Text & "','" & txt_middlename.Text & "','" _
-                        & cmb_gender.Text & "','" & Format(dateBday.Value, "yyyy-mm-dd") & "','" _
+                        & cmb_gender.Text & "','" & Format(dateBday.value, "yyyy-mm-dd") & "','" _
                         & "On-Duty') "
         Call mysql_select(teacherinformationform.rs_teacher, sql_string)
         Dim USERNAME, lastname As String
@@ -619,7 +645,7 @@ Private Sub cmd_save_Click()
                                 & "last_name = '" & txt_lastname.Text & "'," _
                                 & "first_name = '" & txt_firstname.Text & "',middle_name = '" _
                                 & txt_middlename.Text & "',gender = '" & cmb_gender.Text & "',bday" _
-                                & " = '" & Format(dateBday.Value, "yyyy-mm-dd") & "'" _
+                                & " = '" & Format(dateBday.value, "yyyy-mm-dd") & "'" _
                                 & ",status ='" & cmb_status.Text & "'" _
                             & "WHERE " _
                                 & " teacher_id = '" & txt_oldid.Text & "'"
@@ -657,7 +683,7 @@ Private Sub cmd_save_Click()
                                 & "teacher_id='" & txt_id.Text & "', last_name = '" & txt_lastname.Text & "'," _
                                 & "first_name = '" & txt_firstname.Text & "',middle_name = '" _
                                 & txt_middlename.Text & "',gender = '" & cmb_gender.Text & "',bday" _
-                                & " = '" & Format(dateBday.Value, "yyyy-mm-dd") & "'" _
+                                & " = '" & Format(dateBday.value, "yyyy-mm-dd") & "'" _
                                 & ",contact_no = '" & txt_contact.Text _
                                 & "',address = '" & txt_address.Text & "',course ='" & txt_course.Text & "', school ='" & txt_school.Text & "',a_from ='" & txt_from.Text & "',a_to ='" & txt_to.Text & "',status ='" & cmb_status.Text & "'" _
                             & "WHERE " _
@@ -724,7 +750,7 @@ Private Sub Command1_Click()
 
    Call mysql_select(public_rs, "SELECT * FROM db_form137.tbl_teacher_sections where 1 = 2")
    public_rs.AddNew
-   public_rs!TEACHER_ID = txt_id
+   public_rs!teacher_id = txt_id
    public_rs!SECTION_ID = sectionID
    public_rs.Update
    MsgBox "Section added to teacher "

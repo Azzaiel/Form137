@@ -29,7 +29,7 @@ CREATE TABLE `tbl_teacher_sections` (
   `TEACHER_ID` varchar(255) DEFAULT NULL,
   `SECTION_ID` int(11) DEFAULT NULL,
   UNIQUE KEY `ID_UNIQUE` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +38,7 @@ CREATE TABLE `tbl_teacher_sections` (
 
 LOCK TABLES `tbl_teacher_sections` WRITE;
 /*!40000 ALTER TABLE `tbl_teacher_sections` DISABLE KEYS */;
-INSERT INTO `tbl_teacher_sections` VALUES (18,'M-0001',1),(21,'M-0002',8),(22,'M-0002',2);
+INSERT INTO `tbl_teacher_sections` VALUES (18,'M-0001',1),(22,'M-0002',2),(23,'M-0001',10),(24,'M-0002',6),(25,'M-0002',8);
 /*!40000 ALTER TABLE `tbl_teacher_sections` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-01-30 16:23:31
+-- Dump completed on 2014-02-02 10:17:58
