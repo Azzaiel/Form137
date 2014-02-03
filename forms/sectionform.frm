@@ -1,6 +1,6 @@
 VERSION 5.00
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
-Begin VB.Form S 
+Begin VB.Form sectionform 
    Appearance      =   0  'Flat
    BackColor       =   &H80000005&
    BorderStyle     =   3  'Fixed Dialog
@@ -228,7 +228,7 @@ Begin VB.Form S
       Width           =   1695
    End
 End
-Attribute VB_Name = "S"
+Attribute VB_Name = "sectionform"
 Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
