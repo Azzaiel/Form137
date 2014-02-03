@@ -182,9 +182,7 @@ Private Sub cmd_search_Click()
 End Sub
 
 Private Sub Form_Load()
-    Call set_datagrid(dg_students, rs_student, _
-                                        "SELECT " _
-                                            & "student_id as LRN, last_name as Last_Name, first_name as First_Name, middle_name as Middle_Name FROM tbl_student")
+    Call set_datagrid(dg_students, rs_student, "SELECT student_id as LRN, last_name as Last_Name, first_name as First_Name, middle_name as Middle_Name FROM tbl_student")
                                         
                     
                                
@@ -241,9 +239,7 @@ Private Sub lbl_view_grade_Click()
     
 End Sub
 Private Sub txt_search_KeyUp(KeyCode As Integer, Shift As Integer)
-      Call set_datagrid(dg_students, rs_student, _
-                                        "SELECT " _
-                                            & "student_id as LRN, last_name as Last_Name, first_name as First_Name, middle_name as Middle_Name, Gender as Gender, Bday as Date_Of_Birth, contact_no as Contact_Number,address as Address, father_name as Father_Name, father_no as Father_Contact, mother_name as Mother_Name, mother_no as Mother_Contact FROM tbl_student WHERE student_id LIKE '%" & txt_search.Text & "%' OR last_name LIKE '%" & txt_search.Text & "%' OR first_name LIKE '%" & txt_search.Text & "%'")
+      Call set_datagrid(dg_students, rs_student, "SELECT student_id as LRN, last_name as Last_Name, first_name as First_Name, middle_name as Middle_Name FROM tbl_student WHERE student_id LIKE '%" & txt_search.Text & "%' OR last_name LIKE '%" & txt_search.Text & "%' OR first_name LIKE '%" & txt_search.Text & "%'")
                                         
                     
 End Sub
