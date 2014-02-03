@@ -221,7 +221,7 @@ Private Sub cmd_ok_Click()
         MsgBox "Unable to find your ID number."
         Exit Sub
     Else
-        user = public_rs.Fields("Username").Value
+        user = public_rs.Fields("Username").value
     End If
     If txt_1.Text = "" And txt_2.Text = "" And txt_3.Text = "" Then
         MsgBox "Please input your answer."
@@ -246,15 +246,15 @@ If public_rs.RecordCount = 0 Then
           
         Else
             MsgBox "Your answer is correct."
-            MsgBox "Welcome " & user_name & " to Form 137 and Promotion Report Generation System of Manuel S. Rojas Elementary School."
+            'MsgBox "Welcome " & user_name & " to Form 137 and Promotion Report Generation System of Manuel S. Rojas Elementary School."
              
         Call mysql_select(public_rs, "SELECT *" _
                                     & "FROM tbl_user " _
                                     & "WHERE Username = '" & user & "'")
-           user_type = public_rs.Fields("Usertype").Value
+           user_type = public_rs.Fields("Usertype").value
             
-            user_name = public_rs.Fields("Username").Value
-            user_password = public_rs.Fields("Password").Value
+            user_name = public_rs.Fields("Username").value
+            user_password = public_rs.Fields("Password").value
             Call mysql_select(public_rs, "SELECT * FROM tbl_sy WHERE SY = " & Format(Date, "yyyy"))
             If public_rs.RecordCount = 0 Then
                 Call mysql_select(public_rs, "INSERT INTO tbl_sy (SY) VALUES ( " & Format(Date, "yyyy") & ")")
@@ -262,13 +262,13 @@ If public_rs.RecordCount = 0 Then
             school_year = Format(Date, "yyyy") & "-" & Left(Format(Date, "yyyy"), 3) & Trim(Str(val(Right(Format(Date, "yyyy"), 1) + 1)))
             
             mainform.lbl_username.Caption = user_name
-            mainform.lbl_sy.Caption = school_year
+            'mainform.lbl_sy.Caption = school_year
             mainteacherform.lbl_username.Caption = user_name
-            mainteacherform.lbl_sy.Caption = school_year
+            'mainteacherform.lbl_sy.Caption = school_year
             If user_type = "Administrator" Then
                 Call load_form(mainform, True)
                 mainform.lbl_username.Caption = user_name
-                mainform.lbl_sy.Caption = school_year
+                'mainform.lbl_sy.Caption = school_year
                 sql_string = "INSERT INTO " _
                                 & "tbl_logs (Username, Login,Logout)" _
                             & " VALUES (" _
@@ -277,9 +277,72 @@ If public_rs.RecordCount = 0 Then
                 Call mysql_select(useraccountform.rs_user, sql_string)
                 
             Else
+             tmp_sy = val(Format(Date, "yyyy"))
+                mainteacherform.cmb_sy.Clear
+                mainteacherform.cmb_sy.AddItem ((tmp_sy - 1) & "-" & tmp_sy)
+                mainteacherform.cmb_sy.AddItem (tmp_sy & "-" & (tmp_sy + 1))
+                If Month(Now) <= 4 Then
+                  mainteacherform.cmb_sy.ListIndex = 0
+                Else
+                  mainteacherform.cmb_sy.ListIndex = 1
+                End If
+                 tmp_sy = val(Format(Date, "yyyy"))
+                mainteacherform.cmb_sy.Clear
+                mainteacherform.cmb_sy.AddItem ((tmp_sy - 1) & "-" & tmp_sy)
+                mainteacherform.cmb_sy.AddItem (tmp_sy & "-" & (tmp_sy + 1))
+                If Month(Now) <= 4 Then
+                  mainteacherform.cmb_sy.ListIndex = 0
+                Else
+                  mainteacherform.cmb_sy.ListIndex = 1
+                End If
+                 tmp_sy = val(Format(Date, "yyyy"))
+                mainteacherform.cmb_sy.Clear
+                mainteacherform.cmb_sy.AddItem ((tmp_sy - 1) & "-" & tmp_sy)
+                mainteacherform.cmb_sy.AddItem (tmp_sy & "-" & (tmp_sy + 1))
+                If Month(Now) <= 4 Then
+                  mainteacherform.cmb_sy.ListIndex = 0
+                Else
+                  mainteacherform.cmb_sy.ListIndex = 1
+                End If
+                 tmp_sy = val(Format(Date, "yyyy"))
+                mainteacherform.cmb_sy.Clear
+                mainteacherform.cmb_sy.AddItem ((tmp_sy - 1) & "-" & tmp_sy)
+                mainteacherform.cmb_sy.AddItem (tmp_sy & "-" & (tmp_sy + 1))
+                If Month(Now) <= 4 Then
+                  mainteacherform.cmb_sy.ListIndex = 0
+                Else
+                  mainteacherform.cmb_sy.ListIndex = 1
+                End If
+                 tmp_sy = val(Format(Date, "yyyy"))
+                mainteacherform.cmb_sy.Clear
+                mainteacherform.cmb_sy.AddItem ((tmp_sy - 1) & "-" & tmp_sy)
+                mainteacherform.cmb_sy.AddItem (tmp_sy & "-" & (tmp_sy + 1))
+                If Month(Now) <= 4 Then
+                  mainteacherform.cmb_sy.ListIndex = 0
+                Else
+                  mainteacherform.cmb_sy.ListIndex = 1
+                End If
+                 tmp_sy = val(Format(Date, "yyyy"))
+                mainteacherform.cmb_sy.Clear
+                mainteacherform.cmb_sy.AddItem ((tmp_sy - 1) & "-" & tmp_sy)
+                mainteacherform.cmb_sy.AddItem (tmp_sy & "-" & (tmp_sy + 1))
+                If Month(Now) <= 4 Then
+                  mainteacherform.cmb_sy.ListIndex = 0
+                Else
+                  mainteacherform.cmb_sy.ListIndex = 1
+                End If
+                 tmp_sy = val(Format(Date, "yyyy"))
+                mainteacherform.cmb_sy.Clear
+                mainteacherform.cmb_sy.AddItem ((tmp_sy - 1) & "-" & tmp_sy)
+                mainteacherform.cmb_sy.AddItem (tmp_sy & "-" & (tmp_sy + 1))
+                If Month(Now) <= 4 Then
+                  mainteacherform.cmb_sy.ListIndex = 0
+                Else
+                  mainteacherform.cmb_sy.ListIndex = 1
+                End If
                Call load_form(mainteacherform, True)
                 mainteacherform.lbl_username.Caption = user_name
-                mainteacherform.lbl_sy.Caption = school_year
+                'mainteacherform.lbl_sy.Caption = school_year
                 sql_string = "INSERT INTO " _
                                 & "tbl_logs (Username, Login,Logout)" _
                             & " VALUES (" _
@@ -313,15 +376,15 @@ If public_rs.RecordCount = 0 Then
            
         Else
            MsgBox "Your answer is correct."
-           MsgBox "Welcome " & user_name & " to Form 137 and Promotion Report Generation System of Manuel S. Rojas Elementary School."
+           'MsgBox "Welcome " & user_name & " to Form 137 and Promotion Report Generation System of Manuel S. Rojas Elementary School."
              
         Call mysql_select(public_rs, "SELECT *" _
                                     & "FROM tbl_user " _
                                     & "WHERE Username = '" & user & "'")
-           user_type = public_rs.Fields("Usertype").Value
+           user_type = public_rs.Fields("Usertype").value
             
-            user_name = public_rs.Fields("Username").Value
-            user_password = public_rs.Fields("Password").Value
+            user_name = public_rs.Fields("Username").value
+            user_password = public_rs.Fields("Password").value
             Call mysql_select(public_rs, "SELECT * FROM tbl_sy WHERE SY = " & Format(Date, "yyyy"))
             If public_rs.RecordCount = 0 Then
                 Call mysql_select(public_rs, "INSERT INTO tbl_sy (SY) VALUES ( " & Format(Date, "yyyy") & ")")
@@ -329,13 +392,13 @@ If public_rs.RecordCount = 0 Then
             school_year = Format(Date, "yyyy") & "-" & Left(Format(Date, "yyyy"), 3) & Trim(Str(val(Right(Format(Date, "yyyy"), 1) + 1)))
             
             mainform.lbl_username.Caption = user_name
-            mainform.lbl_sy.Caption = school_year
+            'mainform.lbl_sy.Caption = school_year
             mainteacherform.lbl_username.Caption = user_name
-            mainteacherform.lbl_sy.Caption = school_year
+            'mainteacherform.lbl_sy.Caption = school_year
             If user_type = "Administrator" Then
                 Call load_form(mainform, True)
                 mainform.lbl_username.Caption = user_name
-                mainform.lbl_sy.Caption = school_year
+                'mainform.lbl_sy.Caption = school_year
                 sql_string = "INSERT INTO " _
                                 & "tbl_logs (Username, Login,Logout)" _
                             & " VALUES (" _
@@ -344,9 +407,72 @@ If public_rs.RecordCount = 0 Then
                 Call mysql_select(useraccountform.rs_user, sql_string)
                 
             Else
+                tmp_sy = val(Format(Date, "yyyy"))
+                mainteacherform.cmb_sy.Clear
+                mainteacherform.cmb_sy.AddItem ((tmp_sy - 1) & "-" & tmp_sy)
+                mainteacherform.cmb_sy.AddItem (tmp_sy & "-" & (tmp_sy + 1))
+                If Month(Now) <= 4 Then
+                  mainteacherform.cmb_sy.ListIndex = 0
+                Else
+                  mainteacherform.cmb_sy.ListIndex = 1
+                End If
+                 tmp_sy = val(Format(Date, "yyyy"))
+                mainteacherform.cmb_sy.Clear
+                mainteacherform.cmb_sy.AddItem ((tmp_sy - 1) & "-" & tmp_sy)
+                mainteacherform.cmb_sy.AddItem (tmp_sy & "-" & (tmp_sy + 1))
+                If Month(Now) <= 4 Then
+                  mainteacherform.cmb_sy.ListIndex = 0
+                Else
+                  mainteacherform.cmb_sy.ListIndex = 1
+                End If
+                 tmp_sy = val(Format(Date, "yyyy"))
+                mainteacherform.cmb_sy.Clear
+                mainteacherform.cmb_sy.AddItem ((tmp_sy - 1) & "-" & tmp_sy)
+                mainteacherform.cmb_sy.AddItem (tmp_sy & "-" & (tmp_sy + 1))
+                If Month(Now) <= 4 Then
+                  mainteacherform.cmb_sy.ListIndex = 0
+                Else
+                  mainteacherform.cmb_sy.ListIndex = 1
+                End If
+                 tmp_sy = val(Format(Date, "yyyy"))
+                mainteacherform.cmb_sy.Clear
+                mainteacherform.cmb_sy.AddItem ((tmp_sy - 1) & "-" & tmp_sy)
+                mainteacherform.cmb_sy.AddItem (tmp_sy & "-" & (tmp_sy + 1))
+                If Month(Now) <= 4 Then
+                  mainteacherform.cmb_sy.ListIndex = 0
+                Else
+                  mainteacherform.cmb_sy.ListIndex = 1
+                End If
+                 tmp_sy = val(Format(Date, "yyyy"))
+                mainteacherform.cmb_sy.Clear
+                mainteacherform.cmb_sy.AddItem ((tmp_sy - 1) & "-" & tmp_sy)
+                mainteacherform.cmb_sy.AddItem (tmp_sy & "-" & (tmp_sy + 1))
+                If Month(Now) <= 4 Then
+                  mainteacherform.cmb_sy.ListIndex = 0
+                Else
+                  mainteacherform.cmb_sy.ListIndex = 1
+                End If
+                 tmp_sy = val(Format(Date, "yyyy"))
+                mainteacherform.cmb_sy.Clear
+                mainteacherform.cmb_sy.AddItem ((tmp_sy - 1) & "-" & tmp_sy)
+                mainteacherform.cmb_sy.AddItem (tmp_sy & "-" & (tmp_sy + 1))
+                If Month(Now) <= 4 Then
+                  mainteacherform.cmb_sy.ListIndex = 0
+                Else
+                  mainteacherform.cmb_sy.ListIndex = 1
+                End If
+                 tmp_sy = val(Format(Date, "yyyy"))
+                mainteacherform.cmb_sy.Clear
+                mainteacherform.cmb_sy.AddItem ((tmp_sy - 1) & "-" & tmp_sy)
+                mainteacherform.cmb_sy.AddItem (tmp_sy & "-" & (tmp_sy + 1))
+                If Month(Now) <= 4 Then
+                  mainteacherform.cmb_sy.ListIndex = 0
+                Else
+                  mainteacherform.cmb_sy.ListIndex = 1
+                End If
                Call load_form(mainteacherform, True)
                 mainteacherform.lbl_username.Caption = user_name
-                mainteacherform.lbl_sy.Caption = school_year
+                'mainteacherform.lbl_sy.Caption = school_year
                 sql_string = "INSERT INTO " _
                                 & "tbl_logs (Username, Login,Logout)" _
                             & " VALUES (" _
@@ -379,15 +505,15 @@ If public_rs.RecordCount = 0 Then
            
         Else
             MsgBox "Your answer is correct."
-            MsgBox "Welcome " & user_name & " to Form 137 and Promotion Report Generation System of Manuel S. Rojas Elementary School."
+            'MsgBox "Welcome " & user_name & " to Form 137 and Promotion Report Generation System of Manuel S. Rojas Elementary School."
              
         Call mysql_select(public_rs, "SELECT *" _
                                     & "FROM tbl_user " _
                                     & "WHERE Username = '" & user & "'")
-           user_type = public_rs.Fields("Usertype").Value
+           user_type = public_rs.Fields("Usertype").value
             
-            user_name = public_rs.Fields("Username").Value
-            user_password = public_rs.Fields("Password").Value
+            user_name = public_rs.Fields("Username").value
+            user_password = public_rs.Fields("Password").value
             Call mysql_select(public_rs, "SELECT * FROM tbl_sy WHERE SY = " & Format(Date, "yyyy"))
             If public_rs.RecordCount = 0 Then
                 Call mysql_select(public_rs, "INSERT INTO tbl_sy (SY) VALUES ( " & Format(Date, "yyyy") & ")")
@@ -395,13 +521,13 @@ If public_rs.RecordCount = 0 Then
             school_year = Format(Date, "yyyy") & "-" & Left(Format(Date, "yyyy"), 3) & Trim(Str(val(Right(Format(Date, "yyyy"), 1) + 1)))
             
             mainform.lbl_username.Caption = user_name
-            mainform.lbl_sy.Caption = school_year
+            'mainform.lbl_sy.Caption = school_year
             mainteacherform.lbl_username.Caption = user_name
-            mainteacherform.lbl_sy.Caption = school_year
+            'mainteacherform.lbl_sy.Caption = school_year
             If user_type = "Administrator" Then
                 Call load_form(mainform, True)
                 mainform.lbl_username.Caption = user_name
-                mainform.lbl_sy.Caption = school_year
+                'mainform.lbl_sy.Caption = school_year
                 sql_string = "INSERT INTO " _
                                 & "tbl_logs (Username, Login,Logout)" _
                             & " VALUES (" _
@@ -410,9 +536,72 @@ If public_rs.RecordCount = 0 Then
                 Call mysql_select(useraccountform.rs_user, sql_string)
                 
             Else
+             tmp_sy = val(Format(Date, "yyyy"))
+                mainteacherform.cmb_sy.Clear
+                mainteacherform.cmb_sy.AddItem ((tmp_sy - 1) & "-" & tmp_sy)
+                mainteacherform.cmb_sy.AddItem (tmp_sy & "-" & (tmp_sy + 1))
+                If Month(Now) <= 4 Then
+                  mainteacherform.cmb_sy.ListIndex = 0
+                Else
+                  mainteacherform.cmb_sy.ListIndex = 1
+                End If
+                 tmp_sy = val(Format(Date, "yyyy"))
+                mainteacherform.cmb_sy.Clear
+                mainteacherform.cmb_sy.AddItem ((tmp_sy - 1) & "-" & tmp_sy)
+                mainteacherform.cmb_sy.AddItem (tmp_sy & "-" & (tmp_sy + 1))
+                If Month(Now) <= 4 Then
+                  mainteacherform.cmb_sy.ListIndex = 0
+                Else
+                  mainteacherform.cmb_sy.ListIndex = 1
+                End If
+                 tmp_sy = val(Format(Date, "yyyy"))
+                mainteacherform.cmb_sy.Clear
+                mainteacherform.cmb_sy.AddItem ((tmp_sy - 1) & "-" & tmp_sy)
+                mainteacherform.cmb_sy.AddItem (tmp_sy & "-" & (tmp_sy + 1))
+                If Month(Now) <= 4 Then
+                  mainteacherform.cmb_sy.ListIndex = 0
+                Else
+                  mainteacherform.cmb_sy.ListIndex = 1
+                End If
+                 tmp_sy = val(Format(Date, "yyyy"))
+                mainteacherform.cmb_sy.Clear
+                mainteacherform.cmb_sy.AddItem ((tmp_sy - 1) & "-" & tmp_sy)
+                mainteacherform.cmb_sy.AddItem (tmp_sy & "-" & (tmp_sy + 1))
+                If Month(Now) <= 4 Then
+                  mainteacherform.cmb_sy.ListIndex = 0
+                Else
+                  mainteacherform.cmb_sy.ListIndex = 1
+                End If
+                 tmp_sy = val(Format(Date, "yyyy"))
+                mainteacherform.cmb_sy.Clear
+                mainteacherform.cmb_sy.AddItem ((tmp_sy - 1) & "-" & tmp_sy)
+                mainteacherform.cmb_sy.AddItem (tmp_sy & "-" & (tmp_sy + 1))
+                If Month(Now) <= 4 Then
+                  mainteacherform.cmb_sy.ListIndex = 0
+                Else
+                  mainteacherform.cmb_sy.ListIndex = 1
+                End If
+                 tmp_sy = val(Format(Date, "yyyy"))
+                mainteacherform.cmb_sy.Clear
+                mainteacherform.cmb_sy.AddItem ((tmp_sy - 1) & "-" & tmp_sy)
+                mainteacherform.cmb_sy.AddItem (tmp_sy & "-" & (tmp_sy + 1))
+                If Month(Now) <= 4 Then
+                  mainteacherform.cmb_sy.ListIndex = 0
+                Else
+                  mainteacherform.cmb_sy.ListIndex = 1
+                End If
+                 tmp_sy = val(Format(Date, "yyyy"))
+                mainteacherform.cmb_sy.Clear
+                mainteacherform.cmb_sy.AddItem ((tmp_sy - 1) & "-" & tmp_sy)
+                mainteacherform.cmb_sy.AddItem (tmp_sy & "-" & (tmp_sy + 1))
+                If Month(Now) <= 4 Then
+                  mainteacherform.cmb_sy.ListIndex = 0
+                Else
+                  mainteacherform.cmb_sy.ListIndex = 1
+                End If
                Call load_form(mainteacherform, True)
                 mainteacherform.lbl_username.Caption = user_name
-                mainteacherform.lbl_sy.Caption = school_year
+                'mainteacherform.lbl_sy.Caption = school_year
                 sql_string = "INSERT INTO " _
                                 & "tbl_logs (Username, Login,Logout)" _
                             & " VALUES (" _
@@ -434,8 +623,8 @@ Private Sub Form_Load()
 End Sub
 
 Private Sub opt_1_Click()
-    opt_2.Value = False
-    opt_3.Value = False
+    opt_2.value = False
+    opt_3.value = False
     txt_1.Enabled = True
     txt_2.Enabled = False
     txt_3.Enabled = False
@@ -445,8 +634,8 @@ Private Sub opt_1_Click()
 End Sub
 
 Private Sub opt_2_Click()
-    opt_1.Value = False
-    opt_3.Value = False
+    opt_1.value = False
+    opt_3.value = False
     txt_1.Enabled = False
     txt_2.Enabled = True
     txt_3.Enabled = False
@@ -456,8 +645,8 @@ Private Sub opt_2_Click()
 End Sub
 
 Private Sub opt_3_Click()
-    opt_1.Value = False
-    opt_2.Value = False
+    opt_1.value = False
+    opt_2.value = False
     txt_1.Enabled = False
     txt_2.Enabled = False
     txt_3.Enabled = True
