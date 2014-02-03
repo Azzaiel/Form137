@@ -150,8 +150,8 @@ Private Sub login()
         Dim usertype As String
         Call mysql_select(public_rs, "SELECT *" _
                                     & "FROM tbl_user " _
-                                    & "WHERE Username = '" & txt_username.Text & "' " _
-                                    & "AND Password= '" & txt_password.Text & "'")
+                                    & "WHERE BINARY Username = '" & txt_username.Text & "' " _
+                                    & "AND BINARY Password= '" & txt_password.Text & "'")
         If public_rs.RecordCount = 0 Then
             MsgBox "Incorrect username or password!"
         Else
