@@ -220,6 +220,8 @@ Private Sub cmd_new_Click()
     studentinformationform.txt_place.Text = ""
     studentinformationform.txt_occupation.Text = ""
     studentinformationform.cmb_status.Text = "Enrolled"
+    studentinformationform.lbl_status.Visible = False
+    studentinformationform.cmb_status.Visible = False
     studentinformationform.txt_op.Text = "add"
      Call set_level2
     Call load_form(studentinformationform, True)

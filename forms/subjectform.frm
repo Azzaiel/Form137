@@ -242,8 +242,8 @@ Private Sub cmb_clear_Click()
     'txt_subject_code.Text = ""
     txt_subject_name.Text = ""
 End Sub
-Private Sub cmb_level_Change()
-    'txt_subject_code.Text = ""
+Private Sub cmb_level_Click()
+'txt_subject_code.Text = ""
     txt_subject_name.Text = ""
          Call set_datagrid(dg_subjects, rs_subject, _
                                         "SELECT " _
@@ -254,18 +254,7 @@ Private Sub cmb_level_Change()
                                             & "lvl_name = '" & cmb_level.Text & "' " _
                                         & "Order by last_mod_date desc")
    Call formatDataGrid
-End Sub
-Private Sub cmb_level_Click()
-'  txt_subject_code.Text = ""
-    txt_subject_name.Text = ""
-    Call set_datagrid(dg_subjects, rs_subject, _
-                                        "SELECT " _
-                                            & "subject_code as Subject_Code,subject_name as Subject_Name " _
-                                        & "FROM " _
-                                            & "tbl_subject  " _
-                                        & "WHERE " _
-                                            & "lvl_name = '" & cmb_level.Text & "'")
-End Sub
+   End Sub
 
 Private Sub cmd_save_Click()
     Dim ans As String
@@ -338,7 +327,7 @@ Private Sub Form_Load()
     If Not level = "" Then
         cmb_level.Text = level
         level = ""
-        Call cmb_level_Change
+        Call cmb_level_Click
     End If
     txt_op.Text = "add"
      Call set_datagrid(dg_subjects, rs_subject, _

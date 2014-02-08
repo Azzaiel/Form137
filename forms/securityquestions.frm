@@ -168,9 +168,14 @@ Attribute VB_Exposed = False
 Public sql_string As String
 Public rs_security As New ADODB.Recordset
 Private Sub cmb_clear_Click()
-    txt_pet.Text = ""
-    txt_place.Text = ""
-    txt_author.Text = ""
+
+ Dim response As String
+    response = MsgBox("Are you sure you want to clear the data?", vbYesNo, "Question")
+    If (response = vbYes) Then
+       txt_pet.Text = ""
+       txt_place.Text = ""
+       txt_author.Text = ""
+    End If
 End Sub
 
 Private Sub cmd_save_Click()

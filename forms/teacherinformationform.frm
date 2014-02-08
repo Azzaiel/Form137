@@ -123,7 +123,7 @@ Begin VB.Form teacherinformationform
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Format          =   107937793
+      Format          =   70057985
       CurrentDate     =   41540
    End
    Begin VB.ComboBox cmb_gender 
@@ -379,7 +379,7 @@ Begin VB.Form teacherinformationform
       Top             =   0
       Width           =   5535
    End
-   Begin VB.Label Label13 
+   Begin VB.Label lbl_status 
       BackStyle       =   0  'Transparent
       Caption         =   "Status:"
       BeginProperty Font 
@@ -543,7 +543,7 @@ Private Sub cmb_gender_KeyUp(KeyCode As Integer, Shift As Integer)
 End Sub
 
 Private Sub cmb_level_Click()
-  Call mysql_select(public_rs, "SELECT section_id, section_name FROM db_form137.tbl_section where lvl_name = '" & cmb_level.Text & "'")
+  Call mysql_select(public_rs, "SELECT section_id, section_name FROM db_form137.tbl_section where lvl_name = '" & cmb_level.Text & "' and (teacher_id is null or teacher_id = 'None') ")
   cmb_section.Clear
   
   Dim index As Integer

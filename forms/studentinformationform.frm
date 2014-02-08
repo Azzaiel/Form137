@@ -200,7 +200,6 @@ Begin VB.Form studentinformationform
       EndProperty
       Height          =   375
       Left            =   1920
-      MaxLength       =   12
       TabIndex        =   6
       Top             =   3960
       Width           =   3495
@@ -250,7 +249,6 @@ Begin VB.Form studentinformationform
       EndProperty
       Height          =   375
       Left            =   1920
-      MaxLength       =   12
       TabIndex        =   8
       Top             =   5400
       Width           =   3495
@@ -300,7 +298,7 @@ Begin VB.Form studentinformationform
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Format          =   106364929
+      Format          =   70057985
       CurrentDate     =   41608
    End
    Begin VB.Label Label14 
@@ -379,7 +377,7 @@ Begin VB.Form studentinformationform
       Top             =   240
       Width           =   2655
    End
-   Begin VB.Label Label16 
+   Begin VB.Label lbl_status 
       BackStyle       =   0  'Transparent
       Caption         =   "*Status:"
       BeginProperty Font 
@@ -899,10 +897,10 @@ Private Sub txt_father_KeyUp(KeyCode As Integer, Shift As Integer)
     End If
 End Sub
 
-Private Sub txt_father_no_KeyUp(KeyCode As Integer, Shift As Integer)
-    If Not IsNumeric(txt_father_no.Text) = True Then
-        txt_father_no.Text = ""
-        MsgBox "Please input numbers only."
+Private Sub txt_father_no_KeyPress(KeyAscii As Integer)
+   If (Not CommonHelper.isFunctionAscii(KeyAscii) And (Not CommonHelper.isNumberAscii(KeyAscii) And KeyAscii <> 47)) Then
+      KeyAscii = 0
+      Beep
     End If
 End Sub
 
@@ -963,9 +961,10 @@ Private Sub txt_mother_no_KeyUp(KeyCode As Integer, Shift As Integer)
     End If
 End Sub
 
-Private Sub txt_no_KeyUp(KeyCode As Integer, Shift As Integer)
-    If Not IsNumeric(txt_no.Text) = True Then
-        txt_no.Text = ""
-        MsgBox "Letter is not allowed."
+Private Sub txt_no_KeyPress(KeyAscii As Integer)
+    If (Not CommonHelper.isFunctionAscii(KeyAscii) And (Not CommonHelper.isNumberAscii(KeyAscii) And KeyAscii <> 47)) Then
+      KeyAscii = 0
+      Beep
     End If
 End Sub
+

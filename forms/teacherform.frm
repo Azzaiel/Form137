@@ -161,7 +161,7 @@ Else
     teacherinformationform.txt_lastname.Text = rs_teacher.Fields("Last_Name")
     teacherinformationform.txt_middlename.Text = rs_teacher.Fields("Middle_Name")
     teacherinformationform.cmb_gender.Text = rs_teacher.Fields("Gender")
-    teacherinformationform.dateBday.Value = rs_teacher.Fields("Date_Of_Birth")
+    teacherinformationform.dateBday.value = rs_teacher.Fields("Date_Of_Birth")
     'teacherinformationform.txt_contact.Text = rs_teacher.Fields("Contact_Number")
     'teacherinformationform.txt_address.Text = rs_teacher.Fields("Address")
     'teacherinformationform.txt_course.Text = rs_teacher.Fields("Course")
@@ -190,7 +190,7 @@ Private Sub cmd_new_Click()
     Call mysql_select(public_rs, "SELECT * FROM tbl_teacher  ORDER BY teacher_id DESC LIMIT 1")
     
     If public_rs.RecordCount <> 0 Then
-        temp = public_rs.Fields("teacher_id").Value
+        temp = public_rs.Fields("teacher_id").value
         temp = Mid$(temp, 3, 4)
         no = val(temp)
         no = no + 1
@@ -207,7 +207,7 @@ Private Sub cmd_new_Click()
     teacherinformationform.txt_lastname.Text = ""
     teacherinformationform.txt_middlename.Text = ""
     teacherinformationform.cmb_gender.Text = ""
-    teacherinformationform.dateBday.Value = Now
+    teacherinformationform.dateBday.value = Now
     'teacherinformationform.txt_contact.Text = ""
     'teacherinformationform.txt_address.Text = ""
     'teacherinformationform.txt_course.Text = ""
@@ -215,6 +215,8 @@ Private Sub cmd_new_Click()
     'teacherinformationform.txt_from.Text = ""
     'teacherinformationform.txt_to.Text = ""
     teacherinformationform.cmb_status.Text = "On-Duty"
+    teacherinformationform.lbl_status.Visible = False
+    teacherinformationform.cmb_status.Visible = False
     teacherinformationform.txt_op.Text = "add"
     Call load_form(teacherinformationform, True)
 End Sub

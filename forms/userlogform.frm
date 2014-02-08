@@ -22,6 +22,7 @@ Begin VB.Form userlogform
       Style           =   1  'Graphical
       TabIndex        =   5
       Top             =   5160
+      Visible         =   0   'False
       Width           =   1575
    End
    Begin VB.CommandButton cmd_edit 

@@ -2,7 +2,7 @@ VERSION 5.00
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Begin VB.Form adviserAddStudent 
    BackColor       =   &H8000000E&
-   Caption         =   "Form1"
+   Caption         =   "Add Student"
    ClientHeight    =   7395
    ClientLeft      =   120
    ClientTop       =   450
@@ -425,6 +425,13 @@ Private Sub Command1_Click()
 End Sub
 
 Private Sub cmd_add_Click()
+
+    Dim response As String
+    response = MsgBox("Are you sure you want to add the selected student?", vbYesNo, "Question")
+    If (response = vbNo) Then
+      Exit Sub
+    End If
+
     If (rs_available_stud.RecordCount > 0) Then
     sql_query = "Select * from tbl_student_level where 1 = 2"
     Call mysql_select(rs_tmp, sql_query)
@@ -441,6 +448,11 @@ Private Sub cmd_add_Click()
 End Sub
 
 Private Sub cmd_delete_Click()
+ Dim response As String
+    response = MsgBox("Are you sure you want to remove the selected student?", vbYesNo, "Question")
+    If (response = vbNo) Then
+      Exit Sub
+    End If
     If (rs_current_stud.RecordCount > 0) Then
     sql_query = "Select * from tbl_student_level " & _
                 "Where ID = '" & rs_current_stud!lrn & "' " & _
@@ -455,6 +467,12 @@ Private Sub cmd_delete_Click()
 End Sub
 
 Private Sub Command3_Click()
+   Dim response As String
+    response = MsgBox("Are you sure you want to remove all students?", vbYesNo, "Question")
+    If (response = vbNo) Then
+      Exit Sub
+    End If
+
   If (rs_current_stud.RecordCount > 0) Then
   
     rs_current_stud.MoveFirst
@@ -474,6 +492,11 @@ Private Sub Command3_Click()
 End Sub
 
 Private Sub Command4_Click()
+   Dim response As String
+    response = MsgBox("Are you sure you want to add all students?", vbYesNo, "Question")
+    If (response = vbNo) Then
+      Exit Sub
+    End If
   If (rs_available_stud.RecordCount > 0) Then
     sql_query = "Select * from tbl_student_level where 1 = 2"
     Call mysql_select(rs_tmp, sql_query)
