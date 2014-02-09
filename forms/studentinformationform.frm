@@ -298,12 +298,12 @@ Begin VB.Form studentinformationform
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Format          =   70057985
+      Format          =   110362625
       CurrentDate     =   41608
    End
    Begin VB.Label Label14 
       BackStyle       =   0  'Transparent
-      Caption         =   "Occupation"
+      Caption         =   "*Occupation"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
          Size            =   9.75
@@ -322,7 +322,7 @@ Begin VB.Form studentinformationform
    End
    Begin VB.Label Label11 
       BackStyle       =   0  'Transparent
-      Caption         =   "Birth Place:"
+      Caption         =   "*Birth Place:"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
          Size            =   9.75
@@ -493,7 +493,7 @@ Begin VB.Form studentinformationform
    End
    Begin VB.Label Label5 
       BackStyle       =   0  'Transparent
-      Caption         =   "Gender:"
+      Caption         =   "*Gender:"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
          Size            =   9.75
@@ -512,7 +512,7 @@ Begin VB.Form studentinformationform
    End
    Begin VB.Label Label6 
       BackStyle       =   0  'Transparent
-      Caption         =   "Birthday:"
+      Caption         =   "*Birthday:"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
          Size            =   9.75
@@ -550,7 +550,7 @@ Begin VB.Form studentinformationform
    End
    Begin VB.Label Label8 
       BackStyle       =   0  'Transparent
-      Caption         =   "Address:"
+      Caption         =   "*Address:"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
          Size            =   9.75
@@ -569,7 +569,7 @@ Begin VB.Form studentinformationform
    End
    Begin VB.Label Label9 
       BackStyle       =   0  'Transparent
-      Caption         =   "Guardian:"
+      Caption         =   "*Guardian:"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
          Size            =   9.75
@@ -588,7 +588,7 @@ Begin VB.Form studentinformationform
    End
    Begin VB.Label Label10 
       BackStyle       =   0  'Transparent
-      Caption         =   "Number:"
+      Caption         =   "*Number:"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
          Size            =   9.75
@@ -661,8 +661,8 @@ Private Sub cmd_save_Click()
     Dim ans As String
     Dim id As String
     If txt_op.Text = "add" Then
-        If txt_id.Text = "" Or txt_lastname.Text = "" Or txt_firstname.Text = "" Or cmb_status.Text = "" Then
-        MsgBox "Please complete important fields."
+        If txt_id.Text = "" Or txt_lastname.Text = "" Or txt_firstname.Text = "" Or cmb_status.Text = "" Or cmb_gender.ListIndex = -1 Or txt_place = "" Or txt_father = "" Or txt_occupation = "" Or txt_father_no = "" Or txt_address = "" Or cmb_gender.Text = "" Then
+          MsgBox "Please complete important fields."
         Exit Sub
     Else
         Dim no As Integer
