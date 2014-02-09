@@ -262,9 +262,27 @@ Begin VB.Form adviserAddStudent
       TabIndex        =   0
       Top             =   720
       Width           =   5895
+      Begin VB.CheckBox ck_prereq 
+         BackColor       =   &H8000000E&
+         Caption         =   "Show Prerequisites"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   240
+         Left            =   960
+         TabIndex        =   19
+         Top             =   480
+         Width           =   2415
+      End
       Begin VB.TextBox txt_last_name 
          Height          =   285
-         Left            =   3480
+         Left            =   3600
          TabIndex        =   18
          Top             =   120
          Width           =   1815
@@ -277,7 +295,7 @@ Begin VB.Form adviserAddStudent
          Width           =   1575
       End
       Begin VB.CommandButton Command2 
-         Caption         =   "C"
+         Caption         =   "Clear"
          BeginProperty Font 
             Name            =   "MS Sans Serif"
             Size            =   8.25
@@ -287,20 +305,20 @@ Begin VB.Form adviserAddStudent
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   375
-         Left            =   5400
+         Height          =   255
+         Left            =   3600
          TabIndex        =   16
-         Top             =   120
-         Width           =   375
+         Top             =   480
+         Width           =   975
       End
       Begin MSDataGridLib.DataGrid dg_available_stud 
-         Height          =   5895
+         Height          =   5415
          Left            =   120
          TabIndex        =   11
-         Top             =   480
+         Top             =   840
          Width           =   5655
          _ExtentX        =   9975
-         _ExtentY        =   10398
+         _ExtentY        =   9551
          _Version        =   393216
          AllowUpdate     =   0   'False
          HeadLines       =   1
@@ -371,7 +389,7 @@ Begin VB.Form adviserAddStudent
             Strikethrough   =   0   'False
          EndProperty
          Height          =   255
-         Left            =   2280
+         Left            =   2400
          TabIndex        =   15
          Top             =   120
          Width           =   1215
@@ -422,6 +440,21 @@ Private Sub populateCurrentStudent()
 End Sub
 Private Sub Command1_Click()
 
+End Sub
+
+Private Sub ck_prereq_Click()
+ If ck_prereq.value Then
+    
+    Dim tempList As Variant
+    tempList = Split(lbl_level, " ")
+    
+    If UBound(tempList) <> 1 Then
+      MsgBox "Level has no prerequisites", vbInformation
+      ck_prereq.value = False
+    End If
+    
+  End If
+  Call populateAvailableStundet
 End Sub
 
 Private Sub cmd_add_Click()
@@ -540,6 +573,36 @@ Private Sub populateAvailableStundet()
               "From tbl_student a " & _
               "Where a.STUDENT_ID not in (Select ID from tbl_student_level where SY = '" & mainteacherform.cmb_sy.Text & "')"
                       
+  If ck_prereq.value Then
+    
+    Dim tempList As Variant
+    
+    tempList = Split(lbl_level, " ")
+    
+    If UBound(tempList) = 1 Then
+      
+      Dim prereqLvlVal As String
+      Dim prereqSY As String
+      Dim tempYr As String
+      Dim lvlVal As Integer
+      
+      lvlVal = val(tempList(1))
+      lvlVal = lvlVal - 1
+     
+      If lvlVal = 0 Then
+        prereqLvlVal = "Kinder"
+      Else
+        prereqLvlVal = "Grade " & lvlVal
+      End If
+      
+      tempYr = Split(mainteacherform.cmb_sy.Text, "-")(0)
+      prereqSY = (tempYr - 1) & "-" & tempYr
+      sql_query = sql_query & " and a.STUDENT_ID  in (Select ID from tbl_student_level where SY = '" & prereqSY & "' and lvl_name = '" & prereqLvlVal & "') "
+
+    End If
+    
+  End If
+  
   If (txt_lrn <> vbNullString) Then
      sql_query = sql_query & " And a.STUDENT_ID like '%" & txt_lrn & "%'"
   End If

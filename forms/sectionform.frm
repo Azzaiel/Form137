@@ -412,7 +412,6 @@ Private Sub Command1_Click()
     MsgBox "Please select a Level to delete", vbCritical
   End If
 End Sub
-
 Private Sub dg_sections_DblClick()
     txt_op.Text = "edit"
     txt_section.Text = rs_section.Fields("Section_Name")
