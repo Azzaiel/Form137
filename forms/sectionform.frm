@@ -17,6 +17,23 @@ Begin VB.Form sectionform
    ScaleWidth      =   7440
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
+   Begin VB.CommandButton Command1 
+      Caption         =   "Delete"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   615
+      Left            =   2640
+      TabIndex        =   12
+      Top             =   1680
+      Width           =   1215
+   End
    Begin VB.TextBox txt_oldsection 
       Height          =   375
       Left            =   7440
@@ -64,7 +81,7 @@ Begin VB.Form sectionform
    End
    Begin VB.CommandButton cmd_save 
       Height          =   615
-      Left            =   2280
+      Left            =   1440
       Picture         =   "sectionform.frx":1C591
       Style           =   1  'Graphical
       TabIndex        =   2
@@ -73,7 +90,7 @@ Begin VB.Form sectionform
    End
    Begin VB.CommandButton cmb_clear 
       Height          =   615
-      Left            =   3600
+      Left            =   3960
       Picture         =   "sectionform.frx":1D534
       Style           =   1  'Graphical
       TabIndex        =   3
@@ -363,6 +380,39 @@ Private Sub cmd_settings_Click()
     Call load_form(subjectsettingsform, True)
 End Sub
 
+Private Sub Command1_Click()
+  If txt_section <> "" Then
+    Call mysql_select(public_rs, "Select * from tbl_student_level where section_name = '" & txt_section & "' and lvl_name = '" & cmb_level.Text & "' ")
+    If (public_rs.RecordCount = 0) Then
+      Dim ans
+      ans = MsgBox("Are you sure you want to Delete the Section?", vbYesNo)
+      If ans = vbYes Then
+         Call mysql_select(public_rs, "Select * from tbl_section where section_name = '" & txt_section & "' and lvl_name = '" & cmb_level.Text & "' ")
+         public_rs.Delete
+         MsgBox "Record Delete!", vbInformation
+         txt_section = ""
+           Call set_datagrid(dg_sections, rs_section, _
+                                        "SELECT " _
+                                            & "a.section_name As Section_Name, " _
+                                            & "a.teacher_id As Teacher_ID, CONCAT(b.first_name,' ', b.last_name) as Teacher_Name " _
+                                        & "FROM " _
+                                            & "tbl_section a " _
+                                        & "LEFT JOIN " _
+                                            & "tbl_teacher b " _
+                                        & "ON " _
+                                            & "a.teacher_id = b.teacher_id " _
+                                        & "WHERE " _
+                                            & "a.lvl_name = '" & cmb_level.Text & "' ")
+
+      End If
+    Else
+      MsgBox "Cannot Delete Section, There are students under the section"
+    End If
+  Else
+    MsgBox "Please select a Level to delete", vbCritical
+  End If
+End Sub
+
 Private Sub dg_sections_DblClick()
     txt_op.Text = "edit"
     txt_section.Text = rs_section.Fields("Section_Name")
@@ -371,7 +421,8 @@ Private Sub dg_sections_DblClick()
 End Sub
 
 Private Sub Form_Load()
-     Call mysql_select(public_rs, "SELECT * FROM tbl_level ")
+
+    Call mysql_select(public_rs, "SELECT * FROM tbl_level ")
     cmb_level.Clear
     While Not public_rs.EOF
         cmb_level.AddItem (public_rs.Fields("lvl_name"))
@@ -397,7 +448,6 @@ Private Sub Form_Load()
                                             & "a.lvl_name = '" & cmb_level.Text & "' ")
     Call formatDataGrid
     Call mysql_select(public_rs, "SELECT CONCAT(CONCAT(first_name,' '),last_name) as Name FROM tbl_teacher WHERE status = 'On-Duty'")
-
 
 End Sub
 Private Function formatDataGrid()
