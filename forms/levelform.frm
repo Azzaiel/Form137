@@ -15,6 +15,32 @@ Begin VB.Form levelform
    ScaleWidth      =   5850
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
+   Begin VB.CommandButton cmb_clear 
+      Height          =   615
+      Left            =   4440
+      Picture         =   "levelform.frx":12121
+      Style           =   1  'Graphical
+      TabIndex        =   2
+      Top             =   600
+      Width           =   1095
+   End
+   Begin VB.CommandButton Command1 
+      Caption         =   "Delete"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   615
+      Left            =   3120
+      TabIndex        =   9
+      Top             =   600
+      Width           =   1215
+   End
    Begin VB.TextBox txt_oldname 
       Height          =   375
       Left            =   4440
@@ -31,18 +57,9 @@ Begin VB.Form levelform
       Visible         =   0   'False
       Width           =   975
    End
-   Begin VB.CommandButton cmb_clear 
-      Height          =   615
-      Left            =   3120
-      Picture         =   "levelform.frx":12121
-      Style           =   1  'Graphical
-      TabIndex        =   2
-      Top             =   600
-      Width           =   1095
-   End
    Begin VB.CommandButton cmd_save 
       Height          =   615
-      Left            =   1680
+      Left            =   1920
       Picture         =   "levelform.frx":12E9C
       Style           =   1  'Graphical
       TabIndex        =   1
@@ -244,6 +261,31 @@ Private Sub cmd_settings_Click()
     level = rs_level.Fields("Name")
      Call load_form(subjectform, True)
      Unload Me
+End Sub
+
+Private Sub Command1_Click()
+  If txt_level <> "" Then
+    Call mysql_select(public_rs, "Select * from tbl_section where lvl_name = '" & txt_level & "' ")
+    If (public_rs.RecordCount = 0) Then
+      Dim ans
+      ans = MsgBox("Are you sure you want to Delete the Level?", vbYesNo)
+      If ans = vbYes Then
+         Call mysql_select(public_rs, "Select * from tbl_level where lvl_name = '" & txt_level & "' ")
+         public_rs.Delete
+         MsgBox "Record Delete!", vbInformation
+         txt_level = ""
+         Call set_datagrid(dg_level, rs_level, "SELECT lvl_name as Name FROM tbl_level ")
+      End If
+    Else
+      MsgBox "Cannot Delete level, It is being used by a Section"
+    End If
+  Else
+    MsgBox "Please select a Level to delete", vbCritical
+  End If
+End Sub
+
+Private Sub dg_level_Click()
+  txt_level.Text = rs_level.Fields("Name")
 End Sub
 
 Private Sub dg_level_DblClick()
